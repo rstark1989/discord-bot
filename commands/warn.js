@@ -1,9 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports = {
-  prefix: "kick",
-  description:
-    "Kicks the mentioned user for the mentioned reason. Use the format 'kick <user> <reason>'. Only available to server moderators.",
+  prefix: "warn",
+  description: "Send a warning to a user. Only available to server moderators.",
   command: function(message) {
     if (message.member.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(
@@ -13,26 +12,26 @@ module.exports = {
     }
     const mod = message.author;
     const arguments = message.content.split(" ");
-    const user = message.mentions.members.first();
+    const user = message.mentions.users.first();
     const reasonArg = arguments.slice(2, arguments.length);
     const reason = reasonArg.join(" ");
-    const kickEmbed = new Discord.MessageEmbed()
+    const warnEmbed = new Discord.MessageEmbed()
       .setColor("#0099FF")
       .setTitle(`Kicked!`)
       .addFields(
         {
           name: "What happened?",
-          value: `${mod} has kicked ${user} from the server.`
+          value: `${mod} has issued a warning to you.`
         },
         {
           name: "Reason",
           value: `${reason}`
         }
       )
-      .setFooter("Please remember to follow our rules!");
+      .setFooter("You can read the rules in the Welcome channel!");
+    user.send(warnEmbed);
     message.guild.channels.cache
       .find(channel => channel.name === "moderation-activity")
-      .send(kickEmbed);
-    user.kick();
+      .send(`${mod} has issued a warning to ${user}: ${reason}`);
   }
 };
