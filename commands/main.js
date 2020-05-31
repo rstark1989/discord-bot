@@ -8,8 +8,9 @@ client.login(config.token);
 //command files here:
 const ping = require("./ping.js");
 const kick = require("./kick.js");
+const help = require("./help.js");
 //command names in this array
-const commands = [kick, ping];
+const commands = [kick, ping, help];
 
 //verify bot is ready
 client.on("ready", function() {
