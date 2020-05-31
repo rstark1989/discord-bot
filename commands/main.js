@@ -1,3 +1,16 @@
+const http = require("http");
+const express = require("express");
+const app = express();
+app.get("/", (req, res) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
+app.listen(3000);
+setInterval(() => {
+  http.get("http://projectname.glitch.me/");
+}, 280000);
+
+//make discord commands work
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("../config.json");
