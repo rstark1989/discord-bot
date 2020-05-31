@@ -1,0 +1,18 @@
+{
+  "name": "Discord_Bot",
+  "author": "Nicholas Carrigan",
+  "version": "0.1.0",
+  "license": "MIT",
+  "engine": {
+    "node": "14.2.0"
+  },
+  "repository": "https://github.com/nhcarrigan/discord-bot",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "enmap": "^5.2.4"
+  },
+  "main": "/commands/main.js",
+  "scripts": {
+    "start": "node /commands/main.js"
+  }
+}
