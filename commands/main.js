@@ -13,8 +13,18 @@ const fortune = require("./fortune.js");
 const warn = require("./warn.js");
 const restrict = require("./restrict.js");
 const unrestrict = require("./unrestrict.js");
+const pokedex = require("./pokedex.js");
 //command names in this array
-const commands = [kick, ping, help, fortune, warn, restrict, unrestrict];
+const commands = [
+  kick,
+  ping,
+  help,
+  fortune,
+  warn,
+  restrict,
+  unrestrict,
+  pokedex
+];
 
 //verify bot is ready
 client.on("ready", function() {
