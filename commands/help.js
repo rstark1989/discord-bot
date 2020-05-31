@@ -9,8 +9,10 @@ module.exports = {
     const helpEmbed = new Discord.MessageEmbed()
       .setColor("#0099FF")
       .setTitle("Bot Commands")
-      .setDescription("Here are my currently available commands.")
-      .setFooter("Have fun!");
+      .setDescription(
+        "Hello! Here are my currently available commands. You can view my source code [here](https://github.com/nhcarrigan/discord-bot)"
+      )
+      .setFooter("Okay, that's all! Bye bye!");
     const files = await fs.promises.readdir(__dirname);
     files.forEach(function(file) {
       const filename = require(`./${file}`);

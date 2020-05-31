@@ -24,10 +24,17 @@ client.on("guildMemberAdd", function(member) {
     .setColor("#0099ff")
     .setTitle("Welcome!")
     .setDescription("Thank you for joining my server!")
-    .addFields({
-      name: "Rules",
-      value: "Please read the rules in our Welcome channel!"
-    })
+    .addFields(
+      {
+        name: "Rules",
+        value: "Please read the rules in our Welcome channel!"
+      },
+      {
+        name: "My Commands",
+        value:
+          "Use the '|' prefix to get my attention! Try '|help' to see what I can do!"
+      }
+    )
     .setFooter("Have fun!");
   member.send(welcomeEmbed);
 });
