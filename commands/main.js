@@ -1,21 +1,46 @@
 const Discord = require("discord.js");
-const Enmap = require("enmap");
 const client = new Discord.Client();
-const begin = "!";
 const config = require("../config.json");
+const prefix = config.prefix;
 client.config = config;
 client.login(config.token);
 
+//command files here:
+const ping = require("./ping.js");
+const kick = require("./kick.js");
+//command names in this array
+const commands = [kick, ping];
+
+//verify bot is ready
 client.on("ready", function() {
   console.log("Activate the Omega!");
 });
 
-client.on("message", function(message) {
-  if (!message.content.startsWith(begin) || message.author.bot) {
-    return;
-  }
+//welcome message
+client.on("guildMemberAdd", function(member) {
+  const welcomeEmbed = new Discord.MessageEmbed()
+    .setColor("#0099ff")
+    .setTitle("Welcome!")
+    .setDescription("Thank you for joining my server!")
+    .addFields({
+      name: "Rules",
+      value: "Please read the rules in our Welcome channel!"
+    })
+    .setFooter("Have fun!");
+  member.send(welcomeEmbed);
+});
 
-  if (message.content.startsWith("!ping")) {
-    message.channel.send("pong!");
+//depart message
+client.on("guildMemberRemove", function(member) {
+  member.guild.channels.cache
+    .find(channel => channel.name == "introductions")
+    .send(`** ${member.user} has left us! :( **`);
+});
+client.on("message", function(message) {
+  for (let command of commands) {
+    if (message.content.startsWith(prefix + command.prefix)) {
+      command.command(message);
+      break;
+    }
   }
 });
