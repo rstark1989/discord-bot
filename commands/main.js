@@ -9,8 +9,9 @@ client.login(config.token);
 const ping = require("./ping.js");
 const kick = require("./kick.js");
 const help = require("./help.js");
+const fortune = require("./fortune.js");
 //command names in this array
-const commands = [kick, ping, help];
+const commands = [kick, ping, help, fortune];
 
 //verify bot is ready
 client.on("ready", function() {

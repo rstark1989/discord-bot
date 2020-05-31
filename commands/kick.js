@@ -5,6 +5,12 @@ module.exports = {
   description:
     "Kicks the mentioned user for the mentioned reason. Use the format 'kick <user> <reason>'",
   command: function(message) {
+    if (message.member.hasPermission("KICK_MEMBERS") == false) {
+      message.channel.send(
+        `I apologise, ${message.author}, but you do not have the correct permissions to use this command.`
+      );
+      return;
+    }
     const mod = message.author;
     const arguments = message.content.split(" ");
     const user = message.mentions.members.first();
