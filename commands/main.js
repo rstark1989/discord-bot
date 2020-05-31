@@ -44,8 +44,7 @@ client.on("guildMemberAdd", function(member) {
       },
       {
         name: "My Commands",
-        value:
-          "Use the '|' prefix to get my attention! Try '|help' to see what I can do!"
+        value: `Use the ${prefix} prefix to get my attention! Try '${prefix}help' to see what I can do!`
       }
     )
     .setFooter("Have fun!");
