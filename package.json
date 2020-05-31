@@ -3,7 +3,7 @@
   "author": "Nicholas Carrigan",
   "version": "0.1.0",
   "license": "MIT",
-  "engine": {
+  "engines": {
     "node": "14.2.0"
   },
   "repository": "https://github.com/nhcarrigan/discord-bot",
@@ -11,8 +11,8 @@
     "discord.js": "^12.2.0",
     "node-fetch": "^2.6.0"
   },
-  "main": "/commands/main.js",
+  "main": "./commands/main.js",
   "scripts": {
-    "start": "node /commands/main.js"
+    "start": "node ./commands/main.js"
   }
 }
