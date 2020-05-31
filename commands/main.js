@@ -11,8 +11,10 @@ const kick = require("./kick.js");
 const help = require("./help.js");
 const fortune = require("./fortune.js");
 const warn = require("./warn.js");
+const restrict = require("./restrict.js");
+const unrestrict = require("./unrestrict.js");
 //command names in this array
-const commands = [kick, ping, help, fortune, warn];
+const commands = [kick, ping, help, fortune, warn, restrict, unrestrict];
 
 //verify bot is ready
 client.on("ready", function() {
