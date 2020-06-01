@@ -20,6 +20,7 @@ const ban = require("./ban.js");
 const roll = require("./roll.js");
 const purge = require("./purge.js");
 const about = require("./about.js");
+const wiki = require("./wiki.js");
 //command names in this array
 const commands = [
   kick,
@@ -34,7 +35,8 @@ const commands = [
   ban,
   roll,
   purge,
-  about
+  about,
+  wiki
 ];
 
 //verify bot is ready
