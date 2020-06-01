@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   prefix: "unrestrict",
   description:
-    "Restore a user's permissions. Use the format |unrestrict <user> <reason>. Only available to server moderators.",
+    "Restore a user's permissions. Use the format 'unrestrict <user> <reason>'. Only available to server moderators.",
   command: function(message) {
     if (message.member.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(
@@ -14,8 +14,17 @@ module.exports = {
     const mod = message.author;
     const arguments = message.content.split(" ");
     const user = message.mentions.members.first();
+    if (user == undefined) {
+      message.channel.send(
+        `I apologise, ${mod}, but that appears to be an invalid user tag. Please try again.`
+      );
+      return;
+    }
     const reasonArg = arguments.slice(2, arguments.length);
-    const reason = reasonArg.join(" ");
+    let reason = reasonArg.join(" ");
+    if (reason == "") {
+      reason = "No reason provided.";
+    }
     const suspend = message.guild.roles.cache.find(
       role => role.name == "Restricted"
     );

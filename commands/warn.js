@@ -2,7 +2,8 @@ const Discord = require("discord.js");
 
 module.exports = {
   prefix: "warn",
-  description: "Send a warning to a user. Only available to server moderators.",
+  description:
+    "Send a warning to a user. Use the format 'warn <user> <reason>'. Only available to server moderators.",
   command: function(message) {
     if (message.member.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(
@@ -13,11 +14,20 @@ module.exports = {
     const mod = message.author;
     const arguments = message.content.split(" ");
     const user = message.mentions.users.first();
+    if (user == undefined) {
+      message.channel.send(
+        `I apologise, ${mod}, but that appears to be an invalid user tag. Please try again.`
+      );
+      return;
+    }
     const reasonArg = arguments.slice(2, arguments.length);
-    const reason = reasonArg.join(" ");
+    let reason = reasonArg.join(" ");
+    if (reason == "") {
+      reason = "No reason provided.";
+    }
     const warnEmbed = new Discord.MessageEmbed()
       .setColor("#0099FF")
-      .setTitle(`Kicked!`)
+      .setTitle(`This is a warning!`)
       .addFields(
         {
           name: "What happened?",

@@ -14,8 +14,17 @@ module.exports = {
     const mod = message.author;
     const arguments = message.content.split(" ");
     const user = message.mentions.members.first();
+    if (user == undefined) {
+      message.channel.send(
+        `I apologise, ${mod}, but that appears to be an invalid user tag. Please try again.`
+      );
+      return;
+    }
     const reasonArg = arguments.slice(2, arguments.length);
-    const reason = reasonArg.join(" ");
+    let reason = reasonArg.join(" ");
+    if (reason == "") {
+      reason = "No reason provided";
+    }
     const kickEmbed = new Discord.MessageEmbed()
       .setColor("#0099FF")
       .setTitle(`Kicked!`)
@@ -33,6 +42,6 @@ module.exports = {
     message.guild.channels.cache
       .find(channel => channel.name === "moderation-activity")
       .send(kickEmbed);
-    user.kick();
+    user.kick().catch(err => console.log(err));
   }
 };
