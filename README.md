@@ -1,6 +1,6 @@
 # My Discord Bot
 
-Welcome to the repository for my discord bot, seen as Carribot in my [Discord Server](https://discord.gg/PHqDbkg).
+Welcome to the repository for my discord bot, seen as `nhbot` in my [Discord Server](https://discord.gg/PHqDbkg).
 
 This bot was built using Discord.js, and is currently only hosted locally. As development progresses, I intend to find a live server to host the bot on.
 
