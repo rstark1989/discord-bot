@@ -14,13 +14,14 @@ const fortune = require("./fortune.js");
 const warn = require("./warn.js");
 const restrict = require("./restrict.js");
 const unrestrict = require("./unrestrict.js");
-const pokedex = require("./pokedex.js");
+const pokenum = require("./pokenum.js");
 const status = require("./status.js");
 const ban = require("./ban.js");
 const roll = require("./roll.js");
 const purge = require("./purge.js");
 const about = require("./about.js");
 const wiki = require("./wiki.js");
+const pokename = require("./pokename.js");
 //command names in this array
 const commands = [
   kick,
@@ -30,13 +31,14 @@ const commands = [
   warn,
   restrict,
   unrestrict,
-  pokedex,
+  pokenum,
   status,
   ban,
   roll,
   purge,
   about,
-  wiki
+  wiki,
+  pokename
 ];
 
 //verify bot is ready

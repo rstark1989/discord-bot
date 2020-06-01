@@ -3,15 +3,15 @@ const fetch = require("node-fetch");
 
 module.exports = {
   //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
-  prefix: "pokedex",
-  description: "Look up a Pokemon! Use the format |pokedex <number>.",
+  prefix: "pokenum",
+  description: "Look up a Pokemon! Use the format 'pokenum <number>'.",
   command: async function(message) {
     const arguments = message.content.split(" ");
     const number = parseInt(arguments[1]);
     //PokeAPI only has 807 right now. Check this to avoid null objects.
-    if (number < 1 || number > 807) {
+    if (number < 1 || number > 802) {
       message.channel.send(
-        `I apologise, ${message.author}, but I can only access information for Pokemon from number 1 to 807.`
+        `I apologise, ${message.author}, but I can only access information for Pokemon from number 1 to 802.`
       );
       return;
     }
