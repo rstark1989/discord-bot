@@ -53,9 +53,15 @@ client.on("guildMemberAdd", function(member) {
 
 //depart message
 client.on("guildMemberRemove", function(member) {
-  member.guild.channels.cache
-    .find(channel => channel.name == "introductions")
-    .send(`** ${member.user} has left us! :( **`);
+  const goodbye = member.guild.channels.cache.find(
+    channel => channel.name == "introductions"
+  );
+  if (goodbye == undefined) {
+    console.log("Channel not found.");
+    return;
+  } else {
+    goodbye.send(`** ${member.user} has left us! :( **`);
+  }
 });
 client.on("message", function(message) {
   for (let command of commands) {
