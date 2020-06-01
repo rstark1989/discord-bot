@@ -83,6 +83,8 @@ client.on("guildMemberRemove", function(member) {
     goodbyeChannel.send(`** ${member.user} has left us! :( **`);
   }
 });
+
+//messages listener
 client.on("message", function(message) {
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
