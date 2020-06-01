@@ -7,7 +7,7 @@ module.exports = {
   description: "Look up a Pokemon! Use the format 'pokename <name>'.",
   command: async function(message) {
     const arguments = message.content.split(" ");
-    const name = arguments[1];
+    const name = arguments[1].toLowerCase();
     //call the API and send the data.
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     //check for valid result
