@@ -24,5 +24,8 @@ module.exports = {
       }
     });
     user.send(helpEmbed);
+    message.channel.send(
+      `Good day, ${message.author}! I have sent you a message detailing the services I offer.`
+    );
   }
 };
