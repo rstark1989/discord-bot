@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports = {
+  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
   prefix: "profile",
   description:
     "Returns a profile for the selected website. Use the format 'profile <website name> <id>'. I am able to access the following websites: Steam, Facebook, GitHub, Twitter, LinkedIn, Tumblr",
@@ -10,12 +11,14 @@ module.exports = {
     const name = arguments[2];
     let id = arguments[2];
     let prefix;
+    //if no id is provided, throw error.
     if (!id) {
       message.channel.send(
         `Very sorry, ${message.author}, but I need a profile ID to find your friend.`
       );
       return;
     }
+    //set url for website
     if (website == "steam") {
       prefix = "https://steamcommunity.com/id/";
     }
@@ -35,6 +38,7 @@ module.exports = {
       prefix = "https://";
       id = id + ".tumblr.com";
     }
+    //if website isn't available for this command, notify user.
     if (!prefix) {
       message.channel.send(
         `Very sorry, ${message.author}, but I do not seem to have access to that website yet.`
