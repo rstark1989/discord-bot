@@ -9,9 +9,9 @@ module.exports = {
     const arguments = message.content.split(" ");
     const number = parseInt(arguments[1]);
     //PokeAPI only has 807 right now. Check this to avoid null objects.
-    if (number < 1 || number > 802) {
+    if (number < 0 || number > 802) {
       message.channel.send(
-        `I apologise, ${message.author}, but I can only access information for Pokemon from number 1 to 802.`
+        `I apologise, ${message.author}, but I can only access information for Pokemon from number 0 to 802.`
       );
       return;
     }
@@ -22,11 +22,22 @@ module.exports = {
       );
       return;
     }
+    //missingno easter egg
+    if (number == 0) {
+      const pokemonEmbed = new Discord.MessageEmbed()
+        .setColor("#ab47e6")
+        .setTitle("Missingno")
+        .setDescription("???")
+        .setImage("https://aldelaro5.files.wordpress.com/2016/04/657.png")
+        .setFooter("Data not found.");
+      message.channel.send(pokemonEmbed);
+      return;
+    }
     //call the API and send the data.
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${number}`);
     const pokemon = await data.json();
     const pokemonEmbed = new Discord.MessageEmbed()
-      .setColor("#0099FF")
+      .setColor("#ab47e6")
       .setTitle(`${pokemon.name}`)
       .setDescription(`#${pokemon.id}`)
       .setImage(`${pokemon.sprites.front_default}`)
