@@ -16,6 +16,7 @@ const restrict = require("./restrict.js");
 const unrestrict = require("./unrestrict.js");
 const pokedex = require("./pokedex.js");
 const status = require("./status.js");
+const ban = require("./ban.js");
 //command names in this array
 const commands = [
   kick,
@@ -26,7 +27,8 @@ const commands = [
   restrict,
   unrestrict,
   pokedex,
-  status
+  status,
+  ban
 ];
 
 //verify bot is ready
