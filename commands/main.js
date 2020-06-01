@@ -2,8 +2,9 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("../config.json");
 const prefix = config.prefix;
-client.config = config;
-client.login(config.token);
+const dotenv = require("dotenv");
+dotenv.config({ path: __dirname + "/../.env" });
+client.login(process.env.DISCORD_TOKEN);
 
 //command files here:
 const ping = require("./ping.js");

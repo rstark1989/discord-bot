@@ -22,7 +22,7 @@ You are welcome to join the [Bot Test Server](https://discord.gg/BqRZ85t) to wor
 
 ### Configure Your Bot
 
-The code is written to look for a `config.json` file. This file will contain the discord bot token to link the code to the bot, and the prefix the bot looks for to initiate a command. For security reasons, the `config.json` file for Carribot is not available in this repository. However, the `config-example.json` file is structured for you to set your own bot token and prefix. Simply add the information to the file in your local directory or forked repository and save it as `config.json`
+The code is written to look for a `.env` file. This file will contain the discord bot token to link the code to the bot. For security reasons, the `.env` file for Carribot is not available in this repository. To set up your own bot, you will need to create a `.env` file in the _root_ directory of your bot repository, and add `DISCORD_TOKEN: "your token here"`.
 
 ### Need Some Help?
 
