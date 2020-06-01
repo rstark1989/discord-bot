@@ -10,6 +10,9 @@ module.exports = {
       .setColor("#0099FF")
       .setTitle(`${message.guild.name}`)
       .setDescription("Here's some information about this server.")
+      .setImage(
+        `https://cdn.discordapp.com/icons/${message.guild.id}/${message.guild.icon}.png`
+      )
       .addFields(
         {
           name: "Server Creation Date",
