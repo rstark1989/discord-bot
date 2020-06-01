@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   prefix: "ban",
   description:
-    "Ban a user from the channel. Use the format 'ban <user> <reason>'",
+    "Ban a user from the channel. Use the format 'ban <user> <reason>'. Only available to server moderators.",
   command: function(message) {
     if (message.member.hasPermission("BAN_MEMBERS") == false) {
       message.channel.send(
