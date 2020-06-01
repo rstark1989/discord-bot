@@ -28,6 +28,12 @@ module.exports = {
     const suspend = message.guild.roles.cache.find(
       role => role.name == "Restricted"
     );
+    if (!suspend) {
+      message.channel.send(
+        `I apologise, ${mod}, but it seems the server does not have a "Restricted" role for me to remove.`
+      );
+      return;
+    }
     const unrestrictEmbed = new Discord.MessageEmbed()
       .setColor("#0099FF")
       .setTitle(`Access Restored`)
