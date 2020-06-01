@@ -36,7 +36,7 @@ module.exports = {
       reason = "No reason provided";
     }
     const banEmbed = new Discord.MessageEmbed()
-      .setColor("#0099FF")
+      .setColor("#ff0000")
       .setTitle(`Banned!`)
       .addFields(
         {

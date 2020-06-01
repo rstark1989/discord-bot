@@ -19,6 +19,7 @@ const status = require("./status.js");
 const ban = require("./ban.js");
 const roll = require("./roll.js");
 const purge = require("./purge.js");
+const about = require("./about.js");
 //command names in this array
 const commands = [
   kick,
@@ -32,7 +33,8 @@ const commands = [
   status,
   ban,
   roll,
-  purge
+  purge,
+  about
 ];
 
 //verify bot is ready
@@ -43,7 +45,7 @@ client.on("ready", function() {
 //welcome message
 client.on("guildMemberAdd", function(member) {
   const welcomeEmbed = new Discord.MessageEmbed()
-    .setColor("#0099ff")
+    .setColor("#00ff00")
     .setTitle("Welcome!")
     .setDescription("Thank you for joining my server!")
     .addFields(

@@ -37,7 +37,7 @@ module.exports = {
       reason = "No reason provided";
     }
     const kickEmbed = new Discord.MessageEmbed()
-      .setColor("#0099FF")
+      .setColor("#ff8400")
       .setTitle(`Kicked!`)
       .addFields(
         {

@@ -9,11 +9,9 @@ module.exports = {
     //create message embed
     const user = message.author;
     const helpEmbed = new Discord.MessageEmbed()
-      .setColor("#0099FF")
+      .setColor("#ab47e6")
       .setTitle("Bot Commands")
-      .setDescription(
-        "Hello! Here are my currently available commands. You can view my source code [here](https://github.com/nhcarrigan/discord-bot)"
-      )
+      .setDescription("Hello! Here are my currently available commands.")
       .setFooter("Okay, that's all! Bye bye!");
     //read command files for prefix && description
     const files = await fs.promises.readdir(__dirname);

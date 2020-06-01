@@ -47,7 +47,7 @@ module.exports = {
       return;
     }
     const unrestrictEmbed = new Discord.MessageEmbed()
-      .setColor("#0099FF")
+      .setColor("#00FF00")
       .setTitle(`Access Restored`)
       .addFields(
         {

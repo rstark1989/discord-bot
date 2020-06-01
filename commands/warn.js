@@ -37,7 +37,7 @@ module.exports = {
       reason = "No reason provided.";
     }
     const warnEmbed = new Discord.MessageEmbed()
-      .setColor("#0099FF")
+      .setColor("#ffff00")
       .setTitle(`This is a warning!`)
       .addFields(
         {

@@ -47,7 +47,7 @@ module.exports = {
       return;
     }
     const restrictEmbed = new Discord.MessageEmbed()
-      .setColor("#0099FF")
+      .setColor("#FF0000")
       .setTitle(`Access Restricted!`)
       .addFields(
         {
