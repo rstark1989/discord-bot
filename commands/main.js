@@ -50,18 +50,29 @@ client.on("guildMemberAdd", function(member) {
     )
     .setFooter("Have fun!");
   member.send(welcomeEmbed);
+  const welcomeChannel = member.guild.channels.cache.find(
+    channel => channel.name == "introductions"
+  );
+  if (!welcomeChannel) {
+    console.error("welcome channel not found.");
+    return;
+  } else {
+    welcomeChannel.send(
+      `** Welcome ${member.user}! Take a moment to introduce yourself here! :) **`
+    );
+  }
 });
 
 //depart message
 client.on("guildMemberRemove", function(member) {
-  const goodbye = member.guild.channels.cache.find(
+  const goodbyeChannel = member.guild.channels.cache.find(
     channel => channel.name == "introductions"
   );
-  if (goodbye == undefined) {
-    console.log("Channel not found.");
+  if (!goodbyeChannel) {
+    console.error("depart channel not found.");
     return;
   } else {
-    goodbye.send(`** ${member.user} has left us! :( **`);
+    goodbyeChannel.send(`** ${member.user} has left us! :( **`);
   }
 });
 client.on("message", function(message) {
