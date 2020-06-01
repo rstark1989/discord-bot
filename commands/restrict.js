@@ -66,6 +66,11 @@ module.exports = {
     if (modChannel) {
       modChannel.send(restrictEmbed);
     }
+    if (!modChannel) {
+      message.channel.send(
+        "I could not find a 'moderation-activity' channel. :("
+      );
+    }
     user.roles.remove(user.roles).catch(e => console.log(e));
     user.roles.add(suspend).catch(e => console.log(e));
   }

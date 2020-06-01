@@ -56,6 +56,11 @@ module.exports = {
     if (modChannel) {
       modChannel.send(kickEmbed);
     }
+    if (!modChannel) {
+      message.channel.send(
+        "I could not find a 'moderation-activity' channel. :("
+      );
+    }
     user.kick().catch(err => console.log(err));
   }
 };

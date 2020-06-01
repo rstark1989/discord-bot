@@ -69,6 +69,11 @@ module.exports = {
         if (modChannel) {
           modChannel.send(banEmbed);
         }
+        if (!modChannel) {
+          message.channel.send(
+            "I could not find a 'moderation-activity' channel. :("
+          );
+        }
         user.ban({ reason: reason }).catch(err => console.log(err));
       }
       // anything but yes.

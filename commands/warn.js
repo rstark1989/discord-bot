@@ -57,5 +57,10 @@ module.exports = {
     if (modChannel) {
       modChannel.send(`${mod} has issued a warning to ${user}: ${reason}`);
     }
+    if (!modChannel) {
+      message.channel.send(
+        "I could not find a 'moderation-activity' channel. :("
+      );
+    }
   }
 };

@@ -23,6 +23,7 @@ const about = require("./about.js");
 const wiki = require("./wiki.js");
 const pokename = require("./pokename.js");
 const search = require("./search.js");
+const profile = require("./profile.js");
 //command names in this array
 const commands = [
   kick,
@@ -40,7 +41,8 @@ const commands = [
   about,
   wiki,
   pokename,
-  search
+  search,
+  profile
 ];
 
 //verify bot is ready
