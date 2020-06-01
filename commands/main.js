@@ -22,6 +22,7 @@ const purge = require("./purge.js");
 const about = require("./about.js");
 const wiki = require("./wiki.js");
 const pokename = require("./pokename.js");
+const search = require("./search.js");
 //command names in this array
 const commands = [
   kick,
@@ -38,7 +39,8 @@ const commands = [
   purge,
   about,
   wiki,
-  pokename
+  pokename,
+  search
 ];
 
 //verify bot is ready
