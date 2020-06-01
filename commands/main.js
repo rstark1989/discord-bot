@@ -18,7 +18,6 @@ const pokedex = require("./pokedex.js");
 const status = require("./status.js");
 const ban = require("./ban.js");
 const roll = require("./roll.js");
-const filter = require("./filter.js"); //automatic, not added to command list.
 const purge = require("./purge.js");
 //command names in this array
 const commands = [
@@ -85,7 +84,6 @@ client.on("guildMemberRemove", function(member) {
   }
 });
 client.on("message", function(message) {
-  filter.command(message);
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
       command.command(message);
