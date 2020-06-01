@@ -18,6 +18,7 @@ const pokedex = require("./pokedex.js");
 const status = require("./status.js");
 const ban = require("./ban.js");
 const roll = require("./roll.js");
+const filter = require("./filter.js");
 //command names in this array
 const commands = [
   kick,
@@ -82,6 +83,7 @@ client.on("guildMemberRemove", function(member) {
   }
 });
 client.on("message", function(message) {
+  filter.command(message);
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
       command.command(message);
