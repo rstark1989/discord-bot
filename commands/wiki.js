@@ -6,7 +6,7 @@ module.exports = {
   command: function(message) {
     //removes "|wiki " - if your prefix is more than one character, you'll need to change 6.
     const argument = message.content.substring(6, message.content.length);
-    const query = argument.replace(" ", "_");
+    const query = argument.replace(/\s/g, "_");
     message.channel.send(`https://en.wikipedia.org/wiki/${query}`);
   }
 };
