@@ -16,7 +16,7 @@ module.exports = {
     const files = await fs.promises.readdir(__dirname);
     files.forEach(function(file) {
       const filename = require(`./${file}`);
-      if (file != "main.js") {
+      if (file != "main.js" && filename.prefix && filename.description) {
         helpEmbed.addFields({
           name: filename.prefix,
           value: filename.description

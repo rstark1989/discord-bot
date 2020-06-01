@@ -18,7 +18,8 @@ const pokedex = require("./pokedex.js");
 const status = require("./status.js");
 const ban = require("./ban.js");
 const roll = require("./roll.js");
-const filter = require("./filter.js");
+const filter = require("./filter.js"); //automatic, not added to command list.
+const purge = require("./purge.js");
 //command names in this array
 const commands = [
   kick,
@@ -31,7 +32,8 @@ const commands = [
   pokedex,
   status,
   ban,
-  roll
+  roll,
+  purge
 ];
 
 //verify bot is ready
