@@ -34,7 +34,7 @@ module.exports = {
       .addFields(
         {
           name: "What happened?",
-          value: `${mod} has restricted ${user}.`
+          value: `${mod} has restricted ${user}'s access to the server.`
         },
         {
           name: "Reason",

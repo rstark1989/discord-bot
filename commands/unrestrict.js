@@ -34,7 +34,7 @@ module.exports = {
       .addFields(
         {
           name: "What happened?",
-          value: `${mod} has restored ${user}.`
+          value: `${mod} has restored ${user}'s access to the server.`
         },
         {
           name: "Reason",
