@@ -15,7 +15,7 @@ module.exports = {
       return;
     }
     message.channel.send(
-      "I will search for that card. Please wait one moment."
+      "I will search for that card. Please allow me a moment to find it."
     );
     await mtg.card.all({ name: query }).on("data", card => {
       let flavour = card.flavor;
@@ -56,7 +56,7 @@ module.exports = {
     setTimeout(
       () =>
         message.channel.send(`Search complete! I found ${cardCount} cards.`),
-      18000
+      30000
     );
   }
 };
