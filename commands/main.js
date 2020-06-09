@@ -107,3 +107,35 @@ client.on("message", function(message) {
     }
   }
 });
+
+//deleted message logging
+client.on("messageDelete", function(message) {
+  const logChannel = message.guild.channels.cache.find(
+    channel => channel.name == "moderation-activity"
+  );
+  const deleteEmbed = new Discord.MessageEmbed()
+    .setTitle("A message was deleted.")
+    .setColor("")
+    .setDescription("Here's the details of that message.")
+    .addFields(
+      {
+        name: "Message author",
+        value: message.author
+      },
+      {
+        name: "Channel",
+        value: message.channel
+      },
+      {
+        name: "Content",
+        value: message.content
+      }
+    );
+  if (!logChannel) {
+    console.error("logging channel not found");
+    message.channel.send(deleteEmbed);
+    return;
+  } else {
+    logChannel.send(deleteEmbed);
+  }
+});
