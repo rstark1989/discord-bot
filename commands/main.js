@@ -115,7 +115,7 @@ client.on("messageDelete", function(message) {
   );
   const deleteEmbed = new Discord.MessageEmbed()
     .setTitle("A message was deleted.")
-    .setColor("")
+    .setColor("#ff0000")
     .setDescription("Here's the details of that message.")
     .addFields(
       {
