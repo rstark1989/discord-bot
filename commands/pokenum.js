@@ -4,11 +4,15 @@ const fetch = require("node-fetch");
 module.exports = {
   //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
   prefix: "pokenum",
-  description: "Look up a Pokemon! Use the format 'pokenum <number>'.",
+  description:
+    "Look up a Pokemon! Use the format 'pokenum <number>', or use 'pokenum random' to get a random Pokemon!",
   command: async function(message) {
     const arguments = message.content.split(" ");
-    const number = parseInt(arguments[1]);
-    //PokeAPI only has 807 right now. Check this to avoid null objects.
+    let number = parseInt(arguments[1]);
+    if (arguments[1].toLowerCase() == "random") {
+      number = Math.floor(Math.random() * 802);
+    }
+    //PokeAPI only has 802 right now. Check this to avoid null objects.
     if (number < 0 || number > 802) {
       message.channel.send(
         `I apologise, ${message.author}, but I can only access information for Pokemon from number 0 to 802.`

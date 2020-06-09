@@ -31,6 +31,10 @@ module.exports = {
       name: "Reason",
       value: reasonMessage
     });
+    if (message.mentions.users.first() == message.author) {
+      message.channel.send("You cannot send a gold star to yourself!");
+      return;
+    }
     target.send(starEmbed);
     message.channel.send(`I have given ${target} a gold star!`);
   }
