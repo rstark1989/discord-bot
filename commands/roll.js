@@ -4,6 +4,12 @@ module.exports = {
   description: "Rolls a random die for you. Use the format 'roll d<number>'.",
   command: function(message) {
     const arguments = message.content.split(" ");
+    if (arguments[1].length === 1) {
+      message.channel.send(
+        `I am terribly sorry, ${message.author}, but I cannot find my dice right now. Please try again.`
+      );
+      return;
+    }
     const dice = arguments[1].split("");
     //argument needs to start with "d"
     if (dice[0] !== "d") {
