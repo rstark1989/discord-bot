@@ -27,6 +27,7 @@ const profile = require("./profile.js");
 const kirby = require("./kirby.js");
 const magic = require("./magic.js");
 const star = require("./star.js");
+const user = require("./user.js");
 //command names in this array
 const commands = [
   kick,
@@ -48,7 +49,8 @@ const commands = [
   profile,
   kirby,
   magic,
-  star
+  star,
+  user
 ];
 
 //verify bot is ready
