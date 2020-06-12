@@ -15,21 +15,31 @@ module.exports = {
       .setColor("#ab47e6")
       .setTitle("Bot Commands")
       .setDescription(
-        `Hello! Here are my currently available commands. Remember that the command name must be prefixed with '${prefix}', just like the '${prefix}help' command you used to get this message.`
+        `Hello! Here are some of my currently available commands. Remember that the command name must be prefixed with '${prefix}', just like the '${prefix}help' command you used to get this message. For a list of all commands, or for more information, view my [documentation](https://www.nhcarrigan.com/discord-bot-documentation)`
+      )
+      .addFields(
+        {
+          name: "about",
+          value: "Provides details about the bot."
+        },
+        {
+          name: "ping",
+          value: "Measures the response time of the bot's server."
+        },
+        {
+          name: "purge",
+          value: "Deletes messages"
+        },
+        {
+          name: "status",
+          value: "Provides details on the server."
+        },
+        {
+          name: "user",
+          value: "Provides details on the user."
+        }
       )
       .setFooter("Okay, that's all! Bye bye!");
-    //read command files for prefix && description
-    const files = await fs.promises.readdir(__dirname);
-    files.forEach(function(file) {
-      const filename = require(`./${file}`);
-      //check if file is missing either prefix or description, skip file if true
-      if (file != "main.js" && filename.prefix && filename.description) {
-        helpEmbed.addFields({
-          name: filename.prefix,
-          value: filename.description
-        });
-      }
-    });
     //DM the embed
     user.send(helpEmbed);
     //message to channel so people know bot is online
