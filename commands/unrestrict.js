@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const config = require("../config.json");
 
 module.exports = {
   //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
@@ -37,7 +38,7 @@ module.exports = {
       reason = "No reason provided.";
     }
     const suspend = message.guild.roles.cache.find(
-      role => role.name == "Restricted"
+      role => role.name == config.silence_role
     );
     // check for valid role. Change role.name to match your server.
     if (!suspend) {
@@ -61,15 +62,13 @@ module.exports = {
       )
       .setFooter("Please remember to follow our rules!");
     const modChannel = message.guild.channels.cache.find(
-      channel => channel.name === "moderation-activity"
+      channel => channel.name === config.log_channel
     );
     if (modChannel) {
       modChannel.send(unrestrictEmbed);
     }
     if (!modChannel) {
-      message.channel.send(
-        "I could not find a 'moderation-activity' channel. :("
-      );
+      message.channel.send("I could not find your log channel. :(");
     }
     user.roles.remove(suspend).catch(e => console.log(e));
   }

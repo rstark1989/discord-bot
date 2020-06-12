@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const config = require("../config.json");
 
 module.exports = {
   //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
@@ -63,16 +64,14 @@ module.exports = {
       //yes.
       if (reply.content == "Yes") {
         const modChannel = message.guild.channels.cache.find(
-          channel => channel.name === "moderation-activity"
+          channel => channel.name === config.log_channel
         );
         //moderation channel must be valid.
         if (modChannel) {
           modChannel.send(banEmbed);
         }
         if (!modChannel) {
-          message.channel.send(
-            "I could not find a 'moderation-activity' channel. :("
-          );
+          message.channel.send("I could not find your log channel. :(");
         }
         user.ban({ reason: reason }).catch(err => console.log(err));
       }

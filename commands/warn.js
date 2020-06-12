@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const config = require("../config.json");
 
 module.exports = {
   //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
@@ -52,15 +53,13 @@ module.exports = {
       .setFooter("You can read the rules in the Welcome channel!");
     user.send(warnEmbed);
     const modChannel = message.guild.channels.cache.find(
-      channel => channel.name === "moderation-activity"
+      channel => channel.name === config.log_channel
     );
     if (modChannel) {
       modChannel.send(`${mod} has issued a warning to ${user}: ${reason}`);
     }
     if (!modChannel) {
-      message.channel.send(
-        "I could not find a 'moderation-activity' channel. :("
-      );
+      message.channel.send("I could not find your log channel. :(");
     }
   }
 };

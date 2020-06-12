@@ -77,7 +77,7 @@ client.on("guildMemberAdd", function(member) {
     .setFooter("Have fun!");
   member.send(welcomeEmbed);
   const welcomeChannel = member.guild.channels.cache.find(
-    channel => channel.name == "introductions"
+    channel => channel.name == config.join_leave_channel
   );
   if (!welcomeChannel) {
     console.error("welcome channel not found.");
@@ -92,7 +92,7 @@ client.on("guildMemberAdd", function(member) {
 //depart message
 client.on("guildMemberRemove", function(member) {
   const goodbyeChannel = member.guild.channels.cache.find(
-    channel => channel.name == "introductions"
+    channel => channel.name == config.join_leave_channel
   );
   if (!goodbyeChannel) {
     console.error("depart channel not found.");
@@ -115,7 +115,7 @@ client.on("message", function(message) {
 //deleted message logging
 client.on("messageDelete", function(message) {
   const logChannel = message.guild.channels.cache.find(
-    channel => channel.name == "moderation-activity"
+    channel => channel.name == config.log_channel
   );
   const deleteEmbed = new Discord.MessageEmbed()
     .setTitle("A message was deleted.")
