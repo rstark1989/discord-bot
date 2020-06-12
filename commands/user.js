@@ -16,7 +16,7 @@ module.exports = {
     const joined = new Date(mUser.joinedTimestamp).toDateString();
     const created = new Date(tUser.createdTimestamp).toDateString();
     const userEmbed = new Discord.MessageEmbed()
-      .setTitle(tUser.username)
+      .setTitle(mUser.nickname)
       .setDescription(`Here's some info about ${tUser}!`)
       .addFields(
         {
