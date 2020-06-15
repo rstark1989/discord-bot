@@ -31,3 +31,5 @@ Do you need more information on how to contribute? Submit a [new issue](https://
 ## Contributors
 
 [Nicholas Carrigan](https://github.com/nhcarrigan) - Project Owner
+
+[Joshua Pelealu](https://github.com/JoshuaPelealu) - Revised `ping` command
