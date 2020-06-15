@@ -1,14 +1,6 @@
----
-name: Submission
-about: Suggest an idea for this project
-title: "[NEEDS REVIEW]"
-labels: help wanted
-assignees: "nhcarrigan"
----
-
 # Pull Request
 
-## Description
+## Description:
 
 ## Requirements:
 
