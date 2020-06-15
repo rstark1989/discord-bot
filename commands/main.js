@@ -3,6 +3,8 @@ const client = new Discord.Client();
 const config = require("../config.json");
 const prefix = config.prefix;
 const dotenv = require("dotenv");
+const mongodb = require("mongodb");
+const Mongoose = require("mongoose");
 dotenv.config({ path: __dirname + "/../.env" });
 client.login(process.env.DISCORD_TOKEN);
 
@@ -28,6 +30,7 @@ const kirby = require("./kirby.js");
 const magic = require("./magic.js");
 const star = require("./star.js");
 const user = require("./user.js");
+const levels = require("./levels.js");
 //command names in this array
 const commands = [
   kick,
@@ -71,6 +74,12 @@ client.on("ready", function() {
   console.log("Activate the Omega");
   return;
 });
+
+//db connection
+Mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).catch(err => initChannel.send("Database connection failed."));
 
 //welcome message
 client.on("guildMemberAdd", function(member) {
@@ -124,6 +133,7 @@ client.on("guildMemberRemove", function(member) {
 
 //messages listener
 client.on("message", function(message) {
+  levels.command(message);
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
       command.command(message);
