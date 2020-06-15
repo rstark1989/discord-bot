@@ -26,11 +26,12 @@ module.exports = {
         const oldpoints = data.points % 100;
         data.points = data.points + Math.floor(Math.random() * 5) + 1;
         const currentpoints = data.points % 100;
+        const currentexp = data.points;
         data.save((err, data) => {
           if (err) console.log(err);
         });
         if (currentpoints < oldpoints) {
-          const currentlevel = parseInt(currentpoints / 100);
+          const currentlevel = parseInt(currentexp / 100);
           message.channel.send(
             `Congratulations ${message.author}! You have reached level ${currentlevel}!`
           );
