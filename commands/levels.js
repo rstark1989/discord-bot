@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const Mongoose = require("mongoose");
-const config = require("../config.json");
 
 const userSchema = new Mongoose.Schema({
   name: String,
@@ -10,7 +9,9 @@ const userSchema = new Mongoose.Schema({
 const user = Mongoose.model("user", userSchema);
 
 module.exports = {
-  command: function(message) {
+  prefix: "level",
+  description: "Gets the user's current level.",
+  listen: function(message) {
     user.findOne({ userid: message.author }, function(err, data) {
       if (err || !data) {
         const newuser = new user({
@@ -34,6 +35,32 @@ module.exports = {
           );
         }
       }
+    });
+  },
+  command: function(message) {
+    user.findOne({ userid: message.author }, function(err, data) {
+      if (err || !data) {
+        message.channel.send(
+          `I'm sorry, ${message.author}, but I couldn't find your record. Please try again.`
+        );
+        return;
+      }
+      const rankEmbed = new Discord.MessageEmbed()
+        .setColor("#ab47e6")
+        .setTitle(`${message.author.username}'s Ranking`)
+        .setDescription("Here's what I've got for you!")
+        .addFields(
+          {
+            name: "Experience Points",
+            value: `${data.points} XP`
+          },
+          {
+            name: "Level",
+            value: `LVL ${Math.floor(data.points / 100)}`
+          }
+        )
+        .setFooter("You level up with every 100 points.");
+      message.channel.send(rankEmbed);
     });
   }
 };

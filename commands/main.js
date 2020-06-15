@@ -53,7 +53,8 @@ const commands = [
   kirby,
   magic,
   star,
-  user
+  user,
+  levels
 ];
 
 //verify bot is ready
@@ -133,7 +134,7 @@ client.on("guildMemberRemove", function(member) {
 
 //messages listener
 client.on("message", function(message) {
-  levels.command(message);
+  levels.listen(message);
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
       command.command(message);
