@@ -55,7 +55,21 @@ const commands = [
 
 //verify bot is ready
 client.on("ready", function() {
-  console.log("Activate the Omega!");
+  const initChannel = client.channels.cache.find(
+    channel => channel.name == config.join_leave_channel
+  );
+  const initEmbed = new Discord.MessageEmbed()
+    .setTitle("Activate the Omega")
+    .setDescription(
+      "I am the Alpha and the Omega,\n The First and the Last,\n The Beginning and the End."
+    )
+    .setColor("#ab47e6");
+  if (initChannel) {
+    initChannel.send(initEmbed);
+    return;
+  }
+  console.log("Activate the Omega");
+  return;
 });
 
 //welcome message
