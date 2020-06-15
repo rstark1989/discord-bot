@@ -1,5 +1,5 @@
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "wiki",
   description:
     "Returns a URL to a wikipedia article. Use the format 'wiki <query>'.",

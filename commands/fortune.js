@@ -1,5 +1,5 @@
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "fortune",
   description: "Tells you a fortune.",
   command: function(message) {

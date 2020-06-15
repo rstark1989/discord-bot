@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is just for the record.
   prefix: "about",
   description: "Provides details about the bot.",
   command: async function(message, bot) {
@@ -10,11 +10,11 @@ module.exports = {
       .setColor("#ab47e6")
       .setTitle("My name is nhbot!")
       .setDescription(
-        "I am a discord bot created by nhcarrigan, with help from a few contributors.  You can view my [source code and contributor list](https://github.com/nhcarrigan/discord-bot) online."
+        "BEEP BOOP: I am a discord bot created by nhcarrigan, with help from a few contributors.  You can view my [source code and contributor list](https://github.com/nhcarrigan/discord-bot) online."
       )
       .addFields(
         {
-          name: "My birthday!",
+          name: "I Was Created On",
           value: "Sun May 31 2020"
         },
         {

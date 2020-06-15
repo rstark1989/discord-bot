@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "status",
   description: "Gives the current status of this server.",
   command: function(message) {

@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports = {
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "user",
   description:
     "Returns information on the tagged user. Use the format 'user <username>'",
@@ -8,9 +9,7 @@ module.exports = {
     const tUser = message.mentions.users.first();
     const mUser = message.mentions.members.first();
     if (!tUser || !mUser) {
-      message.channel.send(
-        "I am unable to locate that user's records. Please try again or contact the records administrator."
-      );
+      message.channel.send("ERROR 404: record not found or invalid user tag.");
       return;
     }
     const joined = new Date(mUser.joinedTimestamp).toDateString();

@@ -103,7 +103,7 @@ client.on("guildMemberAdd", function(member) {
   const welcomeLogEmbed = new Discord.MessageEmbed()
     .setColor("#ab47e6")
     .setTitle("A new user has joined! 🙃")
-    .setDescription(`Please give a warm welcome to ${member.user}!`);
+    .setDescription(`BEEP BOOP: Please give a warm welcome to ${member.user}!`);
   const welcomeChannel = member.guild.channels.cache.find(
     channel => channel.name == config.join_leave_channel
   );
@@ -123,7 +123,7 @@ client.on("guildMemberRemove", function(member) {
   const departEmbed = new Discord.MessageEmbed()
     .setColor("#ab47e6")
     .setTitle("A user has left us! 😦")
-    .setDescription(`Goodbye ${member.user}! You will be missed!`);
+    .setDescription(`BEEP BOOP: Goodbye ${member.user}! You will be missed!`);
   if (!goodbyeChannel) {
     console.error("depart channel not found.");
     return;

@@ -1,4 +1,5 @@
 module.exports = {
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "kirby",
   description: "Do a little dance... make a little noise... GET DOWN TONIGHT!",
   command: function(message) {

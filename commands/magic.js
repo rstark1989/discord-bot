@@ -2,6 +2,7 @@ const mtg = require("mtgsdk");
 const Discord = require("discord.js");
 
 module.exports = {
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "magic",
   description:
     "Returns a Magic: The Gathering card by name. Use the format 'magic <cardname>'.",
@@ -9,14 +10,10 @@ module.exports = {
     const query = message.content.substring(7, message.content.length);
     let cardCount = 0;
     if (!query) {
-      message.channel.send(
-        `${message.author}, please provide a card name to search!`
-      );
+      message.channel.send(`ERROR 400: ${message.author}, missing card name.`);
       return;
     }
-    message.channel.send(
-      "I will search for that card. Please allow me a moment to find it."
-    );
+    message.channel.send("STATUS 202: Searching...");
     await mtg.card.all({ name: query }).on("data", card => {
       let flavour = card.flavor;
       if (!flavour) {
@@ -55,7 +52,9 @@ module.exports = {
     });
     setTimeout(
       () =>
-        message.channel.send(`Search complete! I found ${cardCount} cards.`),
+        message.channel.send(
+          `BEEP BOOP: Search complete! Found ${cardCount} cards.`
+        ),
       30000
     );
   }

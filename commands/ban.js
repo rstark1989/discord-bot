@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "ban",
   description:
     "Ban a user from the channel. Use the format 'ban <user> <reason>'. Only available to server moderators.",
@@ -10,7 +10,7 @@ module.exports = {
     //check for appropriate permission.
     if (message.member.hasPermission("BAN_MEMBERS") == false) {
       message.channel.send(
-        `I apologise, ${message.author}, but you do not have the correct permissions to use this command.`
+        `ERROR 401: ${message.author}, missing permissions.`
       );
       return;
     }
@@ -19,22 +19,18 @@ module.exports = {
     const user = message.mentions.members.first();
     //check for valid user mention
     if (user == undefined) {
-      message.channel.send(
-        `I apologise, ${mod}, but that appears to be an invalid user tag. Please try again.`
-      );
+      message.channel.send(`ERROR 404: ${mod}, invalid usertag.`);
       return;
     }
     if (user == mod) {
-      message.channel.send(
-        `Wait, ${mod}, you cannot punish yourself! Shall I find you some assistance?`
-      );
+      message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
       return;
     }
     const reasonArg = arguments.slice(2, arguments.length);
     let reason = reasonArg.join(" ");
     //check for reason provided.
     if (reason == "") {
-      reason = "No reason provided";
+      reason = "ERROR 404: No reason provided";
     }
     const banEmbed = new Discord.MessageEmbed()
       .setColor("#ff0000")
@@ -52,7 +48,7 @@ module.exports = {
       .setFooter("You will still be missed... :(");
     //confirm you want to do this, as the bot currently cannot revert a ban.
     message.channel.send(
-      "Terribly sorry, but this action is irreversible so I need to ensure you really want to do this. To proceed, reply with 'Yes'."
+      "ERROR 100: This action is irreversible. To proceed, reply with 'Yes'."
     );
     //listen for reply.
     const collector = new Discord.MessageCollector(
@@ -71,13 +67,13 @@ module.exports = {
           modChannel.send(banEmbed);
         }
         if (!modChannel) {
-          message.channel.send("I could not find your log channel. :(");
+          message.channel.send("ERROR 404: Log channel not found.");
         }
         user.ban({ reason: reason }).catch(err => console.log(err));
       }
       // anything but yes.
       else {
-        message.channel.send("Very well, I shall hold off for now.");
+        message.channel.send("STATUS 304: Request cancelled.");
       }
     });
   }

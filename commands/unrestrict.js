@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "unrestrict",
   description:
     "Restore a user's permissions. Use the format 'unrestrict <user> <reason>'. Only available to server moderators.",
@@ -10,7 +10,7 @@ module.exports = {
     //check for appropriate permissions
     if (message.member.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(
-        `I apologise, ${message.author}, but you do not have the correct permissions to use this command.`
+        `ERROR 401: ${message.author}, missing permissions.`
       );
       return;
     }
@@ -19,32 +19,26 @@ module.exports = {
     const user = message.mentions.members.first();
     //check for valid user tag
     if (user == undefined) {
-      message.channel.send(
-        `I apologise, ${mod}, but that appears to be an invalid user tag. Please try again.`
-      );
+      message.channel.send(`ERROR 400: ${mod}, invalid user tag.`);
       return;
     }
     //cannot target self
     if (user == mod) {
-      message.channel.send(
-        `Wait, ${mod}, you cannot punish yourself! Shall I find you some assistance?`
-      );
+      message.channel.send(`ERROR 400: ${mod},cannot target self.`);
       return;
     }
     const reasonArg = arguments.slice(2, arguments.length);
     let reason = reasonArg.join(" ");
     //check for reason provided, if none then create one.
     if (reason == "") {
-      reason = "No reason provided.";
+      reason = "ERROR 404: No reason provided.";
     }
     const suspend = message.guild.roles.cache.find(
       role => role.name == config.silence_role
     );
     // check for valid role. Change role.name to match your server.
     if (!suspend) {
-      message.channel.send(
-        `I apologise, ${mod}, but it seems the server does not have a "Restricted" role for me to remove.`
-      );
+      message.channel.send(`ERROR 304: ${mod}, missing "Restricted" role.`);
       return;
     }
     const unrestrictEmbed = new Discord.MessageEmbed()
@@ -68,7 +62,7 @@ module.exports = {
       modChannel.send(unrestrictEmbed);
     }
     if (!modChannel) {
-      message.channel.send("I could not find your log channel. :(");
+      message.channel.send("ERROR 404: missing log channel");
     }
     user.roles.remove(suspend).catch(e => console.log(e));
   }

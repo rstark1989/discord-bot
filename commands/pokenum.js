@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fetch = require("node-fetch");
 
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "pokenum",
   description:
     "Look up a Pokemon! Use the format 'pokenum <number>', or use 'pokenum random' to get a random Pokemon!",
@@ -15,15 +15,13 @@ module.exports = {
     //PokeAPI only has 802 right now. Check this to avoid null objects.
     if (number < 0 || number > 802) {
       message.channel.send(
-        `I apologise, ${message.author}, but I can only access information for Pokemon from number 0 to 802.`
+        `ERROR 400: ${message.author}, number must be between 0 and 802 (inclusive).`
       );
       return;
     }
     //if the argument is not a number, don't call the API.
     if (isNaN(number)) {
-      message.channel.send(
-        `I apologise, ${message.author}, but I can only search for Pokemon by number. Please try again.`
-      );
+      message.channel.send(`ERROR 400" ${message.author}, invalid number.`);
       return;
     }
     //missingno easter egg

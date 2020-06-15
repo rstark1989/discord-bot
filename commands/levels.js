@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const Mongoose = require("mongoose");
 
+//database model
 const userSchema = new Mongoose.Schema({
   name: String,
   points: Number,
@@ -9,11 +10,15 @@ const userSchema = new Mongoose.Schema({
 const user = Mongoose.model("user", userSchema);
 
 module.exports = {
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "level",
   description: "Gets the user's current level.",
+  //this part listens to all messages
   listen: function(message) {
+    //find user
     user.findOne({ userid: message.author }, function(err, data) {
       if (err || !data) {
+        //if database doesn't have user yet, add them.
         const newuser = new user({
           name: message.author.username,
           points: 1,
@@ -23,6 +28,7 @@ module.exports = {
           if (err) console.log(err);
         });
       } else {
+        //otherwise, update experience oldpoints
         const oldpoints = data.points % 100;
         data.points = data.points + Math.floor(Math.random() * 5) + 1;
         const currentpoints = data.points % 100;
@@ -30,21 +36,21 @@ module.exports = {
         data.save((err, data) => {
           if (err) console.log(err);
         });
+        //level up notifications
         if (currentpoints < oldpoints) {
           const currentlevel = parseInt(currentexp / 100);
           message.channel.send(
-            `Congratulations ${message.author}! You have reached level ${currentlevel}!`
+            `BEEP BOOP: Congratulations ${message.author}! You have reached level ${currentlevel}!`
           );
         }
       }
     });
   },
+  //command can be called to get your current status
   command: function(message) {
     user.findOne({ userid: message.author }, function(err, data) {
       if (err || !data) {
-        message.channel.send(
-          `I'm sorry, ${message.author}, but I couldn't find your record. Please try again.`
-        );
+        message.channel.send(`ERROR 404: Record not found.`);
         return;
       }
       const rankEmbed = new Discord.MessageEmbed()

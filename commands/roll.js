@@ -1,12 +1,12 @@
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "roll",
   description: "Rolls a random die for you. Use the format 'roll d<number>'.",
   command: function(message) {
     const arguments = message.content.split(" ");
     if (arguments[1].length === 1) {
       message.channel.send(
-        `I am terribly sorry, ${message.author}, but I cannot find my dice right now. Please try again.`
+        `ERROR 404: ${message.author}, missing dice argument.`
       );
       return;
     }
@@ -14,7 +14,7 @@ module.exports = {
     //argument needs to start with "d"
     if (dice[0] !== "d") {
       message.channel.send(
-        `I am terribly sorry, ${message.author}, but I cannot find my dice right now. Please try again.`
+        `ERROR 404: ${message.author}, invalid argument syntax.`
       );
       return;
     }
@@ -24,13 +24,13 @@ module.exports = {
     //if d is not followed by number, this avoids the error.
     if (isNaN(random)) {
       message.channel.send(
-        `My apologies, ${message.author}, but I do not seem to have a "${dievalue}-sided" die. Please try again.`
+        `ERROR 400: ${message.author}, "${dievalue}" is not a valid number.`
       );
       return;
     }
     const result = Math.floor(Math.random() * random + 1);
     message.channel.send(
-      `You rolled a ${dievalue}-sided die and got: ${result}!`
+      `BEEP BOOP: You rolled a ${dievalue}-sided die and got: ${result}!`
     );
   }
 };

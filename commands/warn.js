@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require("../config.json");
 
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "warn",
   description:
     "Send a warning to a user. Use the format 'warn <user> <reason>'. Only available to server moderators.",
@@ -10,7 +10,7 @@ module.exports = {
     //check for appropriate permission
     if (message.member.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(
-        `I apologise, ${message.author}, but you do not have the correct permissions to use this command.`
+        `ERROR 401: ${message.author}, missing permissions.`
       );
       return;
     }
@@ -19,23 +19,19 @@ module.exports = {
     const user = message.mentions.users.first();
     //check for valid user tag.
     if (user == undefined) {
-      message.channel.send(
-        `I apologise, ${mod}, but that appears to be an invalid user tag. Please try again.`
-      );
+      message.channel.send(`ERROR 400: ${mod}, invalid user tag.`);
       return;
     }
     //cannot target self
     if (user == mod) {
-      message.channel.send(
-        `Wait, ${mod}, you cannot punish yourself! Shall I find you some assistance?`
-      );
+      message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
       return;
     }
     const reasonArg = arguments.slice(2, arguments.length);
     let reason = reasonArg.join(" ");
     //check for reason provided, if none then create one.
     if (reason == "") {
-      reason = "No reason provided.";
+      reason = "ERROR 404: No reason provided.";
     }
     const warnEmbed = new Discord.MessageEmbed()
       .setColor("#ffff00")
@@ -66,7 +62,7 @@ module.exports = {
       modChannel.send(warnLogEmbed);
     }
     if (!modChannel) {
-      message.channel.send("I could not find your log channel. :(");
+      message.channel.send("ERROR 400: missing log channel.");
     }
   }
 };

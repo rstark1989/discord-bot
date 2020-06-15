@@ -1,15 +1,14 @@
 const Discord = require("discord.js");
 
 module.exports = {
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "star",
   description:
     "Gives the mentioned user a gold star! Use the format 'star <user> <reason>'",
   command: function star(message) {
     const target = message.mentions.members.first();
     if (!target) {
-      message.channel.send(
-        "Who shall I send that gold star to? You did not tell me!"
-      );
+      message.channel.send("ERROR 400: Which user to receive the star?");
       return;
     }
     const auth = message.author;
@@ -25,17 +24,17 @@ module.exports = {
     const reason = args.slice(2, args.length);
     let reasonMessage = reason.join(" ");
     if (!reasonMessage) {
-      reasonMessage = "But they didn't say why...";
+      reasonMessage = "ERROR 404: Reason not found.";
     }
     starEmbed.addFields({
       name: "Reason",
       value: reasonMessage
     });
     if (message.mentions.users.first() == message.author) {
-      message.channel.send("You cannot send a gold star to yourself!");
+      message.channel.send("ERROR 400: Cannot target self.");
       return;
     }
     target.send(starEmbed);
-    message.channel.send(`I have given ${target} a gold star!`);
+    message.channel.send(`BEEP BOOP: Sent ${target} a gold star!`);
   }
 };

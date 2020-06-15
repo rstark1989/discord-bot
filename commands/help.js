@@ -4,7 +4,7 @@ const config = require("../config.json");
 const prefix = config.prefix;
 
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "help",
   description:
     "Provides a list of current commands to the user. Hey, that's THIS command! 🙃",
@@ -43,8 +43,6 @@ module.exports = {
     //DM the embed
     user.send(helpEmbed);
     //message to channel so people know bot is online
-    message.channel.send(
-      `Good day, ${message.author}! I have sent you a message detailing the services I offer.`
-    );
+    message.channel.send(`BEEP BOOP: ${message.author}, help message sent.`);
   }
 };

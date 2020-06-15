@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports = {
-  //prefix and description - prefix is necessary to trigger command, description ensures it shows in |help.
+  //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "profile",
   description:
     "Returns a profile for the selected website. Use the format 'profile <website name> <id>'. I am able to access the following websites: Steam, Facebook, GitHub, Twitter, LinkedIn, Tumblr, and Instagram.",
@@ -13,9 +13,7 @@ module.exports = {
     let prefix;
     //if no id is provided, throw error.
     if (!id) {
-      message.channel.send(
-        `Very sorry, ${message.author}, but I need a profile ID to find your friend.`
-      );
+      message.channel.send(`ERROR 400: ${message.author}, missing profile ID.`);
       return;
     }
     //set url for website
@@ -44,7 +42,7 @@ module.exports = {
     //if website isn't available for this command, notify user.
     if (!prefix) {
       message.channel.send(
-        `Very sorry, ${message.author}, but I do not seem to have access to that website yet.`
+        `ERROR 404: ${message.author}, website not supported`
       );
       return;
     }
