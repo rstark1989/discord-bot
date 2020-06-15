@@ -51,12 +51,19 @@ module.exports = {
         }
       )
       .setFooter("You can read the rules in the Welcome channel!");
-    user.send(warnEmbed);
+    user.send(warnEmbed).catch(err => console.log(err));
     const modChannel = message.guild.channels.cache.find(
       channel => channel.name === config.log_channel
     );
+    const warnLogEmbed = new Discord.MessageEmbed()
+      .setTitle("Warning!")
+      .setDescription(`${mod} has issued a warning to ${user}!`)
+      .addFields({
+        name: "Reason",
+        value: `${reason}`
+      });
     if (modChannel) {
-      modChannel.send(`${mod} has issued a warning to ${user}: ${reason}`);
+      modChannel.send(warnLogEmbed);
     }
     if (!modChannel) {
       message.channel.send("I could not find your log channel. :(");

@@ -90,6 +90,10 @@ client.on("guildMemberAdd", function(member) {
     )
     .setFooter("Have fun!");
   member.send(welcomeEmbed);
+  const welcomeLogEmbed = new Discord.MessageEmbed()
+    .setColor("#ab47e6")
+    .setTitle("A new user has joined! 🙃")
+    .setDescription(`Please give a warm welcome to ${member.user}!`);
   const welcomeChannel = member.guild.channels.cache.find(
     channel => channel.name == config.join_leave_channel
   );
@@ -97,9 +101,7 @@ client.on("guildMemberAdd", function(member) {
     console.error("welcome channel not found.");
     return;
   } else {
-    welcomeChannel.send(
-      `** Welcome ${member.user}! Take a moment to introduce yourself here! :) **`
-    );
+    welcomeChannel.send(welcomeLogEmbed);
   }
 });
 
@@ -108,11 +110,15 @@ client.on("guildMemberRemove", function(member) {
   const goodbyeChannel = member.guild.channels.cache.find(
     channel => channel.name == config.join_leave_channel
   );
+  const departEmbed = new Discord.MessageEmbed()
+    .setColor("#ab47e6")
+    .setTitle("A user has left us! 😦")
+    .setDescription(`Goodbye ${member.user}! You will be missed!`);
   if (!goodbyeChannel) {
     console.error("depart channel not found.");
     return;
   } else {
-    goodbyeChannel.send(`** ${member.user} has left us! :( **`);
+    goodbyeChannel.send(departEmbed);
   }
 });
 
