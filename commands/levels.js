@@ -23,7 +23,7 @@ module.exports = {
           if (err) console.log(err);
         });
       } else {
-        data.points = data.points + 1;
+        data.points = data.points + Math.floor(Math.random() * 5) + 1;
         const currentpoints = data.points;
         data.save((err, data) => {
           if (err) console.log(err);
