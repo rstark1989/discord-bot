@@ -135,6 +135,12 @@ client.on("guildMemberRemove", function(member) {
 //messages listener
 client.on("message", function(message) {
   levels.listen(message);
+  if (message.attachments.array().length > 0) {
+    if (!message.attachments.array()[0].height) {
+      message.delete();
+      message.channel.send("ERROR 415: Only images and videos supported.");
+    }
+  }
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
       command.command(message);
