@@ -31,6 +31,7 @@ const magic = require("./magic.js");
 const star = require("./star.js");
 const user = require("./user.js");
 const levels = require("./levels.js");
+const cat = require("./cat.js");
 //command names in this array
 const commands = [
   kick,
@@ -54,7 +55,8 @@ const commands = [
   magic,
   star,
   user,
-  levels
+  levels,
+  cat
 ];
 
 //verify bot is ready
