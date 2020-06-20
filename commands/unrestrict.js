@@ -17,14 +17,15 @@ module.exports = {
     const mod = message.author;
     const arguments = message.content.split(" ");
     const user = message.mentions.members.first();
+    const usernotmember = message.mentions.users.first();
     //check for valid user tag
     if (user == undefined) {
       message.channel.send(`ERROR 400: ${mod}, invalid user tag.`);
       return;
     }
     //cannot target self
-    if (user == mod) {
-      message.channel.send(`ERROR 400: ${mod},cannot target self.`);
+    if (usernotmember == mod) {
+      message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
       return;
     }
     const reasonArg = arguments.slice(2, arguments.length);

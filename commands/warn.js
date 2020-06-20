@@ -17,6 +17,7 @@ module.exports = {
     const mod = message.author;
     const arguments = message.content.split(" ");
     const user = message.mentions.users.first();
+    
     //check for valid user tag.
     if (user == undefined) {
       message.channel.send(`ERROR 400: ${mod}, invalid user tag.`);

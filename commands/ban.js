@@ -17,12 +17,13 @@ module.exports = {
     const mod = message.author;
     const arguments = message.content.split(" ");
     const user = message.mentions.members.first();
+    const usernotmember = message.mentions.users.first()
     //check for valid user mention
     if (user == undefined) {
       message.channel.send(`ERROR 404: ${mod}, invalid usertag.`);
       return;
     }
-    if (user == mod) {
+    if (usernotmember == mod) {
       message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
       return;
     }

@@ -17,13 +17,15 @@ module.exports = {
     const mod = message.author;
     const arguments = message.content.split(" ");
     const user = message.mentions.members.first();
+    const usernotmember = message.mentions.users.first();
+
     //check for valid user mention
     if (user == undefined) {
       message.channel.send(`ERROR 404: ${mod}, invalid user tag.`);
       return;
     }
     //cannot target self
-    if (user == mod) {
+    if (usernotmember == mod) {
       message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
       return;
     }
@@ -39,7 +41,7 @@ module.exports = {
       .addFields(
         {
           name: "What happened?",
-          value: `${mod} has kicked ${user} from the server.`
+          value: `${mod} has kicked ${usernotmember} from the server.`
         },
         {
           name: "Reason",
@@ -56,6 +58,6 @@ module.exports = {
     if (!modChannel) {
       message.channel.send("ERROR 404: log channel not found.");
     }
-    user.kick().catch(err => console.log(err));
+    usernotmember.kick().catch(err => console.log(err));
   }
 };

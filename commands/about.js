@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const package = require("../package.json")
 module.exports = {
   //prefix and description - prefix is necessary to trigger command, description is just for the record.
   prefix: "about",
@@ -13,6 +14,10 @@ module.exports = {
         "BEEP BOOP: I am a discord bot created by nhcarrigan, with help from a few contributors.  You can view my [source code and contributor list](https://github.com/nhcarrigan/discord-bot) online."
       )
       .addFields(
+        {
+          name: "Version",
+          value: `Version ${package.version}`
+        },
         {
           name: "I Was Created On",
           value: "Sun May 31 2020"
