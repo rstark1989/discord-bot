@@ -32,6 +32,7 @@ const star = require("./star.js");
 const user = require("./user.js");
 const levels = require("./levels.js");
 const cat = require("./cat.js");
+const close = require("./close.js");
 //command names in this array
 const commands = [
   kick,
@@ -56,13 +57,14 @@ const commands = [
   star,
   user,
   levels,
-  cat
+  cat,
+  close,
 ];
 
 //verify bot is ready
-client.on("ready", function() {
+client.on("ready", function () {
   const initChannel = client.channels.cache.find(
-    channel => channel.name == config.join_leave_channel
+    (channel) => channel.name == config.join_leave_channel
   );
   const initEmbed = new Discord.MessageEmbed()
     .setTitle("Activate the Omega")
@@ -81,11 +83,11 @@ client.on("ready", function() {
 //db connection
 Mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
-}).catch(err => initChannel.send("Database connection failed."));
+  useUnifiedTopology: true,
+}).catch((err) => initChannel.send("Database connection failed."));
 
 //welcome message
-client.on("guildMemberAdd", function(member) {
+client.on("guildMemberAdd", function (member) {
   const welcomeEmbed = new Discord.MessageEmbed()
     .setColor("#00ff00")
     .setTitle("Welcome!")
@@ -93,11 +95,11 @@ client.on("guildMemberAdd", function(member) {
     .addFields(
       {
         name: "Rules",
-        value: "Please read the rules in our Welcome channel!"
+        value: "Please read the rules in our Welcome channel!",
       },
       {
         name: "My Commands",
-        value: `Use the ${prefix} prefix to get my attention! Try '${prefix}help' to see what I can do!`
+        value: `Use the ${prefix} prefix to get my attention! Try '${prefix}help' to see what I can do!`,
       }
     )
     .setFooter("Have fun!");
@@ -107,7 +109,7 @@ client.on("guildMemberAdd", function(member) {
     .setTitle("A new user has joined! 🙃")
     .setDescription(`BEEP BOOP: Please give a warm welcome to ${member.user}!`);
   const welcomeChannel = member.guild.channels.cache.find(
-    channel => channel.name == config.join_leave_channel
+    (channel) => channel.name == config.join_leave_channel
   );
   if (!welcomeChannel) {
     console.error("welcome channel not found.");
@@ -118,9 +120,9 @@ client.on("guildMemberAdd", function(member) {
 });
 
 //depart message
-client.on("guildMemberRemove", function(member) {
+client.on("guildMemberRemove", function (member) {
   const goodbyeChannel = member.guild.channels.cache.find(
-    channel => channel.name == config.join_leave_channel
+    (channel) => channel.name == config.join_leave_channel
   );
   const departEmbed = new Discord.MessageEmbed()
     .setColor("#ab47e6")
@@ -135,7 +137,7 @@ client.on("guildMemberRemove", function(member) {
 });
 
 //messages listener
-client.on("message", function(message) {
+client.on("message", function (message) {
   levels.listen(message);
   if (message.attachments.array().length > 0) {
     if (!message.attachments.array()[0].height) {
@@ -152,9 +154,9 @@ client.on("message", function(message) {
 });
 
 //deleted message logging
-client.on("messageDelete", function(message) {
+client.on("messageDelete", function (message) {
   const logChannel = message.guild.channels.cache.find(
-    channel => channel.name == config.log_channel
+    (channel) => channel.name == config.log_channel
   );
   const deleteEmbed = new Discord.MessageEmbed()
     .setTitle("A message was deleted.")
@@ -163,15 +165,15 @@ client.on("messageDelete", function(message) {
     .addFields(
       {
         name: "Message author",
-        value: message.author
+        value: message.author,
       },
       {
         name: "Channel",
-        value: message.channel
+        value: message.channel,
       },
       {
         name: "Content",
-        value: message.content
+        value: message.content,
       }
     );
   if (!logChannel) {

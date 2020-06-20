@@ -2,5 +2,6 @@
   "prefix": "|",
   "log_channel": "moderation-activity",
   "join_leave_channel": "introductions",
-  "silence_role": "Restricted"
+  "silence_role": "Restricted",
+  "silence_category": "Appeals"
 }

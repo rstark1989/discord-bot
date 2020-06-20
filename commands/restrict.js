@@ -6,66 +6,93 @@ module.exports = {
   prefix: "restrict",
   description:
     "Restrict a user's permissions. Use the format 'restrict <user> <reason>'. Only available to server moderators.",
-  command: function(message) {
+  command: async function suspend(message) {
     //check for appropriate permissions
-    if (message.member.hasPermission("KICK_MEMBERS") == false) {
+    if (!message.member.hasPermission("KICK_MEMBERS")) {
       message.channel.send(
-        `ERROR 401: ${message.author}, missing permissions.`
+        `ERROR 401: ${message.author}, Missing permissions.`
       );
       return;
     }
+    //check for log channel setting
+    const modChannel = message.guild.channels.cache.find(
+      (channel) => channel.name === config.log_channel
+    );
+    if (!modChannel) {
+      message.channel.send(`ERROR 404: ${message.author}, Log channel not found.`);
+      return;
+    }
+    //check for suspend category setting
+    const suspendCategory = config.silence_category;
+    const category = await message.guild.channels.cache.find(
+      (c) => c.name === suspendCategory && c.type === "category"
+    );
+    if (!category) {
+      message.channel.send(`ERROR 404: ${message.author}, Missing suspend category.`);
+      return;
+    }
+    //check for suspend role setting
+    const suspend = message.guild.roles.cache.find(
+      (role) => role.name == config.silence_role
+    );
+    if (!suspend) {
+      message.channel.send(`ERROR 404: ${message.author}, Missing suspend role.`);
+      return;
+    }
+
     const mod = message.author;
-    const arguments = message.content.split(" ");
+    const msgArguments = message.content.split(" ");
     const user = message.mentions.members.first();
-    const usernotmember = message.mentions.users.first();
     //check for valid user tag
-    if (user == undefined) {
-      message.channel.send(`ERROR 400: ${mod}, invalid user tag.`);
+    if (!user) {
+      message.channel.send(`ERROR 404: ${mod}, Invalid user tag.`);
       return;
     }
     //cannot target self
-    if (usernotmember == mod) {
-      message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
+    if (message.mentions.users.first() === mod) {
+      message.channel.send(`ERROR 400: ${mod}, Cannot target self.`);
       return;
     }
-    const reasonArg = arguments.slice(2, arguments.length);
-    let reason = reasonArg.join(" ");
+    const reasonArg = msgArguments.slice(3, msgArguments.length);
     //check for reason provided, if none then create one.
-    if (reason == "") {
-      reason = "ERROR 404: No reason provided.";
-    }
-    //check for valid role. Change "Restricted" to match the role your server has.
-    const suspend = message.guild.roles.cache.find(
-      role => role.name == config.silence_role
-    );
-    if (!suspend) {
-      message.channel.send(`ERROR 304: ${mod}, missing "Restricted" role.`);
-      return;
-    }
+    const reason = reasonArg.join(" ") || "No reason provided";
+    //logging embed
     const restrictEmbed = new Discord.MessageEmbed()
       .setColor("#FF0000")
       .setTitle(`Access Restricted!`)
       .addFields(
         {
           name: "What happened?",
-          value: `${mod} has restricted ${user}'s access to the server.`
+          value: `${mod} has suspended ${user}.`,
         },
         {
           name: "Reason",
-          value: `${reason}`
+          value: `${reason}`,
         }
       )
       .setFooter("Please remember to follow our rules!");
-    const modChannel = message.guild.channels.cache.find(
-      channel => channel.name === config.log_channel
+    modChannel.send(restrictEmbed);
+    //assign roles
+    user.roles.remove(user.roles).catch((e) => console.error(e));
+    user.roles.add(suspend).catch((e) => console.error(e));
+    //create suspend channel
+    const channelName = `suspended-${user.user.username}`;
+    message.guild.channels.create(channelName, {
+      type: "text",
+      permissionOverwrites: [
+        {
+          id: user.id,
+          allow: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "SEND_MESSAGES"],
+        },
+        {
+          id: message.guild.id,
+          deny: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "SEND_MESSAGES"],
+        },
+      ],
+      parent: category,
+    });
+    user.send(
+      "You have been suspended for violating our Code of Conduct. A channel has been created in the server for you to discuss this with the moderation team."
     );
-    if (modChannel) {
-      modChannel.send(restrictEmbed);
-    }
-    if (!modChannel) {
-      message.channel.send("ERROR 404: missing log channel");
-    }
-    user.roles.remove(user.roles).catch(e => console.log(e));
-    user.roles.add(suspend).catch(e => console.log(e));
-  }
+  },
 };
