@@ -73,8 +73,7 @@ module.exports = {
       .setFooter("Please remember to follow our rules!");
     modChannel.send(restrictEmbed);
     //assign roles
-    user.roles.remove(user.roles).catch((e) => console.error(e));
-    user.roles.add(suspend).catch((e) => console.error(e));
+    user.roles.set([suspend]);
     //create suspend channel
     const channelName = `suspended-${user.user.username}`;
     message.guild.channels.create(channelName, {
