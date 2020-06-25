@@ -33,7 +33,7 @@ module.exports = {
   },
   command: function (message) {
     const array = message.content.split(" ");
-    const command = array[1]
+    const command = array[1];
     commandLog.findOne({ command: command }, function (err, data) {
       if (err || !data) {
         message.channel.send("ERROR 404: Command history not found.");
