@@ -38,15 +38,15 @@ module.exports = {
       .setTitle(`Banned!`)
       .addFields(
         {
-          name: "What happened?",
+          name: "Event:",
           value: `${mod} has banned ${user} from the server.`
         },
         {
-          name: "Reason",
+          name: "Reason:",
           value: `${reason}`
         }
       )
-      .setFooter("You will still be missed... :(");
+      .setFooter("BEEP BOOP: Detected sadness for user's departure.");
     //confirm you want to do this, as the bot currently cannot revert a ban.
     message.channel.send(
       "ERROR 100: This action is irreversible. To proceed, reply with 'Yes'."

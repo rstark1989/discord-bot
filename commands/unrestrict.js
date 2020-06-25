@@ -6,7 +6,7 @@ module.exports = {
   prefix: "unrestrict",
   description:
     "Restore a user's permissions. Use the format 'unrestrict <user> <reason>'. Only available to server moderators.",
-  command: function(message) {
+  command: function (message) {
     //check for appropriate permissions
     if (message.member.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(
@@ -35,7 +35,7 @@ module.exports = {
       reason = "ERROR 404: No reason provided.";
     }
     const suspend = message.guild.roles.cache.find(
-      role => role.name == config.silence_role
+      (role) => role.name == config.silence_role
     );
     // check for valid role. Change role.name to match your server.
     if (!suspend) {
@@ -47,17 +47,17 @@ module.exports = {
       .setTitle(`Access Restored`)
       .addFields(
         {
-          name: "What happened?",
-          value: `${mod} has restored ${user}'s access to the server.`
+          name: "Event:",
+          value: `${mod} has restored ${user}'s access to the server.`,
         },
         {
-          name: "Reason",
-          value: `${reason}`
+          name: "Reason:",
+          value: `${reason}`,
         }
       )
-      .setFooter("Please remember to follow our rules!");
+      .setFooter("BEEP BOOP: Please remember to follow our rules!");
     const modChannel = message.guild.channels.cache.find(
-      channel => channel.name === config.log_channel
+      (channel) => channel.name === config.log_channel
     );
     if (modChannel) {
       modChannel.send(unrestrictEmbed);
@@ -65,6 +65,6 @@ module.exports = {
     if (!modChannel) {
       message.channel.send("ERROR 404: missing log channel");
     }
-    user.roles.remove(suspend).catch(e => console.log(e));
-  }
+    user.roles.remove(suspend).catch((e) => console.log(e));
+  },
 };

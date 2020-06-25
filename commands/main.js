@@ -93,23 +93,25 @@ client.on("guildMemberAdd", function (member) {
   const welcomeEmbed = new Discord.MessageEmbed()
     .setColor("#00ff00")
     .setTitle("Welcome!")
-    .setDescription("Thank you for joining my server!")
+    .setDescription("BEEP BOOP: Gratitude for joining my server.")
     .addFields(
       {
-        name: "Rules",
+        name: "Rules:",
         value: "Please read the rules in our Welcome channel!",
       },
       {
-        name: "My Commands",
+        name: "My Commands:",
         value: `Use the ${prefix} prefix to get my attention! Try '${prefix}help' to see what I can do!`,
       }
     )
-    .setFooter("Have fun!");
+    .setFooter("BEEP BOOP: Have fun!");
   member.send(welcomeEmbed);
   const welcomeLogEmbed = new Discord.MessageEmbed()
     .setColor("#ab47e6")
     .setTitle("A new user has joined! 🙃")
-    .setDescription(`BEEP BOOP: Please give a warm welcome to ${member.user}!`);
+    .setDescription(
+      `BEEP BOOP: New member detected. Initiate welcome protocol for ${member.user}!`
+    );
   const welcomeChannel = member.guild.channels.cache.find(
     (channel) => channel.name == config.join_leave_channel
   );
@@ -129,7 +131,9 @@ client.on("guildMemberRemove", function (member) {
   const departEmbed = new Discord.MessageEmbed()
     .setColor("#ab47e6")
     .setTitle("A user has left us! 😦")
-    .setDescription(`BEEP BOOP: Goodbye ${member.user}! You will be missed!`);
+    .setDescription(
+      `BEEP BOOP: User departure detected. Initiate goodbye protocol for ${member.user}! You will be missed!`
+    );
   if (!goodbyeChannel) {
     console.error("depart channel not found.");
     return;
@@ -149,7 +153,7 @@ client.on("message", function (message) {
   }
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
-      usage.listener(message)
+      usage.listener(message);
       command.command(message);
       break;
     }
@@ -164,18 +168,18 @@ client.on("messageDelete", function (message) {
   const deleteEmbed = new Discord.MessageEmbed()
     .setTitle("A message was deleted.")
     .setColor("#ff0000")
-    .setDescription("Here's the details of that message.")
+    .setDescription("BEEP BOOP: Loading message details.")
     .addFields(
       {
-        name: "Message author",
+        name: "Message author:",
         value: message.author,
       },
       {
-        name: "Channel",
+        name: "Channel:",
         value: message.channel,
       },
       {
-        name: "Content",
+        name: "Content:",
         value: message.content,
       }
     );

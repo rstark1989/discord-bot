@@ -2,7 +2,7 @@ module.exports = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "roll",
   description: "Rolls a random die for you. Use the format 'roll d<number>'.",
-  command: function(message) {
+  command: function (message) {
     const arguments = message.content.split(" ");
     if (arguments[1].length === 1) {
       message.channel.send(
@@ -32,5 +32,5 @@ module.exports = {
     message.channel.send(
       `BEEP BOOP: You rolled a ${dievalue}-sided die and got: ${result}!`
     );
-  }
+  },
 };

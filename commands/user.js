@@ -5,7 +5,7 @@ module.exports = {
   prefix: "user",
   description:
     "Returns information on the tagged user. Use the format 'user <username>'",
-  command: function(message) {
+  command: function (message) {
     const tUser = message.mentions.users.first();
     const mUser = message.mentions.members.first();
     if (!tUser || !mUser) {
@@ -16,34 +16,35 @@ module.exports = {
     const created = new Date(tUser.createdTimestamp).toDateString();
     const userEmbed = new Discord.MessageEmbed()
       .setTitle(mUser.displayName)
-      .setDescription(`Here's some info about ${tUser}!`)
+      .setDescription(`BEEP BOOP: Initiating record search for ${tUser}!`)
       .addFields(
         {
-          name: "Creation Date",
-          value: `Their account was created on ${created}`
+          name: "Creation Date:",
+          value: `User account created on ${created}`,
         },
         {
-          name: "Username",
-          value: `Their full username is ${tUser.tag}`
+          name: "Username:",
+          value: `Full username is ${tUser.tag}`,
         },
         {
           name: "Status",
-          value: `Their current status is ${tUser.presence.status}`
+          value: `Current status is ${tUser.presence.status}`,
         },
         {
           name: "Server Join Date",
-          value: `They joined this server on ${joined}`
+          value: `The user joined this server on ${joined}`,
         },
         {
           name: "Roles",
-          value: `They have these roles for the server: ${mUser.roles.cache
-            .map(role => role.name)
-            .join(", ")}`
+          value: `The user has these roles for the server: ${mUser.roles.cache
+            .map((role) => role.name)
+            .join(", ")}`,
         }
       )
       .setImage(
         `https://cdn.discordapp.com/avatars/${tUser.id}/${tUser.avatar}`
-      );
+      )
+      .setFooter("BEEP BOOP: Search complete.");
     message.channel.send(userEmbed);
-  }
+  },
 };

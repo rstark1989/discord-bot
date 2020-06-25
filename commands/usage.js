@@ -40,7 +40,9 @@ module.exports = {
       } else {
         const commandEmbed = new Discord.MessageEmbed()
           .setTitle(command)
-          .setDescription(`This command has been used ${data.uses} times!`);
+          .setDescription(
+            `BEEP BOOP: This command has been used ${data.uses} times!`
+          );
         message.channel.send(commandEmbed);
       }
     });

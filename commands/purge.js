@@ -3,7 +3,7 @@ module.exports = {
   prefix: "purge",
   description:
     "Purges messages from the current channel. Use the format 'purge <number>'. Restricted to server moderators.",
-  command: async function(message) {
+  command: async function (message) {
     //check for the appropriate permission first
     if (message.member.hasPermission("MANAGE_MESSAGES") == false) {
       message.channel.send(
@@ -24,13 +24,15 @@ module.exports = {
       return;
     }
     //delete them!
-    message.channel.messages.fetch({ limit: howMany }).then(messages => {
+    message.channel.messages.fetch({ limit: howMany }).then((messages) => {
       message.channel.bulkDelete(messages);
       message.channel
-        .send(`BEEP BOOP: Deleted ${howMany} messages.`)
-        .then(message => {
+        .send(
+          `BEEP BOOP: Initiating deletion protocol for ${howMany} messages.`
+        )
+        .then((message) => {
           message.delete({ timeout: 5000 });
         });
     });
-  }
+  },
 };

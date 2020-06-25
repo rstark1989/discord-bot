@@ -39,15 +39,15 @@ module.exports = {
       .setTitle(`This is a warning!`)
       .addFields(
         {
-          name: "What happened?",
+          name: "Event:",
           value: `${mod} has issued a warning to you.`
         },
         {
-          name: "Reason",
+          name: "Reason:",
           value: `${reason}`
         }
       )
-      .setFooter("You can read the rules in the Welcome channel!");
+      .setFooter("BEEP BOOP: You can read the rules in the Welcome channel!");
     user.send(warnEmbed).catch(err => console.log(err));
     const modChannel = message.guild.channels.cache.find(
       channel => channel.name === config.log_channel

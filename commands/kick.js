@@ -6,7 +6,7 @@ module.exports = {
   prefix: "kick",
   description:
     "Kicks the mentioned user for the mentioned reason. Use the format 'kick <user> <reason>'. Only available to server moderators.",
-  command: function(message) {
+  command: function (message) {
     //check for required permission
     if (message.member.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(
@@ -40,17 +40,17 @@ module.exports = {
       .setTitle(`Kicked!`)
       .addFields(
         {
-          name: "What happened?",
-          value: `${mod} has kicked ${usernotmember} from the server.`
+          name: "Event:",
+          value: `${mod} has kicked ${usernotmember} from the server.`,
         },
         {
-          name: "Reason",
-          value: `${reason}`
+          name: "Reason:",
+          value: `${reason}`,
         }
       )
-      .setFooter("Please remember to follow our rules!");
+      .setFooter("BEEP BOOP: Please remember to follow our rules!");
     const modChannel = message.guild.channels.cache.find(
-      channel => channel.name === config.log_channel
+      (channel) => channel.name === config.log_channel
     );
     if (modChannel) {
       modChannel.send(kickEmbed);
@@ -58,6 +58,6 @@ module.exports = {
     if (!modChannel) {
       message.channel.send("ERROR 404: log channel not found.");
     }
-    usernotmember.kick().catch(err => console.log(err));
-  }
+    usernotmember.kick().catch((err) => console.log(err));
+  },
 };

@@ -6,7 +6,7 @@ module.exports = {
   prefix: "pokenum",
   description:
     "Look up a Pokemon! Use the format 'pokenum <number>', or use 'pokenum random' to get a random Pokemon!",
-  command: async function(message) {
+  command: async function (message) {
     const arguments = message.content.split(" ");
     let number = parseInt(arguments[1]);
     if (arguments[1].toLowerCase() == "random") {
@@ -43,7 +43,7 @@ module.exports = {
       .setTitle(`${pokemon.name}`)
       .setDescription(`#${pokemon.id}`)
       .setImage(`${pokemon.sprites.front_default}`)
-      .setFooter("Brought to you by the Pokemon API.");
+      .setFooter("BEEP BOOP: Brought to you by the Pokemon API.");
     message.channel.send(pokemonEmbed);
-  }
+  },
 };

@@ -6,7 +6,7 @@ module.exports = {
   prefix: "magic",
   description:
     "Returns a Magic: The Gathering card by name. Use the format 'magic <cardname>'.",
-  command: async function(message) {
+  command: async function (message) {
     const query = message.content.substring(7, message.content.length);
     let cardCount = 0;
     if (!query) {
@@ -14,14 +14,14 @@ module.exports = {
       return;
     }
     message.channel.send("STATUS 202: Searching...");
-    await mtg.card.all({ name: query }).on("data", card => {
+    await mtg.card.all({ name: query }).on("data", (card) => {
       let flavour = card.flavor;
       if (!flavour) {
-        flavour = "No flavour text found.";
+        flavour = "ERROR 404: No flavour text found.";
       }
       let ability = card.text;
       if (!ability) {
-        ability = "No abilities.";
+        ability = "ERROR 404: No abilities found.";
       }
       let image = card.imageUrl;
       if (!image) {
@@ -35,15 +35,15 @@ module.exports = {
         .addFields(
           {
             name: "Types",
-            value: card.types
+            value: card.types,
           },
           {
             name: "Cost",
-            value: card.manaCost
+            value: card.manaCost,
           },
           {
             name: "Abilities",
-            value: ability
+            value: ability,
           }
         )
         .setImage(image);
@@ -57,5 +57,5 @@ module.exports = {
         ),
       30000
     );
-  }
+  },
 };

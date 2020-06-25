@@ -19,7 +19,7 @@ module.exports = {
       .setImage(
         "https://github.com/nhcarrigan/discord-bot/blob/master/img/star.png?raw=true"
       )
-      .setFooter("Keep being awesome! 🙃");
+      .setFooter("BEEP BOOP: Feelings of pride detected. 🙃");
     const args = message.content.split(" ");
     const reason = args.slice(2, args.length);
     let reasonMessage = reason.join(" ");
@@ -28,7 +28,7 @@ module.exports = {
     }
     starEmbed.addFields({
       name: "Reason",
-      value: reasonMessage
+      value: reasonMessage,
     });
     if (message.mentions.users.first() == message.author) {
       message.channel.send("ERROR 400: Cannot target self.");
@@ -36,5 +36,5 @@ module.exports = {
     }
     target.send(starEmbed);
     message.channel.send(`BEEP BOOP: Sent ${target} a gold star!`);
-  }
+  },
 };

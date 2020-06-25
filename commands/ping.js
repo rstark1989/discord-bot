@@ -9,8 +9,8 @@ module.exports = {
     // Creates original message
     const msg = new Discord.MessageEmbed()
       .setColor("#FFFFFF")
-      .setTitle("Ping")
-      .setDescription("Pinging!");
+      .setTitle("Ping Initiated")
+      .setDescription("BEEP BOOP: Awaiting response.");
 
     //send Ping! and save messageID.
     const pingMessage = await message.channel.send(msg);
@@ -24,9 +24,9 @@ module.exports = {
     // edited msg
     const msgEdit = new Discord.MessageEmbed()
       .setColor(color)
-      .setTitle("Pinged!")
-      .setDescription(`Ping: ${pingTime}ms.`);
+      .setTitle("Ping Successful")
+      .setDescription(`BEEP BOOP: Response time is ${pingTime}ms.`);
 
     pingMessage.edit(msgEdit);
-  }
+  },
 };

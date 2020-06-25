@@ -5,7 +5,7 @@ module.exports = {
   prefix: "profile",
   description:
     "Returns a profile for the selected website. Use the format 'profile <website name> <id>'. I am able to access the following websites: Steam, Facebook, GitHub, Twitter, LinkedIn, Tumblr, and Instagram.",
-  command: function(message) {
+  command: function (message) {
     const arguments = message.content.split(" ");
     const website = arguments[1].toLowerCase();
     const name = arguments[2];
@@ -48,8 +48,10 @@ module.exports = {
     }
     const embed = new Discord.MessageEmbed()
       .setColor("#ab47e6")
-      .setTitle(`${website} user ${name}`)
-      .setDescription(`Here is a [link to their profile](${prefix}${id})`);
+      .setTitle(`Query: ${website} | For: user ${name}`)
+      .setDescription(
+        `BEEP BOOP: Here is a [link to their profile](${prefix}${id})`
+      );
     message.channel.send(embed);
-  }
+  },
 };

@@ -23,6 +23,6 @@ module.exports = {
       return
     }
     target.delete().catch((e) => console.error(e));
-    log.send(`${message.author} deleted a channel.`);
+    log.send(`BEEP BOOP: ${message.author} deleted a channel.`);
   },
 };

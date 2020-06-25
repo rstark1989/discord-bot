@@ -5,7 +5,7 @@ module.exports = {
   //prefix and description - prefix is necessary to trigger command, description is for the record
   prefix: "pokename",
   description: "Look up a Pokemon! Use the format 'pokename <name>'.",
-  command: async function(message) {
+  command: async function (message) {
     const arguments = message.content.split(" ");
     const name = arguments[1].toLowerCase();
     //call the API and send the data.
@@ -21,7 +21,7 @@ module.exports = {
       .setTitle(`${pokemon.name}`)
       .setDescription(`#${pokemon.id}`)
       .setImage(`${pokemon.sprites.front_default}`)
-      .setFooter("Brought to you by the Pokemon API.");
+      .setFooter("BEEP BOOP: Brought to you by the Pokemon API.");
     message.channel.send(pokemonEmbed);
-  }
+  },
 };

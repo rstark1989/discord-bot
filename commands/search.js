@@ -9,6 +9,6 @@ module.exports = {
       //strip user mentions
       .replace(/\s/g, "%20")
       .replace(/<@!.*>%20/g, "");
-    message.channel.send(`https://google.com/search?q=${query}`);
+    message.channel.send(`BEEP BOOP: Query complete. https://google.com/search?q=${query}`);
   }
 };

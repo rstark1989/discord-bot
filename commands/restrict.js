@@ -19,7 +19,9 @@ module.exports = {
       (channel) => channel.name === config.log_channel
     );
     if (!modChannel) {
-      message.channel.send(`ERROR 404: ${message.author}, Log channel not found.`);
+      message.channel.send(
+        `ERROR 404: ${message.author}, Log channel not found.`
+      );
       return;
     }
     //check for suspend category setting
@@ -28,7 +30,9 @@ module.exports = {
       (c) => c.name === suspendCategory && c.type === "category"
     );
     if (!category) {
-      message.channel.send(`ERROR 404: ${message.author}, Missing suspend category.`);
+      message.channel.send(
+        `ERROR 404: ${message.author}, Missing suspend category.`
+      );
       return;
     }
     //check for suspend role setting
@@ -36,7 +40,9 @@ module.exports = {
       (role) => role.name == config.silence_role
     );
     if (!suspend) {
-      message.channel.send(`ERROR 404: ${message.author}, Missing suspend role.`);
+      message.channel.send(
+        `ERROR 404: ${message.author}, Missing suspend role.`
+      );
       return;
     }
 
@@ -62,15 +68,15 @@ module.exports = {
       .setTitle(`Access Restricted!`)
       .addFields(
         {
-          name: "What happened?",
+          name: "Event:",
           value: `${mod} has suspended ${user}.`,
         },
         {
-          name: "Reason",
+          name: "Reason:",
           value: `${reason}`,
         }
       )
-      .setFooter("Please remember to follow our rules!");
+      .setFooter("BEEP BOOP: Please remember to follow our rules!");
     modChannel.send(restrictEmbed);
     //assign roles
     user.roles.set([suspend]);
@@ -91,7 +97,7 @@ module.exports = {
       parent: category,
     });
     user.send(
-      "You have been suspended for violating our Code of Conduct. A channel has been created in the server for you to discuss this with the moderation team."
+      `BEEP BOOP: Suspension protocol initiated for: ${reason} - Appeal channel creation complete.`
     );
   },
 };
