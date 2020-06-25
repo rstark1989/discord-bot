@@ -33,6 +33,7 @@ const user = require("./user.js");
 const levels = require("./levels.js");
 const cat = require("./cat.js");
 const close = require("./close.js");
+const usage = require("./usage.js");
 //command names in this array
 const commands = [
   kick,
@@ -59,6 +60,7 @@ const commands = [
   levels,
   cat,
   close,
+  usage,
 ];
 
 //verify bot is ready
@@ -147,6 +149,7 @@ client.on("message", function (message) {
   }
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
+      usage.listener(message)
       command.command(message);
       break;
     }
