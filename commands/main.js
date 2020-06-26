@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const mongodb = require("mongodb");
 const Mongoose = require("mongoose");
 dotenv.config({ path: __dirname + "/../.env" });
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN).catch((e) => console.error(e));
 
 //command files here:
 const ping = require("./ping.js");
@@ -75,7 +75,7 @@ client.on("ready", function () {
     )
     .setColor("#ab47e6");
   if (initChannel) {
-    initChannel.send(initEmbed);
+    initChannel.send(initEmbed).catch((e) => console.error(e));
     return;
   }
   console.log("Activate the Omega");
@@ -105,7 +105,7 @@ client.on("guildMemberAdd", function (member) {
       }
     )
     .setFooter("BEEP BOOP: Have fun!");
-  member.send(welcomeEmbed);
+  member.send(welcomeEmbed).catch((e) => console.error(e));
   const welcomeLogEmbed = new Discord.MessageEmbed()
     .setColor("#ab47e6")
     .setTitle("A new user has joined! 🙃")
@@ -119,7 +119,7 @@ client.on("guildMemberAdd", function (member) {
     console.error("welcome channel not found.");
     return;
   } else {
-    welcomeChannel.send(welcomeLogEmbed);
+    welcomeChannel.send(welcomeLogEmbed).catch((e) => console.error(e));
   }
 });
 
@@ -138,13 +138,13 @@ client.on("guildMemberRemove", function (member) {
     console.error("depart channel not found.");
     return;
   } else {
-    goodbyeChannel.send(departEmbed);
+    goodbyeChannel.send(departEmbed).catch((e) => console.error(e));
   }
 });
 
 //messages listener
 client.on("message", function (message) {
-  levels.listen(message);
+  levels.listener(message);
   if (message.attachments.array().length > 0) {
     if (!message.attachments.array()[0].height) {
       message.delete();

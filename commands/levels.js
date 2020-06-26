@@ -14,7 +14,7 @@ module.exports = {
   prefix: "level",
   description: "Gets the user's current level.",
   //this part listens to all messages
-  listen: function (message) {
+  listener: function (message) {
     //find user
     user.findOne({ userid: message.author }, function (err, data) {
       if (err || !data) {
