@@ -8,7 +8,7 @@ module.exports = {
     const argument = message.content.substring(6, message.content.length);
     const query = argument.replace(/\s/g, "_");
     message.channel.send(
-      `BEEP BOPP: Query complete. https://en.wikipedia.org/wiki/${query}`
+      `BEEP BOOP: Query complete. https://en.wikipedia.org/wiki/${query}`
     );
   },
 };

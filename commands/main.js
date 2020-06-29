@@ -34,6 +34,7 @@ const levels = require("./levels.js");
 const cat = require("./cat.js");
 const close = require("./close.js");
 const usage = require("./usage.js");
+const hearts = require("./hearts.js");
 //command names in this array
 const commands = [
   kick,
@@ -145,6 +146,7 @@ client.on("guildMemberRemove", function (member) {
 //messages listener
 client.on("message", function (message) {
   levels.listener(message);
+  hearts.listener(message);
   if (message.attachments.array().length > 0) {
     if (!message.attachments.array()[0].height) {
       message.delete();
