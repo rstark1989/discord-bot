@@ -1,7 +1,8 @@
 {
   "prefix": "|",
   "log_channel": "moderation-activity",
-  "join_leave_channel": "introductions",
+  "join_leave_channel": "introduction",
   "silence_role": "Restricted",
-  "silence_category": "Appeals"
+  "silence_category": "Appeals",
+  "love": ["465650873650118659"]
 }

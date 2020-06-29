@@ -1,4 +1,5 @@
-const authors = ['465650873650118659'];
+const config = require("../config.json")
+const authors = config.love;
 const heartList = ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍"]
 module.exports = {
   listener: function (message) {
