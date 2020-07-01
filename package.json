@@ -13,7 +13,8 @@
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.18",
     "mtgsdk": "^0.4.3",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "typescript": "^3.9.5"
   },
   "main": "./prod/commands/main.js",
   "scripts": {
