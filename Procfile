@@ -1,1 +1,1 @@
-worker: node ./commands/main.js
+worker: node ./prod/src/commands/main.js
