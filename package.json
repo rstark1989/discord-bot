@@ -1,7 +1,7 @@
 {
   "name": "Discord_Bot",
   "author": "Nicholas Carrigan",
-  "version": "1.27.1",
+  "version": "2.0.0",
   "license": "MIT",
   "engines": {
     "node": "14.2.0"
@@ -15,8 +15,14 @@
     "mtgsdk": "^0.4.3",
     "node-fetch": "^2.6.0"
   },
-  "main": "./commands/main.js",
+  "main": "./prod/commands/main.js",
   "scripts": {
-    "start": "node ./commands/main.js"
+    "start": "node ./prod/commands/main.js",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.7.29",
+    "@types/node": "^14.0.14",
+    "@types/node-fetch": "^2.5.7"
   }
 }

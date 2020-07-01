@@ -4,5 +4,6 @@
   "join_leave_channel": "introduction",
   "silence_role": "Restricted",
   "silence_category": "Appeals",
-  "love": ["465650873650118659", "454008198106447882"]
+  "love": ["465650873650118659", "454008198106447882"],
+  "bot_role": "BOT"
 }
