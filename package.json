@@ -18,7 +18,7 @@
   },
   "main": "./prod/commands/main.js",
   "scripts": {
-    "start": "node ./prod/commands/main.js",
+    "start": "node ./prod/src/commands/main.js",
     "build": "tsc"
   },
   "devDependencies": {

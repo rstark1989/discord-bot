@@ -1,1 +1,1 @@
-worker: node ./prod/src/commands/main.js
+worker: npm start
