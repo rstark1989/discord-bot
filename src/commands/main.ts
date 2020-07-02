@@ -37,6 +37,7 @@ import { usage } from "./usage";
 import { hearts } from "../listeners/heartsListen";
 import { levelListen } from "../listeners/levelsListen";
 import { usageListen } from "../listeners/usageListen";
+import { leave } from "./leave";
 //command names in this array
 const commands = [
   kick,
@@ -64,6 +65,7 @@ const commands = [
   cat,
   close,
   usage,
+  leave,
 ];
 
 //verify bot is ready
@@ -145,7 +147,7 @@ client.on("message", function (message) {
   for (let command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
       usageListen.listener(message);
-      command.command(message);
+      command.command(message, client);
       break;
     }
   }
