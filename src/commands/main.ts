@@ -173,7 +173,7 @@ client.on("messageDelete", function (message) {
       },
       {
         name: "Content:",
-        value: message.content,
+        value: message.content || "ERROR 404: Content not found.",
       }
     );
   if (!logChannel) {
