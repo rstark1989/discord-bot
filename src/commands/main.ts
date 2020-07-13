@@ -38,6 +38,7 @@ import { hearts } from "../listeners/heartsListen";
 import { levelListen } from "../listeners/levelsListen";
 import { usageListen } from "../listeners/usageListen";
 import { leave } from "./leave";
+import { maths } from "./math";
 //command names in this array
 const commands = [
   kick,
@@ -66,6 +67,7 @@ const commands = [
   close,
   usage,
   leave,
+  maths,
 ];
 
 //verify bot is ready

@@ -1,5 +1,4 @@
 import { commandInt } from "../interfaces/commandInt";
-import { builtinModules } from "module";
 
 export const leave: commandInt = {
   prefix: "leave",
