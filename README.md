@@ -22,9 +22,7 @@ You are welcome to join the [Bot Test Server](https://discord.gg/BqRZ85t) to wor
 
 ### Configure Your Bot
 
-The code is written to look for a `.env` file. This file will contain the discord bot token to link the code to the bot. For security reasons, the `.env` file for this bot is not available in this repository. To set up your own bot, you will need to create a `.env` file in the _root_ directory of your bot repository, and add `DISCORD_TOKEN: "your token here"`.
-
-Additionally, you will need to run the `npm run build` script before you can run the `npm run start` script.
+To set up your own instance of the bot, please review the [Developer Documentation](https://www.nhcarrigan.com/discord-bot-documentation/).
 
 ### Need Some Help?
 
