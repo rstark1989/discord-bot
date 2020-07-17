@@ -1,6 +1,6 @@
 import config from "../../config.json";
 import { commandInt } from "../interfaces/commandInt";
-import { TextChannel, GuildChannel, MessageEmbed } from "discord.js";
+import { TextChannel, MessageEmbed } from "discord.js";
 
 export const restrict: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
@@ -38,9 +38,6 @@ export const restrict: commandInt = {
       message.channel.send(`ERROR 404: Missing suspend role.`);
       return;
     }
-    const bot = message.guild?.roles.cache.find(
-      (role) => role.name == config.bot_role
-    );
     const mod = message.author;
     const msgArguments = message.content.split(" ");
     const user = message.mentions.members?.first();

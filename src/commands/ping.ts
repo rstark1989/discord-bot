@@ -16,11 +16,11 @@ export const ping: commandInt = {
     const pingMessage = await message.channel.send(msg);
 
     //edit messageID to add ping time, based on time between ping command and Ping! response.
-    let pingTime = Math.round(
+    const pingTime = Math.round(
       pingMessage.createdTimestamp - message.createdTimestamp
     );
     // changes color depending on pingTime
-    let color = pingTime < 90 ? "#21ed4a" : "#f02222";
+    const color = pingTime < 90 ? "#21ed4a" : "#f02222";
     // edited msg
     const msgEdit = new MessageEmbed()
       .setColor(color)

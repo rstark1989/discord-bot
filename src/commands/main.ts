@@ -80,7 +80,7 @@ client.on("ready", function () {
 Mongoose.connect(URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).catch((err) => console.log("Database connection failed."));
+}).catch((err) => console.log("Database connection failed.", err));
 
 //welcome message
 client.on("guildMemberAdd", function (member) {
@@ -146,7 +146,7 @@ client.on("message", function (message) {
       message.channel.send("ERROR 415: Only images and videos supported.");
     }
   }
-  for (let command of commands) {
+  for (const command of commands) {
     if (message.content.startsWith(prefix + command.prefix)) {
       usageListen.listener(message);
       command.command(message, client);

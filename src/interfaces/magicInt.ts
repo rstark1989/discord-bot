@@ -21,12 +21,12 @@ export interface magicInt {
     layout: string;
     multiverseid: number;
     imageUrl: string;
-    rulings: Array<object>;
-    foreignNames: Array<object>;
+    rulings: Array<Record<string, unknown>>;
+    foreignNames: Array<Record<string, unknown>>;
     printings: Array<string>;
     originalText: string;
     originalType: string;
-    legalities: Array<object>;
+    legalities: Array<Record<string, unknown>>;
     id: string;
   }>;
 }

@@ -1,5 +1,4 @@
 import { listenerInt } from "../interfaces/listenerInt";
-import { Document, Schema, model } from "mongoose";
 import { user, userInt } from "../interfaces/userInt";
 
 export const levelListen: listenerInt = {
@@ -25,7 +24,7 @@ export const levelListen: listenerInt = {
         data.points = data.points + Math.floor(Math.random() * 5) + 1;
         const currentpoints = data.points % 100;
         const currentexp = data.points;
-        data.save((err, data) => {
+        data.save((err: Error) => {
           if (err) console.log(err);
         });
         //level up notifications

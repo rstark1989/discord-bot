@@ -1,5 +1,4 @@
 import { listenerInt } from "../interfaces/listenerInt";
-import { Document, Schema, model } from "mongoose";
 import { commandLog, commandLogInt } from "../interfaces/usageInt";
 
 export const usageListen: listenerInt = {
@@ -10,10 +9,9 @@ export const usageListen: listenerInt = {
       err: Error,
       data: commandLogInt
     ) {
-      let uses = 0;
       if (err || !data) {
         const newlog = new commandLog({ command: command, uses: 1 });
-        newlog.save((err, data) => {
+        newlog.save((err: Error) => {
           if (err) console.error(err);
         });
       } else {

@@ -1,4 +1,5 @@
 import { commandInt } from "../interfaces/commandInt";
+import { Guild } from "discord.js";
 
 export const leave: commandInt = {
   prefix: "leave",
@@ -13,7 +14,7 @@ export const leave: commandInt = {
     }
     const target: string = message.content.substring(7, message.content.length);
     if (!target) {
-      bot.guilds.cache.forEach((item: any) =>
+      bot.guilds.cache.forEach((item: Guild) =>
         message.channel.send(`${item.id} - ${item.name}`)
       );
     }

@@ -1,6 +1,6 @@
 import config from "../../config.json";
 import { commandInt } from "../interfaces/commandInt";
-import { TextChannel, GuildMember, MessageEmbed } from "discord.js";
+import { TextChannel, MessageEmbed } from "discord.js";
 
 export const kick: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.

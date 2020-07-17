@@ -20,12 +20,19 @@
   "main": "./prod/commands/main.js",
   "scripts": {
     "start": "node ./prod/src/commands/main.js",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "npx eslint src"
   },
   "devDependencies": {
     "@types/mathjs": "^6.0.5",
     "@types/mongoose": "^5.7.29",
     "@types/node": "^14.0.14",
-    "@types/node-fetch": "^2.5.7"
+    "@types/node-fetch": "^2.5.7",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
   }
 }

@@ -7,7 +7,7 @@ export const about: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is just for the record.
   prefix: "about",
   description: "Provides details about the bot.",
-  command: async function (message, bot) {
+  command: async function (message) {
     const files = await fs.promises.readdir(__dirname);
     const aboutEmbed: MessageEmbed = new MessageEmbed()
       .setColor("#ab47e6")

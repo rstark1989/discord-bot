@@ -1,4 +1,3 @@
-import { Message } from "discord.js";
 import { commandInt } from "../interfaces/commandInt";
 
 export const cat: commandInt = {

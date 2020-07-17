@@ -1,1 +1,7 @@
 language: node-js
+install: npm ci
+jobs:
+  include:
+    - stage: Lint JS
+      script:
+        - npm run lint

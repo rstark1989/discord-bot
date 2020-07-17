@@ -1,5 +1,4 @@
 import { commandInt } from "../interfaces/commandInt";
-import { Document, Schema, model } from "mongoose";
 import { MessageEmbed } from "discord.js";
 import { commandLog, commandLogInt } from "../interfaces/usageInt";
 
