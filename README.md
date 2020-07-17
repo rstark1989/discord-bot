@@ -1,5 +1,10 @@
 # My Discord Bot
 
+[![Build Status](https://travis-ci.org/nhcarrigan/discord-bot.svg?branch=master)](https://travis-ci.org/nhcarrigan/discord-bot)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Version: 3.0.0](https://img.shields.io/badge/version-3.0.0-blue)
+![Dependabot: Enabled](https://img.shields.io/badge/dependabot-enabled-blueviolet)
+
 Welcome to the repository for my discord bot, seen as `nhbot` in my [Discord Server](https://discord.gg/PHqDbkg).
 
 This bot was built using Discord.js, and is currently only hosted locally. As development progresses, I intend to find a live server to host the bot on.
