@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/nhcarrigan/discord-bot.svg?branch=master)](https://travis-ci.org/nhcarrigan/discord-bot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Version: 3.0.0](https://img.shields.io/badge/version-3.0.0-blue)
-![Dependabot: Enabled](https://img.shields.io/badge/dependabot-enabled-blueviolet)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=nhcarrigan/discord-bot)](https://dependabot.com)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/nhcarrigan/discord-bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nhcarrigan/discord-bot/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/nhcarrigan/discord-bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nhcarrigan/discord-bot/context:javascript)
 
