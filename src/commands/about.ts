@@ -1,4 +1,4 @@
-import { MessageEmbed, Message } from "discord.js";
+import { MessageEmbed } from "discord.js";
 import fs from "fs";
 import { commandInt } from "../interfaces/commandInt";
 import packageInfo from "../../package.json";
