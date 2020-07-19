@@ -34,7 +34,7 @@ export const about: commandInt = {
         }
       )
       .setFooter("BEEP BOOP: Message terminated.");
-    if (message.content !== "test") message.channel.send(aboutEmbed);
+    if (message.id !== "test") message.channel.send(aboutEmbed);
     return packageInfo.version;
   },
 };

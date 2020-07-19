@@ -37,9 +37,9 @@ export const help: commandInt = {
       )
       .setFooter("BEEP BOOP: End of message.");
     //DM the embed
-    if (message.content !== "test") user.send(helpEmbed);
+    if (message.id !== "test") user.send(helpEmbed);
     //message to channel so people know bot is online
-    if (message.content !== "test")
+    if (message.id !== "test")
       message.channel.send(
         `BEEP BOOP: <@!${message.author}>, help message sent.`
       );

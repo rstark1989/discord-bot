@@ -13,7 +13,7 @@ export const fortune: commandInt = {
   command: function (message) {
     //pick random fortune - accounts for new fortunes so does not need to be updated with additions.
     const index = Math.floor(Math.random() * fortunes.length);
-    if (message.content !== "test")
+    if (message.id !== "test")
       message.channel.send(`BEEP BOOP: ${fortunes[index]}`);
     return fortunes[index];
   },

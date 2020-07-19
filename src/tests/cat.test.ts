@@ -3,7 +3,7 @@ import { assert } from "chai";
 import { Message } from "discord.js";
 
 describe("Cat command", async () => {
-  const result = await cat.command(({ content: "test" } as Partial<
+  const result = await cat.command(({ id: "test" } as Partial<
     Message
   >) as never);
   it("should return a string", () => {
