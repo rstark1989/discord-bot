@@ -1,6 +1,7 @@
 import config from "../../config.json";
 import { commandInt } from "../interfaces/commandInt";
 import { MessageEmbed } from "discord.js";
+import { testInt } from "../interfaces/testInt";
 const prefix = config.prefix;
 
 export const help: commandInt = {
@@ -42,5 +43,11 @@ export const help: commandInt = {
     message.channel.send(
       `BEEP BOOP: <@!${message.author}>, help message sent.`
     );
+  },
+};
+
+export const helpTest: testInt = {
+  testCommand: (message) => {
+    return message?.author?.id || "could not find author";
   },
 };
