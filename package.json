@@ -21,8 +21,7 @@
   "scripts": {
     "start": "node ./prod/src/commands/main.js",
     "build": "tsc",
-    "lint": "npx eslint src",
-    "lint-fix": "npx eslint src --fix"
+    "lint": "npx eslint src"
   },
   "devDependencies": {
     "@types/mathjs": "^6.0.5",
@@ -39,7 +38,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-fix"
+      "pre-commit": "npm run lint"
     }
   }
 }
