@@ -1,5 +1,4 @@
 import { commandInt } from "../interfaces/commandInt";
-import { testInt } from "../interfaces/testInt";
 
 //list of fortunes. Add more here to your desire.
 export const fortunes = [
@@ -14,13 +13,8 @@ export const fortune: commandInt = {
   command: function (message) {
     //pick random fortune - accounts for new fortunes so does not need to be updated with additions.
     const index = Math.floor(Math.random() * fortunes.length);
-    message.channel.send(`BEEP BOOP: ${fortunes[index]}`);
-  },
-};
-
-export const fortuneTest: testInt = {
-  testCommand: (message) => {
-    const index = Math.floor(Math.random() * fortunes.length);
+    if (message.content !== "test")
+      message.channel.send(`BEEP BOOP: ${fortunes[index]}`);
     return fortunes[index];
   },
 };

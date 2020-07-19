@@ -1,12 +1,16 @@
-import { catTest } from "../commands/cat";
+import { cat } from "../commands/cat";
 import { assert } from "chai";
+import { Message } from "discord.js";
 
-describe("Cat command", () => {
+describe("Cat command", async () => {
+  const result = await cat.command(({ content: "test" } as Partial<
+    Message
+  >) as never);
   it("should return a string", () => {
-    assert.isString(catTest.testCommand());
+    assert.isString(result);
   });
   it("should be between 1 and 100 characters", () => {
-    assert.isAtMost(catTest.testCommand().length, 100);
-    assert.isAtLeast(catTest.testCommand().length, 1);
+    assert.isAtMost(result.length, 100);
+    assert.isAtLeast(result.length, 1);
   });
 });
