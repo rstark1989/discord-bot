@@ -10,5 +10,4 @@ jobs:
     - stage: Tests
       script:
         - npm run test
-after_success:
-  - codecov
+        - codecov -f coverage/*.json
