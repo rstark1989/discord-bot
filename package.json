@@ -8,6 +8,7 @@
   },
   "repository": "https://github.com/nhcarrigan/discord-bot",
   "dependencies": {
+    "codecov": "^3.7.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "mathjs": "^7.1.0",
@@ -15,30 +16,38 @@
     "mongoose": "^5.9.18",
     "mtgsdk": "^0.4.3",
     "node-fetch": "^2.6.0",
+    "nyc": "^15.1.0",
     "typescript": "^3.9.7"
   },
   "main": "./prod/commands/main.js",
   "scripts": {
     "start": "node ./prod/src/commands/main.js",
     "build": "tsc",
-    "lint": "npx eslint src"
+    "lint": "npx eslint src",
+    "test": "nyc mocha -r ts-node/register ./src/tests/*.test.ts",
+    "posttest": "nyc report --reporter=json"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.11",
     "@types/mathjs": "^6.0.5",
+    "@types/mocha": "^8.0.0",
     "@types/mongoose": "^5.7.32",
     "@types/node": "^14.0.23",
     "@types/node-fetch": "^2.5.7",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
+    "chai": "^4.2.0",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
-    "prettier": "^2.0.5"
+    "mocha": "^8.0.1",
+    "prettier": "^2.0.5",
+    "ts-node": "^8.10.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run lint && npm run test"
     }
   }
 }

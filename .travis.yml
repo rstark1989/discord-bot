@@ -7,3 +7,7 @@ jobs:
     - stage: Lint JS
       script:
         - npm run lint
+    - stage: Tests
+      script:
+        - npm run test
+        - codecov -f coverage/*.json
