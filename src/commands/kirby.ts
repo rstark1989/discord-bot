@@ -5,10 +5,13 @@ export const kirby: commandInt = {
   prefix: "kirby",
   description: "Do a little dance... make a little noise... GET DOWN TONIGHT!",
   command: function (message) {
-    message.channel.send("BEEP BOOP: Dance mode initiated.");
-    setTimeout(() => message.channel.send("<('.')>"), 1000);
-    setTimeout(() => message.channel.send("<('.'<)"), 2000);
-    setTimeout(() => message.channel.send("(>'.')>"), 3000);
-    setTimeout(() => message.channel.send("^('.')^"), 4000);
+    if (message.id !== "test") {
+      message.channel.send("BEEP BOOP: Dance mode initiated.");
+      setTimeout(() => message.channel.send("<('.')>"), 1000);
+      setTimeout(() => message.channel.send("<('.'<)"), 2000);
+      setTimeout(() => message.channel.send("(>'.')>"), 3000);
+      setTimeout(() => message.channel.send("^('.')^"), 4000);
+    }
+    return "Do a little dance!";
   },
 };
