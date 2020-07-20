@@ -11,7 +11,7 @@ export const restrict: commandInt = {
     //check for appropriate permissions
     if (!message.member?.hasPermission("KICK_MEMBERS")) {
       message.channel.send(`ERROR 401: Missing permissions.`);
-      return;
+      return "failed";
     }
     //check for log channel setting
     const modChannel = message.guild?.channels.cache.find(
@@ -19,7 +19,7 @@ export const restrict: commandInt = {
     ) as TextChannel;
     if (!modChannel) {
       message.channel.send(`ERROR 404: Log channel not found.`);
-      return;
+      return "failed";
     }
     //check for suspend category setting
     const suspendCategory = config.silence_category;
@@ -28,7 +28,7 @@ export const restrict: commandInt = {
     );
     if (!category) {
       message.channel.send(`ERROR 404: Missing suspend category.`);
-      return;
+      return "failed";
     }
     //check for suspend role setting
     const suspend = message.guild?.roles.cache.find(
@@ -36,7 +36,7 @@ export const restrict: commandInt = {
     );
     if (!suspend) {
       message.channel.send(`ERROR 404: Missing suspend role.`);
-      return;
+      return "failed";
     }
     const mod = message.author;
     const msgArguments = message.content.split(" ");
@@ -44,12 +44,12 @@ export const restrict: commandInt = {
     //check for valid user tag
     if (!user) {
       message.channel.send(`ERROR 404: Invalid user tag.`);
-      return;
+      return "failed";
     }
     //cannot target self
     if (message.mentions.users.first() === mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
-      return;
+      return "failed";
     }
     const reasonArg = msgArguments.slice(2, msgArguments.length);
     //check for reason provided, if none then create one.
@@ -94,5 +94,6 @@ export const restrict: commandInt = {
     user.send(
       `BEEP BOOP: Suspension protocol initiated for: ${reason} - Appeal channel creation complete.`
     );
+    return "success";
   },
 };

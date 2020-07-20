@@ -12,7 +12,7 @@ export const magic: commandInt = {
     const query = message.content.substring(7, message.content.length);
     if (!query) {
       message.channel.send(`ERROR 400: ${message.author}, missing card name.`);
-      return;
+      return "failed";
     }
     message.channel.send("STATUS 202: Searching...");
     const data = await fetch(
@@ -52,5 +52,6 @@ export const magic: commandInt = {
       )
       .setImage(image);
     message.channel.send(cardEmbed);
+    return "success";
   },
 };

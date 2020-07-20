@@ -12,7 +12,7 @@ export const pokenum: commandInt = {
     const cmdarguments = message.content.split(" ");
     if (cmdarguments.length < 2) {
       message.channel.send("ERROR 400: No query provided.");
-      return;
+      return "failed";
     }
     let number = parseInt(cmdarguments[1]);
     if (cmdarguments[1].toLowerCase() == "random") {
@@ -23,12 +23,12 @@ export const pokenum: commandInt = {
       message.channel.send(
         `ERROR 400: Number must be between 0 and 802 (inclusive).`
       );
-      return;
+      return "failed";
     }
     //if the argument is not a number, don't call the API.
     if (isNaN(number)) {
       message.channel.send(`ERROR 400: Invalid number.`);
-      return;
+      return "failed";
     }
     //missingno easter egg
     if (number === 0) {
@@ -39,7 +39,7 @@ export const pokenum: commandInt = {
         .setImage("https://aldelaro5.files.wordpress.com/2016/04/657.png")
         .setFooter("Data not found.");
       message.channel.send(pokemonEmbed);
-      return;
+      return "success";
     }
     //call the API and send the data.
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${number}`);
@@ -51,5 +51,6 @@ export const pokenum: commandInt = {
       .setImage(`${pokemon.sprites.front_default}`)
       .setFooter("BEEP BOOP: Brought to you by the Pokemon API.");
     message.channel.send(pokemonEmbed);
+    return "success";
   },
 };

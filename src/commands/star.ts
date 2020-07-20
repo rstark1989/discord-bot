@@ -10,7 +10,7 @@ export const star: commandInt = {
     const target = message.mentions.members?.first();
     if (!target) {
       message.channel.send("ERROR 400: User not provided.");
-      return;
+      return "failed";
     }
     const auth = message.author;
     const starEmbed = new MessageEmbed()
@@ -33,9 +33,10 @@ export const star: commandInt = {
     });
     if (message.mentions.users.first() == message.author) {
       message.channel.send("ERROR 400: Cannot target self.");
-      return;
+      return "failed";
     }
     target.send(starEmbed);
     message.channel.send(`BEEP BOOP: Sent <@!${target}> a gold star!`);
+    return "success";
   },
 };

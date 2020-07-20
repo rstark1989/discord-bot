@@ -14,5 +14,6 @@ export const search: commandInt = {
     message.channel.send(
       `BEEP BOOP: Query complete. https://google.com/search?q=${query}`
     );
+    return "success";
   },
 };

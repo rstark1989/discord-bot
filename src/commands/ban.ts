@@ -16,7 +16,7 @@ export const ban: commandInt = {
     //check for appropriate permission.
     if (message.member?.hasPermission("BAN_MEMBERS") == false) {
       message.channel.send(`ERROR 401: Missing permissions.`);
-      return;
+      return "failed";
     }
     const mod = message.author;
     const cmdarguments = message.content.split(" ");
@@ -25,11 +25,11 @@ export const ban: commandInt = {
     //check for valid user mention
     if (user == undefined) {
       message.channel.send(`ERROR 404: Invalid usertag.`);
-      return;
+      return "failed";
     }
     if (usernotmember == mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
-      return;
+      return "failed";
     }
     const reasonArg = cmdarguments.slice(2, cmdarguments.length);
     let reason = reasonArg.join(" ");
@@ -75,11 +75,14 @@ export const ban: commandInt = {
           message.channel.send("ERROR 404: Log channel not found.");
         }
         user.ban({ reason: reason }).catch((err) => console.log(err));
+        return "success";
       }
       // anything but yes.
       else {
         message.channel.send("STATUS 304: Request cancelled.");
+        return "success";
       }
     });
+    return "unknown";
   },
 };

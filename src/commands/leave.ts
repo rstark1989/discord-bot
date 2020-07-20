@@ -10,15 +10,16 @@ export const leave: commandInt = {
       message.channel.send(
         `ERROR 401: Only <@!465650873650118659> is allowed to use this command.`
       );
-      return;
+      return "failed";
     }
     const target: string = message.content.substring(7, message.content.length);
     if (!target) {
-      bot.guilds.cache.forEach((item: Guild) =>
+      bot?.guilds.cache.forEach((item: Guild) =>
         message.channel.send(`${item.id} - ${item.name}`)
       );
     }
-    const leaveChannel = await bot.guilds.cache.get(target);
-    leaveChannel.leave();
+    const leaveChannel = await bot?.guilds.cache.get(target);
+    leaveChannel?.leave();
+    return "success";
   },
 };

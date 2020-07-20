@@ -28,5 +28,6 @@ export const ping: commandInt = {
       .setDescription(`BEEP BOOP: Response time is ${pingTime}ms.`);
 
     pingMessage.edit(msgEdit);
+    return "success";
   },
 };
