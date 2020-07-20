@@ -1,8 +1,7 @@
-import { MessageEmbed, Message } from "discord.js";
+import { MessageEmbed } from "discord.js";
 import fs from "fs";
 import { commandInt } from "../interfaces/commandInt";
 import packageInfo from "../../package.json";
-import { testInt } from "../interfaces/testInt";
 
 export const about: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is just for the record.
@@ -35,12 +34,7 @@ export const about: commandInt = {
         }
       )
       .setFooter("BEEP BOOP: Message terminated.");
-    message.channel.send(aboutEmbed);
-  },
-};
-
-export const aboutTest: testInt = {
-  testCommand: () => {
-    return `${packageInfo.version}`;
+    if (message.id !== "test") message.channel.send(aboutEmbed);
+    return packageInfo.version;
   },
 };

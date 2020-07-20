@@ -1,7 +1,6 @@
 import config from "../../config.json";
 import { commandInt } from "../interfaces/commandInt";
 import { MessageEmbed } from "discord.js";
-import { testInt } from "../interfaces/testInt";
 const prefix = config.prefix;
 
 export const help: commandInt = {
@@ -38,16 +37,12 @@ export const help: commandInt = {
       )
       .setFooter("BEEP BOOP: End of message.");
     //DM the embed
-    user.send(helpEmbed);
+    if (message.id !== "test") user.send(helpEmbed);
     //message to channel so people know bot is online
-    message.channel.send(
-      `BEEP BOOP: <@!${message.author}>, help message sent.`
-    );
-  },
-};
-
-export const helpTest: testInt = {
-  testCommand: (message) => {
-    return message?.author?.id || "could not find author";
+    if (message.id !== "test")
+      message.channel.send(
+        `BEEP BOOP: <@!${message.author}>, help message sent.`
+      );
+    return message.author.id;
   },
 };
