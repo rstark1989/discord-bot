@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/nhcarrigan/discord-bot.svg?branch=master)](https://travis-ci.org/nhcarrigan/discord-bot)
 [![License: GPL-3.0](https://img.shields.io/github/license/nhcarrigan/discord-bot?color=purple)](https://opensource.org/licenses/MIT)
-![Version: 3.0.0](https://img.shields.io/badge/version-3.0.0-blue)
+![Version: 3.0.0](https://img.shields.io/github/package-json/v/nhcarrigan/discord-bot)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=nhcarrigan/discord-bot)](https://dependabot.com)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/nhcarrigan/discord-bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nhcarrigan/discord-bot/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/nhcarrigan/discord-bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nhcarrigan/discord-bot/context:javascript)
@@ -10,6 +10,7 @@
 [![Issues](https://img.shields.io/github/issues/nhcarrigan/discord-bot)](https://github.com/nhcarrigan/discord-bot/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/nhcarrigan/discord-bot)](https://github.com/nhcarrigan/discord-bot/pulls)
 [![Discord](https://img.shields.io/discord/710307364556767283)](https://discord.gg/PHqDbkg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnhcarrigan%2Fdiscord-bot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnhcarrigan%2Fdiscord-bot?ref=badge_shield)
 
 Welcome to the repository for my discord bot, seen as `nhbot` in my [Discord Server](https://discord.gg/PHqDbkg).
 
@@ -44,3 +45,6 @@ Do you need more information on how to contribute? Submit a [new issue](https://
 [Nicholas Carrigan](https://github.com/nhcarrigan) - Project Owner
 
 [Joshua Pelealu](https://github.com/JoshuaPelealu) - Revised `ping` command
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnhcarrigan%2Fdiscord-bot.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnhcarrigan%2Fdiscord-bot?ref=badge_large)
