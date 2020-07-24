@@ -29,7 +29,7 @@
     "posttest": "nyc report --reporter=json"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.11",
+    "@types/chai": "^4.2.12",
     "@types/mathjs": "^6.0.5",
     "@types/mocha": "^8.0.0",
     "@types/mongoose": "^5.7.32",
