@@ -39,6 +39,8 @@ import { levelListen } from "../listeners/levelsListen";
 import { usageListen } from "../listeners/usageListen";
 import { leave } from "./leave";
 import { maths } from "./maths";
+import { dnd } from "./dnd";
+import { dndmon } from "./dndmon";
 //command names in this array
 const commands = [
   kick,
@@ -68,6 +70,8 @@ const commands = [
   usage,
   leave,
   maths,
+  dnd,
+  dndmon,
 ];
 
 //verify bot is ready
@@ -147,7 +151,7 @@ client.on("message", function (message) {
     }
   }
   for (const command of commands) {
-    if (message.content.startsWith(prefix + command.prefix)) {
+    if (message.content.split(" ")[0] === prefix + command.prefix) {
       usageListen.listener(message);
       command.command(message, client);
       break;
