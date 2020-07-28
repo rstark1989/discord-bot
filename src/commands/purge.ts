@@ -11,19 +11,19 @@ export const purge: commandInt = {
       message.channel.send(
         `ERROR 401: ${message.author}, missing permissions.`
       );
-      return "failed";
+      return;
     }
     const cmdarguments = message.content.split(" ");
     const howMany = parseInt(cmdarguments[1]);
     //check if the argument isn't a number.
     if (isNaN(howMany)) {
       message.channel.send(`ERROR 400: ${message.author}, invalid number.`);
-      return "failed";
+      return;
     }
     //bots can only delete 100 messages at a time. This is a discord limit.
     if (howMany > 100) {
       message.channel.send(`ERROR 400: Maximum delete 100.`);
-      return "failed";
+      return;
     }
     //delete them!
     message.channel.messages.fetch({ limit: howMany }).then((messages) => {
@@ -36,6 +36,5 @@ export const purge: commandInt = {
           message.delete({ timeout: 5000 });
         });
     });
-    return "success";
   },
 };

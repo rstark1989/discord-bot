@@ -12,6 +12,5 @@ export const wiki: commandInt = {
     message.channel.send(
       `BEEP BOOP: Query complete. https://en.wikipedia.org/wiki/${query}`
     );
-    return "success";
   },
 };

@@ -22,13 +22,13 @@ export const help: commandInt = {
           );
           console.log(err);
         });
-      if (!file) return "blah";
+      if (!file) return;
       const match = file.match(/description:.*,/);
       const matchEmbed = new MessageEmbed()
         .setTitle(parameters[1])
         .setDescription(match);
       message.channel.send(matchEmbed);
-      return "balh";
+      return;
     }
     const helpEmbed = new MessageEmbed()
       .setColor("#ab47e6")
@@ -56,12 +56,10 @@ export const help: commandInt = {
       )
       .setFooter("BEEP BOOP: End of message.");
     //DM the embed
-    if (message.id !== "test") user.send(helpEmbed);
+    user.send(helpEmbed);
     //message to channel so people know bot is online
-    if (message.id !== "test")
-      message.channel.send(
-        `BEEP BOOP: <@!${message.author}>, help message sent.`
-      );
-    return message.author.id;
+    message.channel.send(
+      `BEEP BOOP: <@!${message.author}>, help message sent.`
+    );
   },
 };

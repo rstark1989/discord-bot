@@ -10,7 +10,7 @@ export const unrestrict: commandInt = {
     //check for appropriate permissions
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(`ERROR 401: Missing permissions.`);
-      return "failed";
+      return;
     }
     const mod = message.author;
     const cmdarguments = message.content.split(" ");
@@ -19,12 +19,12 @@ export const unrestrict: commandInt = {
     //check for valid user tag
     if (user == undefined) {
       message.channel.send(`ERROR 400: Invalid user tag.`);
-      return "failed";
+      return;
     }
     //cannot target self
     if (usernotmember == mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
-      return "failed";
+      return;
     }
     const reasonArg = cmdarguments.slice(2, cmdarguments.length);
     let reason = reasonArg.join(" ");
@@ -38,7 +38,7 @@ export const unrestrict: commandInt = {
     // check for valid role. Change role.name to match your server.
     if (!suspend) {
       message.channel.send(`ERROR 304: Missing "Restricted" role.`);
-      return "failed";
+      return;
     }
     const unrestrictEmbed = new MessageEmbed()
       .setColor("#00FF00")
@@ -64,6 +64,5 @@ export const unrestrict: commandInt = {
       message.channel.send("ERROR 404: missing log channel");
     }
     user.roles.remove(suspend).catch((e) => console.log(e));
-    return "success";
   },
 };

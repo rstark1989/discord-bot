@@ -11,7 +11,7 @@ export const kick: commandInt = {
     //check for required permission
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(`ERROR 401: Missing permissions.`);
-      return "failed";
+      return;
     }
     const mod = message.author;
     const cmdarguments = message.content.split(" ");
@@ -21,12 +21,12 @@ export const kick: commandInt = {
     //check for valid user mention
     if (user == undefined) {
       message.channel.send(`ERROR 404: Invalid user tag.`);
-      return "failed";
+      return;
     }
     //cannot target self
     if (usernotmember == mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
-      return "failed";
+      return;
     }
     const reasonArg = cmdarguments.slice(2, cmdarguments.length);
     let reason = reasonArg.join(" ");
@@ -58,6 +58,5 @@ export const kick: commandInt = {
       message.channel.send("ERROR 404: log channel not found.");
     }
     user.kick().catch((err: Error) => console.log(err));
-    return "success";
   },
 };

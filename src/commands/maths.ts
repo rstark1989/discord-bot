@@ -15,7 +15,7 @@ export const maths: commandInt = {
         const answer = evaluate(expression);
         if (!answer || !expression) {
           message.channel.send("ERROR 400: Invalid expression.");
-          return "failed";
+          return;
         }
         const mathEmbed = new MessageEmbed()
           .setTitle("Calculation Protocol")
@@ -26,13 +26,12 @@ export const maths: commandInt = {
             { name: "Result", value: answer }
           );
         message.channel.send(mathEmbed);
-        return "success";
       }
       if (type === "solve") {
         const solved = solveEquation(expression);
         if (!solved.length) {
           message.channel.send("ERROR 400: Invalid equation.");
-          return "failed";
+          return;
         }
         solved.forEach((step: any, index: number) => {
           const solveEmbed = new MessageEmbed()
@@ -44,13 +43,10 @@ export const maths: commandInt = {
             );
           message.channel.send(solveEmbed);
         });
-        return "success";
       }
       message.channel.send("ERROR 40: Invalid syntax.");
-      return "failed";
     } catch (error) {
       message.channel.send("ERROR 400: Invalid request.");
-      return "failed";
     }
   },
 };

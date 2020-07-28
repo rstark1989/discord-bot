@@ -11,7 +11,7 @@ export const user: commandInt = {
     const mUser = message.mentions.members?.first();
     if (!tUser || !mUser) {
       message.channel.send("ERROR 404: record not found or invalid user tag.");
-      return "failed";
+      return;
     }
     const joined = new Date(mUser.joinedTimestamp || Date.now()).toDateString();
     const created = new Date(tUser.createdTimestamp).toDateString();
@@ -47,6 +47,5 @@ export const user: commandInt = {
       )
       .setFooter("BEEP BOOP: Search complete.");
     message.channel.send(userEmbed);
-    return "success";
   },
 };

@@ -10,7 +10,7 @@ export const leave: commandInt = {
       message.channel.send(
         `ERROR 401: Only <@!465650873650118659> is allowed to use this command.`
       );
-      return "failed";
+      return;
     }
     const target: string = message.content.substring(7, message.content.length);
     if (!target) {
@@ -20,6 +20,5 @@ export const leave: commandInt = {
     }
     const leaveChannel = await bot?.guilds.cache.get(target);
     leaveChannel?.leave();
-    return "success";
   },
 };

@@ -10,7 +10,7 @@ export const profile: commandInt = {
     const cmdarguments = message.content.split(" ");
     if (cmdarguments.length < 2) {
       message.channel.send("ERROR 400: Missing query parameters.");
-      return "failed";
+      return;
     }
     const website = cmdarguments[1].toLowerCase();
     const name = cmdarguments[2];
@@ -19,7 +19,7 @@ export const profile: commandInt = {
     //if no id is provided, throw error.
     if (!id) {
       message.channel.send(`ERROR 400: Missing profile ID.`);
-      return "failed";
+      return;
     }
     //set url for website
     if (website == "steam") {
@@ -47,7 +47,7 @@ export const profile: commandInt = {
     //if website isn't available for this command, notify user.
     if (!prefix) {
       message.channel.send(`ERROR 404: Website not supported`);
-      return "failed";
+      return;
     }
     const embed = new MessageEmbed()
       .setColor("#ab47e6")
@@ -56,6 +56,5 @@ export const profile: commandInt = {
         `BEEP BOOP: Here is a [link to their profile](${prefix}${id})`
       );
     message.channel.send(embed);
-    return "success";
   },
 };
