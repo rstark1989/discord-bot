@@ -38,7 +38,7 @@ import { hearts } from "../listeners/heartsListen";
 import { levelListen } from "../listeners/levelsListen";
 import { usageListen } from "../listeners/usageListen";
 import { leave } from "./leave";
-import { maths } from "./math";
+import { maths } from "./maths";
 //command names in this array
 const commands = [
   kick,

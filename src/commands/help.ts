@@ -1,16 +1,35 @@
 import config from "../../config.json";
 import { commandInt } from "../interfaces/commandInt";
 import { MessageEmbed } from "discord.js";
+import fs from "fs";
 const prefix = config.prefix;
 
 export const help: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "help",
   description:
-    "Provides a list of current commands to the user. Hey, that's THIS command! 🙃",
+    "Provides a list of current commands to the user. Hey, that's THIS command! 🙃 Optionally include a command name as a parameter to get details on that command.",
   command: async function (message) {
     //create message embed
     const user = message.author;
+    const parameters = message.content.split(" ");
+    if (parameters[1]) {
+      const file = await fs.promises
+        .readFile("./src/commands/" + parameters[1] + ".ts", "utf8")
+        .catch((err) => {
+          message.channel.send(
+            `ERROR 404: ${parameters[1]} command not found.`
+          );
+          console.log(err);
+        });
+      if (!file) return "blah";
+      const match = file.match(/description:.*,/);
+      const matchEmbed = new MessageEmbed()
+        .setTitle(parameters[1])
+        .setDescription(match);
+      message.channel.send(matchEmbed);
+      return "balh";
+    }
     const helpEmbed = new MessageEmbed()
       .setColor("#ab47e6")
       .setTitle("Bot Commands")
