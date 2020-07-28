@@ -17,7 +17,7 @@ export const dndmon: commandInt = {
     const monster = await fetch(
       "https://www.dnd5eapi.co/api/monsters/" + query
     );
-    const data = await monster.json();
+    const data: dndmonInt = await monster.json();
     if (!data) {
       message.channel.send("ERROR 404: Not found.");
       return "failed";
