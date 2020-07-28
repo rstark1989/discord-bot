@@ -26,4 +26,5 @@ export interface dndmonInt {
   special_abilities: Array<Record<string, unknown>>;
   actions: Array<Record<string, unknown>>;
   url: string;
+  error?: string;
 }

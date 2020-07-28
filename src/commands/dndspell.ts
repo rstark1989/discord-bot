@@ -12,11 +12,11 @@ export const dndspell: commandInt = {
     console.log(query);
     if (!query) {
       message.channel.send("ERROR 400: No query provided.");
-      return "failed";
+      return;
     }
     const spell = await fetch("https://www.dnd5eapi.co/api/spells/" + query);
     const data: dndspellInt = await spell.json();
-    if (!data) {
+    if (!data || data.error) {
       message.channel.send("ERROR 404: Not found.");
       return;
     }
@@ -38,6 +38,5 @@ export const dndspell: commandInt = {
         { name: "Range", value: data.range }
       );
     message.channel.send(embed);
-    return "success";
   },
 };

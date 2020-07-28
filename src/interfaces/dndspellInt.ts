@@ -16,4 +16,5 @@ export interface dndspellInt {
   classes: Array<Record<string, unknown>>;
   subclasses: Array<Record<string, unknown>>;
   url: string;
+  error?: string;
 }

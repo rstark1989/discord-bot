@@ -18,7 +18,7 @@ export const dndmon: commandInt = {
       "https://www.dnd5eapi.co/api/monsters/" + query
     );
     const data: dndmonInt = await monster.json();
-    if (!data) {
+    if (!data || data.error) {
       message.channel.send("ERROR 404: Not found.");
       return;
     }
@@ -33,6 +33,5 @@ export const dndmon: commandInt = {
       { name: "Armour Class", value: data.armor_class }
     );
     message.channel.send(embed);
-    return "success";
   },
 };
