@@ -41,6 +41,7 @@ import { leave } from "./leave";
 import { maths } from "./maths";
 import { dnd } from "./dnd";
 import { dndmon } from "./dndmon";
+import { dndspell } from "./dndspell";
 //command names in this array
 const commands = [
   kick,
@@ -72,6 +73,7 @@ const commands = [
   maths,
   dnd,
   dndmon,
+  dndspell,
 ];
 
 //verify bot is ready

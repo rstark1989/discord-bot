@@ -12,7 +12,7 @@ export const dndmon: commandInt = {
     console.log(query);
     if (!query) {
       message.channel.send("ERROR 400: No query provided.");
-      return "failed";
+      return;
     }
     const monster = await fetch(
       "https://www.dnd5eapi.co/api/monsters/" + query
@@ -20,7 +20,7 @@ export const dndmon: commandInt = {
     const data: dndmonInt = await monster.json();
     if (!data) {
       message.channel.send("ERROR 404: Not found.");
-      return "failed";
+      return;
     }
     const embed = new MessageEmbed().setTitle(data.name).addFields(
       { name: "Challenge Rating", value: data.challenge_rating },
