@@ -39,6 +39,5 @@ export const status: commandInt = {
       )
       .setFooter("BEEP BOOP: Search complete.");
     message.channel.send(statusEmbed);
-    return "success";
   },
 };

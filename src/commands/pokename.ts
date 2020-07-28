@@ -11,7 +11,7 @@ export const pokename: commandInt = {
     const cmdarguments = message.content.split(" ");
     if (cmdarguments.length < 2) {
       message.channel.send("ERROR 400: No query submitted.");
-      return "failed";
+      return;
     }
     const name = cmdarguments[1].toLowerCase();
     //call the API and send the data.
@@ -19,7 +19,7 @@ export const pokename: commandInt = {
     //check for valid result
     if (data.status === 404) {
       message.channel.send(`ERROR 404: Pokemon not found.`);
-      return "failed";
+      return;
     }
     const pokemon: pokemonInt = await data.json();
     const pokemonEmbed = new MessageEmbed()
@@ -29,6 +29,5 @@ export const pokename: commandInt = {
       .setImage(`${pokemon.sprites.front_default}`)
       .setFooter("BEEP BOOP: Brought to you by the Pokemon API.");
     message.channel.send(pokemonEmbed);
-    return "success";
   },
 };

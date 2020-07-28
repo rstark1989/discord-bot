@@ -13,7 +13,7 @@ export const warn: commandInt = {
       message.channel.send(
         `ERROR 401: ${message.author}, missing permissions.`
       );
-      return "failed";
+      return;
     }
     const mod = message.author;
     const cmdarguments = message.content.split(" ");
@@ -22,12 +22,12 @@ export const warn: commandInt = {
     //check for valid user tag.
     if (user == undefined) {
       message.channel.send(`ERROR 400: ${mod}, invalid user tag.`);
-      return "failed";
+      return;
     }
     //cannot target self
     if (user == mod) {
       message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
-      return "failed";
+      return;
     }
     const reasonArg = cmdarguments.slice(2, cmdarguments.length);
     let reason = reasonArg.join(" ");
@@ -66,6 +66,5 @@ export const warn: commandInt = {
     if (!modChannel) {
       message.channel.send("ERROR 400: missing log channel.");
     }
-    return "success";
   },
 };

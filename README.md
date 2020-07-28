@@ -6,7 +6,6 @@
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=nhcarrigan/discord-bot)](https://dependabot.com)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/nhcarrigan/discord-bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nhcarrigan/discord-bot/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/nhcarrigan/discord-bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nhcarrigan/discord-bot/context:javascript)
-[![codecov](https://codecov.io/gh/nhcarrigan/discord-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/nhcarrigan/discord-bot)
 [![Issues](https://img.shields.io/github/issues/nhcarrigan/discord-bot)](https://github.com/nhcarrigan/discord-bot/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/nhcarrigan/discord-bot)](https://github.com/nhcarrigan/discord-bot/pulls)
 [![Discord](https://img.shields.io/discord/710307364556767283)](https://discord.gg/PHqDbkg)

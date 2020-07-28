@@ -24,6 +24,5 @@ export const usage: commandInt = {
         message.channel.send(commandEmbed);
       }
     });
-    return "success";
   },
 };

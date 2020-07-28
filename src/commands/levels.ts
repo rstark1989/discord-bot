@@ -16,7 +16,7 @@ export const level: commandInt = {
     ) {
       if (err || !data) {
         message.channel.send(`ERROR 404: Record not found.`);
-        return "failed";
+        return;
       }
       const rankEmbed = new MessageEmbed()
         .setColor("#ab47e6")
@@ -37,6 +37,5 @@ export const level: commandInt = {
         .setFooter("BEEP BOOP: You level up with every 100 points.");
       message.channel.send(rankEmbed);
     });
-    return "success";
   },
 };
