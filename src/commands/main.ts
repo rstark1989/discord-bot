@@ -44,6 +44,7 @@ import { dndmon } from "./dndmon";
 import { dndspell } from "./dndspell";
 import { dndclass } from "./dndclass";
 import { dndrace } from "./dndrace";
+import { dndschool } from "./dndschool";
 //command names in this array
 const commands = [
   kick,
@@ -78,6 +79,7 @@ const commands = [
   dndspell,
   dndclass,
   dndrace,
+  dndschool,
 ];
 
 //verify bot is ready

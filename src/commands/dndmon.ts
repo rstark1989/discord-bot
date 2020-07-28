@@ -9,7 +9,6 @@ export const dndmon: commandInt = {
     "Gets information on a Dungeons and Dragons monster. Use the format 'dndmon <monster name>'",
   command: async (message) => {
     const query = message.content.split(" ").slice(1).join("-");
-    console.log(query);
     if (!query) {
       message.channel.send("ERROR 400: No query provided.");
       return;
@@ -22,16 +21,19 @@ export const dndmon: commandInt = {
       message.channel.send("ERROR 404: Not found.");
       return;
     }
-    const embed = new MessageEmbed().setTitle(data.name).addFields(
-      { name: "Challenge Rating", value: data.challenge_rating },
-      { name: "Type", value: `${data.type} - ${data.subtype}` },
-      { name: "Alignment", value: data.alignment },
-      {
-        name: "Attributes",
-        value: `STR: ${data.strength} DEX: ${data.dexterity}, CON: ${data.constitution}, INT: ${data.intelligence}, WIS: ${data.wisdom}, CHA: ${data.charisma}`,
-      },
-      { name: "Armour Class", value: data.armor_class }
-    );
+    const embed = new MessageEmbed()
+      .setTitle(data.name)
+      .setURL("https://www.dnd5eapi.co" + data.url)
+      .addFields(
+        { name: "Challenge Rating", value: data.challenge_rating },
+        { name: "Type", value: `${data.type} - ${data.subtype}` },
+        { name: "Alignment", value: data.alignment },
+        {
+          name: "Attributes",
+          value: `STR: ${data.strength} DEX: ${data.dexterity}, CON: ${data.constitution}, INT: ${data.intelligence}, WIS: ${data.wisdom}, CHA: ${data.charisma}`,
+        },
+        { name: "Armour Class", value: data.armor_class }
+      );
     message.channel.send(embed);
   },
 };

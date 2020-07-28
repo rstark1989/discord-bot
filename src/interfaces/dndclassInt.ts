@@ -10,6 +10,7 @@ export interface dndclassInt {
   class_levels: Record<string, unknown>;
   subclasses: Array<Record<string, unknown>>;
   spellcasting: Record<string, unknown>;
+  url: string;
   error?: string;
 }
 
