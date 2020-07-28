@@ -38,11 +38,12 @@ import { hearts } from "../listeners/heartsListen";
 import { levelListen } from "../listeners/levelsListen";
 import { usageListen } from "../listeners/usageListen";
 import { leave } from "./leave";
-import { maths } from "./maths";
+import { maths } from "./math";
 import { dnd } from "./dnd";
 import { dndmon } from "./dndmon";
 import { dndspell } from "./dndspell";
 import { dndclass } from "./dndclass";
+import { dndrace } from "./dndrace";
 //command names in this array
 const commands = [
   kick,
@@ -76,6 +77,7 @@ const commands = [
   dndmon,
   dndspell,
   dndclass,
+  dndrace,
 ];
 
 //verify bot is ready
