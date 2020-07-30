@@ -26,6 +26,7 @@ export const maths: commandInt = {
             { name: "Result", value: answer }
           );
         message.channel.send(mathEmbed);
+        return;
       }
       if (type === "solve") {
         const solved = solveEquation(expression);
@@ -43,8 +44,9 @@ export const maths: commandInt = {
             );
           message.channel.send(solveEmbed);
         });
+        return;
       }
-      message.channel.send("ERROR 40: Invalid syntax.");
+      message.channel.send("ERROR 400: Invalid syntax.");
     } catch (error) {
       message.channel.send("ERROR 400: Invalid request.");
     }
