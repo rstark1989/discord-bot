@@ -1,7 +1,7 @@
 {
   "name": "Discord_Bot",
   "author": "Nicholas Carrigan",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "license": "GPL-3.0",
   "engines": {
     "node": "14.2.0"
@@ -19,9 +19,9 @@
     "nyc": "^15.1.0",
     "typescript": "^3.9.7"
   },
-  "main": "./prod/commands/main.js",
+  "main": "./prod/main.js",
   "scripts": {
-    "start": "node ./prod/src/commands/main.js",
+    "start": "node ./prod/src/main.js",
     "build": "tsc",
     "lint": "npx eslint src"
   },
