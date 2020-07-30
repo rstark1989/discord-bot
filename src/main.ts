@@ -1,6 +1,6 @@
 import { Client, TextChannel, MessageEmbed } from "discord.js";
 const client = new Client();
-import config from "../../config.json";
+import config from "../config.json";
 const prefix = config.prefix;
 import dotenv from "dotenv";
 import Mongoose from "mongoose";
@@ -8,79 +8,10 @@ dotenv.config();
 client.login(process.env.DISCORD_TOKEN).catch((e) => console.error(e));
 const URI: string = process.env.MONGO_URI || "";
 
-//command files here:
-import { ping } from "./ping";
-import { kick } from "./kick";
-import { help } from "./help";
-import { fortune } from "./fortune";
-import { warn } from "./warn";
-import { restrict } from "./restrict";
-import { unrestrict } from "./unrestrict";
-import { pokenum } from "./pokenum";
-import { status } from "./status";
-import { ban } from "./ban";
-import { roll } from "./roll";
-import { purge } from "./purge";
-import { about } from "./about";
-import { wiki } from "./wiki";
-import { pokename } from "./pokename";
-import { search } from "./search";
-import { profile } from "./profile";
-import { kirby } from "./kirby";
-import { magic } from "./magic";
-import { star } from "./star";
-import { user } from "./user";
-import { level } from "./levels";
-import { cat } from "./cat";
-import { close } from "./close";
-import { usage } from "./usage";
-import { hearts } from "../listeners/heartsListen";
-import { levelListen } from "../listeners/levelsListen";
-import { usageListen } from "../listeners/usageListen";
-import { leave } from "./leave";
-import { maths } from "./math";
-import { dnd } from "./dnd";
-import { dndmon } from "./dndmon";
-import { dndspell } from "./dndspell";
-import { dndclass } from "./dndclass";
-import { dndrace } from "./dndrace";
-import { dndschool } from "./dndschool";
-//command names in this array
-const commands = [
-  kick,
-  ping,
-  help,
-  fortune,
-  warn,
-  restrict,
-  unrestrict,
-  pokenum,
-  status,
-  ban,
-  roll,
-  purge,
-  about,
-  wiki,
-  pokename,
-  search,
-  profile,
-  kirby,
-  magic,
-  star,
-  user,
-  level,
-  cat,
-  close,
-  usage,
-  leave,
-  maths,
-  dnd,
-  dndmon,
-  dndspell,
-  dndclass,
-  dndrace,
-  dndschool,
-];
+import { commands } from "./commands";
+import { hearts } from "./listeners/heartsListen";
+import { levelListen } from "./listeners/levelsListen";
+import { usageListen } from "./listeners/usageListen";
 
 //verify bot is ready
 client.on("ready", function () {

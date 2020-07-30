@@ -1,7 +1,7 @@
 import config from "../../config.json";
 import { commandInt } from "../interfaces/commandInt";
 import { MessageEmbed } from "discord.js";
-import fs from "fs";
+import { commands } from "../commands";
 const prefix = config.prefix;
 
 export const help: commandInt = {
@@ -14,21 +14,15 @@ export const help: commandInt = {
     const user = message.author;
     const parameters = message.content.split(" ");
     if (parameters[1]) {
-      const file = await fs.promises
-        .readFile("./src/commands/" + parameters[1] + ".ts", "utf8")
-        .catch((err) => {
-          message.channel.send(
-            `ERROR 404: ${parameters[1]} command not found.`
-          );
-          console.log(err);
-        });
-      if (!file) return;
-      const match = file.match(/description:.*,/);
-      const matchEmbed = new MessageEmbed()
-        .setTitle(parameters[1])
-        .setDescription(match);
-      message.channel.send(matchEmbed);
-      return;
+      for (const command of commands) {
+        if (parameters[1] === command.prefix) {
+          const matchEmbed = new MessageEmbed()
+            .setTitle(command.prefix)
+            .setDescription(command.description);
+          message.channel.send(matchEmbed);
+          return;
+        }
+      }
     }
     const helpEmbed = new MessageEmbed()
       .setColor("#ab47e6")
