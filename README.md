@@ -13,8 +13,6 @@
 
 Welcome to the repository for my discord bot, seen as `nhbot` in my [Discord Server](https://discord.gg/PHqDbkg).
 
-This bot was built using Discord.js, and is currently only hosted locally. As development progresses, I intend to find a live server to host the bot on.
-
 ## Feature Requests
 
 Do you have a feature you would like to see added to this bot? Create a [new issue](https://github.com/nhcarrigan/discord-bot/issues/new/choose) using the "Feature Request" template and we will get started on it as soon as we are able.
