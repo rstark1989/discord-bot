@@ -8,7 +8,7 @@ export const about: commandInt = {
   prefix: "about",
   description: "Provides details about the bot.",
   command: async function (message) {
-    const files = await fs.promises.readdir("./");
+    const files = await fs.promises.readdir("./src/commands");
     const aboutEmbed: MessageEmbed = new MessageEmbed()
       .setColor("#ab47e6")
       .setTitle("My name is nhbot!")
