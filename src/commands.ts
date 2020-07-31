@@ -32,6 +32,7 @@ import { dndspell } from "./commands/dndspell";
 import { dndclass } from "./commands/dndclass";
 import { dndrace } from "./commands/dndrace";
 import { dndschool } from "./commands/dndschool";
+import { guess } from "./commands/guess";
 //command names in this array
 export const commands = [
   kick,
@@ -67,4 +68,5 @@ export const commands = [
   dndclass,
   dndrace,
   dndschool,
+  guess,
 ];
