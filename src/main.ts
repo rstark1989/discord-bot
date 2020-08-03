@@ -23,7 +23,7 @@ const hook = new WebhookClient(
 client.on("ready", function () {
   console.log("Activate the Omega");
   hook.send(
-    `Bot online. Running a ${process.env.PRODDEV} instance of bot version ${packageInfo.version}`
+    `\`${client.user?.username}\` online. Running a ${process.env.PRODDEV} instance of bot version ${packageInfo.version}.`
   );
   client.user?.setActivity(`for commands! Try ${prefix}help`, {
     type: "WATCHING",
@@ -39,12 +39,14 @@ Mongoose.connect(URI, {
 
 //send notice if bot joins server
 client.on("guildCreate", (guild) => {
-  hook.send(`Bot has joined the ${guild.name} server!`);
+  hook.send(
+    `\`${client.user?.username}\` has joined the ${guild.name} server!`
+  );
 });
 
 //send notice if bot leaves server
 client.on("guildDelete", (guild) => {
-  hook.send(`Bot has left the ${guild.name} server`);
+  hook.send(`\`${client.user?.username}\` has left the ${guild.name} server`);
 });
 
 //welcome message

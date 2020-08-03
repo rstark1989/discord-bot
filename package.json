@@ -1,7 +1,7 @@
 {
-  "name": "Discord_Bot",
+  "name": "discord_bot",
   "author": "Nicholas Carrigan",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "license": "GPL-3.0",
   "engines": {
     "node": "14.2.0"
