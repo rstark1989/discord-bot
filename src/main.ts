@@ -25,6 +25,9 @@ client.on("ready", function () {
   hook.send(
     `Bot online. Running a ${process.env.PRODDEV} instance of bot version ${packageInfo.version}`
   );
+  client.user?.setActivity(`for commands! Try ${prefix}help`, {
+    type: "WATCHING",
+  });
   return;
 });
 
@@ -33,6 +36,16 @@ Mongoose.connect(URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).catch((err) => console.log("Database connection failed.", err));
+
+//send notice if bot joins server
+client.on("guildCreate", (guild) => {
+  hook.send(`Bot has joined the ${guild.name} server!`);
+});
+
+//send notice if bot leaves server
+client.on("guildDelete", (guild) => {
+  hook.send(`Bot has left the ${guild.name} server`);
+});
 
 //welcome message
 client.on("guildMemberAdd", function (member) {
