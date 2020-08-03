@@ -1,9 +1,10 @@
-import { Client, TextChannel, MessageEmbed } from "discord.js";
+import { Client, TextChannel, MessageEmbed, WebhookClient } from "discord.js";
 const client = new Client();
 import config from "../config.json";
 const prefix = config.prefix;
 import dotenv from "dotenv";
 import Mongoose from "mongoose";
+import packageInfo from "../package.json";
 dotenv.config();
 client.login(process.env.DISCORD_TOKEN).catch((e) => console.error(e));
 const URI: string = process.env.MONGO_URI || "";
@@ -13,9 +14,17 @@ import { hearts } from "./listeners/heartsListen";
 import { levelListen } from "./listeners/levelsListen";
 import { usageListen } from "./listeners/usageListen";
 
+const hook = new WebhookClient(
+  process.env.WH_ID || "none",
+  process.env.WH_TOKEN || "none"
+);
+
 //verify bot is ready
 client.on("ready", function () {
   console.log("Activate the Omega");
+  hook.send(
+    `Bot online. Running a ${process.env.PRODDEV} instance of bot version ${packageInfo.version}`
+  );
   return;
 });
 
