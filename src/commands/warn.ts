@@ -33,7 +33,7 @@ export const warn: CommandInt = {
     }
     const warnEmbed = new MessageEmbed()
       .setColor("#ffff00")
-      .setTitle(`This is a warning!`)
+      .setTitle("This is a warning!")
       .addFields(
         {
           name: "Event:",

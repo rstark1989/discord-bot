@@ -6,7 +6,8 @@ import { PokemonInt } from "../interfaces/PokemonInt";
 export const pokeNum: CommandInt = {
   prefix: "pokenum",
   description: "Searches for the Pokemon by the **number** provided.",
-  parameters: `<number> - the number to search for; optionally use the string 'random' instead`,
+  parameters:
+    "<number> - the number to search for; optionally use the string 'random' instead",
   command: async (message) => {
     const cmdArguments = message.content.split(" ");
     if (cmdArguments.length < 2) {
@@ -19,12 +20,12 @@ export const pokeNum: CommandInt = {
     }
     if (number < 0 || number > 802) {
       message.channel.send(
-        `ERROR 400: Number must be between 0 and 802 (inclusive).`
+        "ERROR 400: Number must be between 0 and 802 (inclusive)."
       );
       return;
     }
     if (isNaN(number)) {
-      message.channel.send(`ERROR 400: Invalid number.`);
+      message.channel.send("ERROR 400: Invalid number.");
       return;
     }
     if (number === 0) {

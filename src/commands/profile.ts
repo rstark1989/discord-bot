@@ -18,7 +18,7 @@ export const profile: CommandInt = {
     let id = cmdArguments[2];
     let prefix;
     if (!id) {
-      message.channel.send(`ERROR 400: Missing profile ID.`);
+      message.channel.send("ERROR 400: Missing profile ID.");
       return;
     }
     if (website == "steam") {
@@ -44,7 +44,7 @@ export const profile: CommandInt = {
       prefix = "https://instagram.com/";
     }
     if (!prefix) {
-      message.channel.send(`ERROR 404: Website not supported`);
+      message.channel.send("ERROR 404: Website not supported");
       return;
     }
     const embed = new MessageEmbed()

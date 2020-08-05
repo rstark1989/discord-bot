@@ -10,14 +10,14 @@ export const restrict: CommandInt = {
     "`<user>`: @name of the user to restrict | `<?reason>`: reason for restricting the user.",
   command: async (message) => {
     if (!message.member?.hasPermission("KICK_MEMBERS")) {
-      message.channel.send(`ERROR 401: Missing permissions.`);
+      message.channel.send("ERROR 401: Missing permissions.");
       return;
     }
     const modChannel = message.guild?.channels.cache.find(
       (channel) => channel.name === config.log_channel
     ) as TextChannel;
     if (!modChannel) {
-      message.channel.send(`ERROR 404: Log channel not found.`);
+      message.channel.send("ERROR 404: Log channel not found.");
       return;
     }
     const suspendCategory = config.silence_category;
@@ -25,25 +25,25 @@ export const restrict: CommandInt = {
       (c) => c.name === suspendCategory && c.type === "category"
     );
     if (!category) {
-      message.channel.send(`ERROR 404: Missing suspend category.`);
+      message.channel.send("ERROR 404: Missing suspend category.");
       return;
     }
     const suspend = message.guild?.roles.cache.find(
       (role) => role.name == config.silence_role
     );
     if (!suspend) {
-      message.channel.send(`ERROR 404: Missing suspend role.`);
+      message.channel.send("ERROR 404: Missing suspend role.");
       return;
     }
     const mod = message.author;
     const msgArguments = message.content.split(" ");
     const member = message.mentions.members?.first();
     if (!member) {
-      message.channel.send(`ERROR 404: Invalid user tag.`);
+      message.channel.send("ERROR 404: Invalid user tag.");
       return;
     }
     if (message.mentions.users.first() === mod) {
-      message.channel.send(`ERROR 400: Cannot target self.`);
+      message.channel.send("ERROR 400: Cannot target self.");
       return;
     }
     const reasonArg = msgArguments.slice(2, msgArguments.length);
@@ -53,7 +53,7 @@ export const restrict: CommandInt = {
     }
     const restrictEmbed = new MessageEmbed()
       .setColor("#FF0000")
-      .setTitle(`Access Restricted!`)
+      .setTitle("Access Restricted!")
       .addFields(
         {
           name: "Event:",

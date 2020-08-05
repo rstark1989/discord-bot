@@ -12,7 +12,7 @@ export const level: CommandInt = {
       { userid: message.author.toString() },
       (err: Error, data: UserInt) => {
         if (err || !data) {
-          message.channel.send(`ERROR 404: Record not found.`);
+          message.channel.send("ERROR 404: Record not found.");
           return;
         }
         const rankEmbed = new MessageEmbed()

@@ -5,7 +5,7 @@ import packageInfo from "../../package.json";
 
 export const about: CommandInt = {
   prefix: "about",
-  description: `Provides details about the bot.`,
+  description: "Provides details about the bot.",
   parameters: "*none*",
   command: async (message) => {
     const files = await fs.promises.readdir("./src/commands");

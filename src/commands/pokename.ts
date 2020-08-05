@@ -16,7 +16,7 @@ export const pokeName: CommandInt = {
     const name = cmdArguments[1].toLowerCase();
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     if (data.status === 404) {
-      message.channel.send(`ERROR 404: Pokemon not found.`);
+      message.channel.send("ERROR 404: Pokemon not found.");
       return;
     }
     const pokemon: PokemonInt = await data.json();

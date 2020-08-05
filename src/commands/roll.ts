@@ -8,12 +8,12 @@ export const roll: CommandInt = {
   command: (message) => {
     const cmdArguments = message.content.split(" ");
     if (cmdArguments.length < 2 || cmdArguments[1].length < 2) {
-      message.channel.send(`ERROR 404: Missing dice argument.`);
+      message.channel.send("ERROR 404: Missing dice argument.");
       return;
     }
     const dice: Array<string> = cmdArguments[1].split("");
     if (dice[0] !== "d") {
-      message.channel.send(`ERROR 404: Invalid argument syntax.`);
+      message.channel.send("ERROR 404: Invalid argument syntax.");
       return;
     }
     dice.splice(0, 1);

@@ -19,7 +19,7 @@ export const purge: CommandInt = {
       return;
     }
     if (howMany > 100) {
-      message.channel.send(`ERROR 400: Maximum delete 100.`);
+      message.channel.send("ERROR 400: Maximum delete 100.");
       return;
     }
     message.channel.messages.fetch({ limit: howMany }).then((messages) => {

@@ -15,7 +15,7 @@ export const ban: CommandInt = {
     "`<user>`: @name of the user to ban | `<?reason>`: reason for banning the user",
   command: (message) => {
     if (message.member?.hasPermission("BAN_MEMBERS") == false) {
-      message.channel.send(`ERROR 401: Missing permissions.`);
+      message.channel.send("ERROR 401: Missing permissions.");
       return;
     }
     const mod = message.author;
@@ -23,11 +23,11 @@ export const ban: CommandInt = {
     const member = message.mentions.members?.first();
     const user = message.mentions.users.first();
     if (member == undefined) {
-      message.channel.send(`ERROR 404: Invalid usertag.`);
+      message.channel.send("ERROR 404: Invalid usertag.");
       return;
     }
     if (user == mod) {
-      message.channel.send(`ERROR 400: Cannot target self.`);
+      message.channel.send("ERROR 400: Cannot target self.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
@@ -37,7 +37,7 @@ export const ban: CommandInt = {
     }
     const banEmbed = new MessageEmbed()
       .setColor("#ff0000")
-      .setTitle(`Banned!`)
+      .setTitle("Banned!")
       .addFields(
         {
           name: "Event:",

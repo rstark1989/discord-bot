@@ -3,7 +3,8 @@ import { MessageEmbed } from "discord.js";
 
 export const jobs: CommandInt = {
   prefix: "jobs",
-  description: `Returns a LinkedIn job search for developers. Optionally narrows the search by **location**.`,
+  description:
+    "Returns a LinkedIn job search for developers. Optionally narrows the search by **location**.",
   parameters: "`<location>` - the specific location to search for jobs.",
   command: (message) => {
     const parameter = message.content.substring(6);

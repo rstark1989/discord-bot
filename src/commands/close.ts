@@ -14,15 +14,15 @@ export const close: CommandInt = {
     ) as TextChannel;
     //check for user permissions
     if (!message.member?.hasPermission("MANAGE_CHANNELS")) {
-      message.channel.send(`ERROR 401: Missing permissions.`);
+      message.channel.send("ERROR 401: Missing permissions.");
       return;
     }
     if (!log) {
-      message.channel.send(`ERROR 404: Log channel not found.`);
+      message.channel.send("ERROR 404: Log channel not found.");
       return;
     }
     if (!target.name.includes("suspended")) {
-      message.channel.send(`ERROR 401: Channel cannot be deleted.`);
+      message.channel.send("ERROR 401: Channel cannot be deleted.");
       return;
     }
     target.delete().catch((e) => console.error(e));

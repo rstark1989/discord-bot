@@ -9,7 +9,7 @@ export const unrestrict: CommandInt = {
     "`<user>`: @name of the user to restore | `<?reason>`: reason for restoring the user.",
   command: (message) => {
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {
-      message.channel.send(`ERROR 401: Missing permissions.`);
+      message.channel.send("ERROR 401: Missing permissions.");
       return;
     }
     const mod = message.author;
@@ -17,11 +17,11 @@ export const unrestrict: CommandInt = {
     const member = message.mentions.members?.first();
     const user = message.mentions.users.first();
     if (member == undefined) {
-      message.channel.send(`ERROR 400: Invalid user tag.`);
+      message.channel.send("ERROR 400: Invalid user tag.");
       return;
     }
     if (user == mod) {
-      message.channel.send(`ERROR 400: Cannot target self.`);
+      message.channel.send("ERROR 400: Cannot target self.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
@@ -33,12 +33,12 @@ export const unrestrict: CommandInt = {
       (role) => role.name == config.silence_role
     );
     if (!suspend) {
-      message.channel.send(`ERROR 304: Missing "Restricted" role.`);
+      message.channel.send("ERROR 304: Missing 'Restricted' role.");
       return;
     }
     const unrestrictEmbed = new MessageEmbed()
       .setColor("#00FF00")
-      .setTitle(`Access Restored`)
+      .setTitle("Access Restored")
       .addFields(
         {
           name: "Event:",
