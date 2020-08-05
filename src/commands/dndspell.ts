@@ -1,9 +1,9 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import fetch from "node-fetch";
 import { MessageEmbed } from "discord.js";
-import { dndspellInt } from "../interfaces/dndspellInt";
+import { DndSpellInt } from "../interfaces/DndSpellInt";
 
-export const dndspell: commandInt = {
+export const dndSpell: CommandInt = {
   prefix: "dndspell",
   description:
     "Gets information on the provided Dungeons and Dragons **spell**",
@@ -16,7 +16,7 @@ export const dndspell: commandInt = {
       return;
     }
     const spell = await fetch("https://www.dnd5eapi.co/api/spells/" + query);
-    const data: dndspellInt = await spell.json();
+    const data: DndSpellInt = await spell.json();
     if (!data || data.error) {
       message.channel.send("ERROR 404: Not found.");
       return;

@@ -1,28 +1,25 @@
-import { commandInt } from "../interfaces/commandInt";
-import { pokemonInt } from "../interfaces/pokemonInt";
+import { CommandInt } from "../interfaces/CommandInt";
+import { PokemonInt } from "../interfaces/PokemonInt";
 import { MessageEmbed } from "discord.js";
 import fetch from "node-fetch";
 
-export const pokename: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record
+export const pokeName: CommandInt = {
   prefix: "pokename",
   description: "Provides information on the Pokemon named **name**.",
   parameters: "`<name>` - name of the Pokemon to search for",
-  command: async function (message) {
-    const cmdarguments = message.content.split(" ");
-    if (cmdarguments.length < 2) {
+  command: async (message) => {
+    const cmdArguments = message.content.split(" ");
+    if (cmdArguments.length < 2) {
       message.channel.send("ERROR 400: No query submitted.");
       return;
     }
-    const name = cmdarguments[1].toLowerCase();
-    //call the API and send the data.
+    const name = cmdArguments[1].toLowerCase();
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    //check for valid result
     if (data.status === 404) {
-      message.channel.send(`ERROR 404: Pokemon not found.`);
+      message.channel.send("ERROR 404: Pokemon not found.");
       return;
     }
-    const pokemon: pokemonInt = await data.json();
+    const pokemon: PokemonInt = await data.json();
     const pokemonEmbed = new MessageEmbed()
       .setColor("#0099FF")
       .setTitle(`${pokemon.name}`)

@@ -1,12 +1,12 @@
 import config from "../../config.json";
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { TextChannel, MessageEmbed } from "discord.js";
-export const close: commandInt = {
+export const close: CommandInt = {
   prefix: "close",
   description:
     "Closes the channel - only available for automatically generated appeal channels. Only available to moderators.",
   parameters: "*none*",
-  command: async function (message) {
+  command: async (message) => {
     const target = message.channel as TextChannel;
     //check for log channel
     const log = message.guild?.channels.cache.find(
@@ -14,15 +14,15 @@ export const close: commandInt = {
     ) as TextChannel;
     //check for user permissions
     if (!message.member?.hasPermission("MANAGE_CHANNELS")) {
-      message.channel.send(`ERROR 401: Missing permissions.`);
+      message.channel.send("ERROR 401: Missing permissions.");
       return;
     }
     if (!log) {
-      message.channel.send(`ERROR 404: Log channel not found.`);
+      message.channel.send("ERROR 404: Log channel not found.");
       return;
     }
     if (!target.name.includes("suspended")) {
-      message.channel.send(`ERROR 401: Channel cannot be deleted.`);
+      message.channel.send("ERROR 401: Channel cannot be deleted.");
       return;
     }
     target.delete().catch((e) => console.error(e));

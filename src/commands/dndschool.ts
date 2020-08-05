@@ -1,9 +1,9 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import fetch from "node-fetch";
 import { MessageEmbed } from "discord.js";
-import { dndschoolInt } from "../interfaces/dndschoolInt";
+import { DndSchoolInt } from "../interfaces/DndSchoolInt";
 
-export const dndschool: commandInt = {
+export const dndSchool: CommandInt = {
   prefix: "dndschool",
   description:
     "Gets information on the provided Dungeons and Dragons **school** of magic.",
@@ -17,7 +17,7 @@ export const dndschool: commandInt = {
     const school = await fetch(
       "https://www.dnd5eapi.co/api/magic-schools/" + query
     );
-    const data: dndschoolInt = await school.json();
+    const data: DndSchoolInt = await school.json();
     if (!data || data.error) {
       message.channel.send("ERROR 404: Not found.");
       return;

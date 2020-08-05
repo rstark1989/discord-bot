@@ -9,7 +9,7 @@ dotenv.config();
 client.login(process.env.DISCORD_TOKEN).catch((e) => console.error(e));
 const URI: string = process.env.MONGO_URI || "";
 
-import { commands } from "./commands";
+import { COMMANDS } from "./COMMANDS";
 import { hearts } from "./listeners/heartsListen";
 import { levelListen } from "./listeners/levelsListen";
 import { usageListen } from "./listeners/usageListen";
@@ -19,8 +19,7 @@ const hook = new WebhookClient(
   process.env.WH_TOKEN || "none"
 );
 
-//verify bot is ready
-client.on("ready", function () {
+client.on("ready", () => {
   console.log("Activate the Omega");
   hook.send(
     `\`${client.user?.username}\` online. Running a ${process.env.PRODDEV} instance of bot version ${packageInfo.version}.`
@@ -31,26 +30,22 @@ client.on("ready", function () {
   return;
 });
 
-//db connection
 Mongoose.connect(URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).catch((err) => console.log("Database connection failed.", err));
 
-//send notice if bot joins server
 client.on("guildCreate", (guild) => {
   hook.send(
     `\`${client.user?.username}\` has joined the ${guild.name} server!`
   );
 });
 
-//send notice if bot leaves server
 client.on("guildDelete", (guild) => {
   hook.send(`\`${client.user?.username}\` has left the ${guild.name} server`);
 });
 
-//welcome message
-client.on("guildMemberAdd", function (member) {
+client.on("guildMemberAdd", (member) => {
   const welcomeEmbed = new MessageEmbed()
     .setColor("#00ff00")
     .setTitle("Welcome!")
@@ -66,7 +61,7 @@ client.on("guildMemberAdd", function (member) {
       }
     )
     .setFooter("BEEP BOOP: Have fun!");
-  member.send(welcomeEmbed).catch((e) => console.error(e));
+  member.send(welcomeEmbed).catch((err) => console.error(err));
   const welcomeLogEmbed = new MessageEmbed()
     .setColor("#ab47e6")
     .setTitle("A new user has joined! 🙃")
@@ -80,12 +75,11 @@ client.on("guildMemberAdd", function (member) {
     console.error("welcome channel not found.");
     return;
   } else {
-    welcomeChannel.send(welcomeLogEmbed).catch((e) => console.error(e));
+    welcomeChannel.send(welcomeLogEmbed).catch((err) => console.error(err));
   }
 });
 
-//depart message
-client.on("guildMemberRemove", function (member) {
+client.on("guildMemberRemove", (member) => {
   const goodbyeChannel = member.guild.channels.cache.find(
     (channel) => channel.name == config.join_leave_channel
   ) as TextChannel;
@@ -99,12 +93,11 @@ client.on("guildMemberRemove", function (member) {
     console.error("depart channel not found.");
     return;
   } else {
-    goodbyeChannel.send(departEmbed).catch((e) => console.error(e));
+    goodbyeChannel.send(departEmbed).catch((err) => console.error(err));
   }
 });
 
-//messages listener
-client.on("message", function (message) {
+client.on("message", (message) => {
   if (message.channel.type === "dm" && message.author.id !== client.user?.id) {
     message.channel.send(
       "BEEP BOOP: Please talk to me in a server, not a private message. If you need a server to join, check out my home! https://discord.gg/PHqDbkg"
@@ -119,7 +112,7 @@ client.on("message", function (message) {
       message.channel.send("ERROR 415: Only images and videos supported.");
     }
   }
-  for (const command of commands) {
+  for (const command of COMMANDS) {
     if (message.content.split(" ")[0] === prefix + command.prefix) {
       usageListen.listener(message);
       command.command(message, client);
@@ -128,8 +121,7 @@ client.on("message", function (message) {
   }
 });
 
-//deleted message logging
-client.on("messageDelete", function (message) {
+client.on("messageDelete", (message) => {
   const logChannel = message.guild?.channels.cache.find(
     (channel) => channel.name == config.log_channel
   ) as TextChannel;

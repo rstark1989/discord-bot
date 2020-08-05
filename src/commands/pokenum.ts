@@ -1,36 +1,33 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
 import fetch from "node-fetch";
-import { pokemonInt } from "../interfaces/pokemonInt";
+import { PokemonInt } from "../interfaces/PokemonInt";
 
-export const pokenum: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const pokeNum: CommandInt = {
   prefix: "pokenum",
   description: "Searches for the Pokemon by the **number** provided.",
-  parameters: `<number> - the number to search for; optionally use the string 'random' instead`,
-  command: async function (message) {
-    const cmdarguments = message.content.split(" ");
-    if (cmdarguments.length < 2) {
+  parameters:
+    "<number> - the number to search for; optionally use the string 'random' instead",
+  command: async (message) => {
+    const cmdArguments = message.content.split(" ");
+    if (cmdArguments.length < 2) {
       message.channel.send("ERROR 400: No query provided.");
       return;
     }
-    let number = parseInt(cmdarguments[1]);
-    if (cmdarguments[1].toLowerCase() == "random") {
+    let number = parseInt(cmdArguments[1]);
+    if (cmdArguments[1].toLowerCase() == "random") {
       number = Math.floor(Math.random() * 802);
     }
-    //PokeAPI only has 802 right now. Check this to avoid null objects.
     if (number < 0 || number > 802) {
       message.channel.send(
-        `ERROR 400: Number must be between 0 and 802 (inclusive).`
+        "ERROR 400: Number must be between 0 and 802 (inclusive)."
       );
       return;
     }
-    //if the argument is not a number, don't call the API.
     if (isNaN(number)) {
-      message.channel.send(`ERROR 400: Invalid number.`);
+      message.channel.send("ERROR 400: Invalid number.");
       return;
     }
-    //missingno easter egg
     if (number === 0) {
       const pokemonEmbed = new MessageEmbed()
         .setColor("#ab47e6")
@@ -40,9 +37,8 @@ export const pokenum: commandInt = {
         .setFooter("Data not found.");
       message.channel.send(pokemonEmbed);
     }
-    //call the API and send the data.
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${number}`);
-    const pokemon: pokemonInt = await data.json();
+    const pokemon: PokemonInt = await data.json();
     const pokemonEmbed = new MessageEmbed()
       .setColor("#ab47e6")
       .setTitle(`${pokemon.name}`)

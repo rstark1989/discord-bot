@@ -1,16 +1,16 @@
-export interface dndraceInt {
+export interface DndRaceInt {
   _id: string;
   index: string;
   name: string;
   speed: number;
-  ability_bonuses: Array<ability>;
+  ability_bonuses: Array<Ability>;
   alignment: string;
   age: string;
   size: string;
   size_description: string;
   starting_proficiencies: Array<Record<string, unknown>>;
   starting_proficiency_options: Array<Record<string, unknown>>;
-  languages: Array<languages>;
+  languages: Array<Languages>;
   language_desc: string;
   traits: Array<Record<string, unknown>>;
   subraces: Array<Record<string, unknown>>;
@@ -18,13 +18,13 @@ export interface dndraceInt {
   error?: string;
 }
 
-interface ability {
+interface Ability {
   name: string;
   url: string;
   bonus: number;
 }
 
-interface languages {
+interface Languages {
   url: string;
   name: string;
 }

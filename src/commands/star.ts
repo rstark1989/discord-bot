@@ -1,14 +1,13 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
 
-export const star: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const star: CommandInt = {
   prefix: "star",
   description:
     "Gives the **user** a gold star! Optionally provides the **reason** for giving the star.",
   parameters:
     "`<user>`: @name of the user to give the star to | `<?reason>`: reason for giving the star",
-  command: function star(message) {
+  command: (message) => {
     const target = message.mentions.members?.first();
     if (!target) {
       message.channel.send("ERROR 400: User not provided.");
@@ -23,8 +22,8 @@ export const star: commandInt = {
         "https://github.com/nhcarrigan/discord-bot/blob/master/img/star.png?raw=true"
       )
       .setFooter("BEEP BOOP: Feelings of pride detected. 🙃");
-    const args = message.content.split(" ");
-    const reason = args.slice(2, args.length);
+    const cmdArguments = message.content.split(" ");
+    const reason = cmdArguments.slice(2, cmdArguments.length);
     let reasonMessage = reason.join(" ");
     if (!reasonMessage) {
       reasonMessage = "ERROR 404: Reason not found.";

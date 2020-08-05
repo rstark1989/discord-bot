@@ -1,12 +1,11 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
 
-export const status: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const status: CommandInt = {
   prefix: "status",
   description: "Gives the current status of this server.",
   parameters: "*none*",
-  command: function (message) {
+  command: (message) => {
     const joined = new Date(
       message.member?.joinedTimestamp || Date.now()
     ).toDateString();

@@ -1,8 +1,8 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import * as quotes from "../resources/motivational-quotes.json";
 import { MessageEmbed } from "discord.js";
 
-export const motivate: commandInt = {
+export const motivate: CommandInt = {
   prefix: "motivate",
   description:
     "Provides a little bit of motivation, courtesy of [freeCodeCamp](https://freecodecamp.org).",

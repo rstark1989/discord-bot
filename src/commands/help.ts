@@ -1,23 +1,21 @@
 import config from "../../config.json";
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
-import { commands } from "../commands";
+import { COMMANDS } from "../COMMANDS";
 const prefix = config.prefix;
 
-export const help: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const help: CommandInt = {
   prefix: "help",
   description:
     "Provides a list of current commands to the user. Optionally provides information on the specific **command**.",
   parameters:
     "`<?command>` - name of the command to get more information about",
-  command: async function (message) {
-    //create message embed
+  command: async (message) => {
     const user = message.author;
-    const parameters = message.content.split(" ");
-    if (parameters[1]) {
-      for (const command of commands) {
-        if (parameters[1] === command.prefix) {
+    const cmdArguments = message.content.split(" ");
+    if (cmdArguments[1]) {
+      for (const command of COMMANDS) {
+        if (cmdArguments[1] === command.prefix) {
           const matchEmbed = new MessageEmbed()
             .setTitle(command.prefix)
             .setDescription(
@@ -41,7 +39,7 @@ export const help: commandInt = {
         }
       }
       message.channel.send(
-        `\`${parameters[1]}\` command not found. Try \`${prefix}help\` for a list of available commands.`
+        `\`${cmdArguments[1]}\` command not found. Try \`${prefix}help\` for a list of available commands.`
       );
       return;
     }
@@ -53,14 +51,12 @@ export const help: commandInt = {
       )
       .setFooter("BEEP BOOP: End of message.");
     const commandArray = [];
-    for (const command of commands) {
+    for (const command of COMMANDS) {
       commandArray.push(`\`${command.prefix}\``);
     }
     const commandString = commandArray.sort().join(" | ");
     helpEmbed.addFields({ name: "Available Commands", value: commandString });
-    //DM the embed
     user.send(helpEmbed);
-    //message to channel so people know bot is online
     message.channel.send(
       `BEEP BOOP: <@!${message.author}>, help message sent.`
     );

@@ -1,14 +1,13 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
-import { magicInt } from "../interfaces/magicInt";
+import { MagicInt } from "../interfaces/MagicInt";
 import fetch from "node-fetch";
 
-export const magic: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const magic: CommandInt = {
   prefix: "magic",
   description: "Returns a Magic: The Gathering card that matches the **name**.",
   parameters: "`<card>` - name of the card to search for",
-  command: async function (message) {
+  command: async (message) => {
     const query = message.content.substring(7, message.content.length);
     if (!query) {
       message.channel.send(`ERROR 400: ${message.author}, missing card name.`);
@@ -17,7 +16,7 @@ export const magic: commandInt = {
     const data = await fetch(
       `https://api.magicthegathering.io/v1/cards?name=${query}&pageSize=1`
     );
-    const card: magicInt = await data.json();
+    const card: MagicInt = await data.json();
     let flavour = card.cards[0].flavor;
     if (!flavour) {
       flavour = "ERROR 404: No flavour text found.";

@@ -1,14 +1,15 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { evaluate } from "mathjs";
 import { MessageEmbed } from "discord.js";
 import { solveEquation } from "mathsteps";
-export const maths: commandInt = {
-  prefix: "math",
+import { StepInt } from "../interfaces/StepInt";
+export const maths: CommandInt = {
+  prefix: "maths",
   description:
     "Performs the **function** on the **problem** - will either calculate an expression, or solve an equation.",
   parameters:
     "`<function>` - calculate, to evaluate an expression; solve, to solve an equation | `<problem>` - expression or equation to process",
-  command: function (message) {
+  command: (message) => {
     try {
       const args = message.content.split(" ");
       const type = args[1];
@@ -36,7 +37,7 @@ export const maths: commandInt = {
           message.channel.send("ERROR 400: Invalid equation.");
           return;
         }
-        solved.forEach((step: any, index: number) => {
+        solved.forEach((step: StepInt, index: number) => {
           const solveEmbed = new MessageEmbed()
             .setTitle(`Step ${index + 1}`)
             .addFields(
