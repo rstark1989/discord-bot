@@ -6,7 +6,8 @@ import { dndspellInt } from "../interfaces/dndspellInt";
 export const dndspell: commandInt = {
   prefix: "dndspell",
   description:
-    "Gets information on a Dungeons and Dragons spell. Use the format 'dndspell <spell name>'",
+    "Gets information on the provided Dungeons and Dragons **spell**",
+  parameters: "`<spell>`: name of the spell to search",
   command: async (message) => {
     const query = message.content.split(" ").slice(1).join("-");
     console.log(query);

@@ -4,7 +4,8 @@ export const purge: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record
   prefix: "purge",
   description:
-    "Purges messages from the current channel. Use the format 'purge <number>'. Restricted to server moderators.",
+    "Purges **number** of messages from the current channel. Restricted to server moderators.",
+  parameters: "`<number>` - number of messages to delete; no more than 100",
   command: async function (message) {
     //check for the appropriate permission first
     if (message.member?.hasPermission("MANAGE_MESSAGES") == false) {

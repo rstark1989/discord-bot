@@ -5,7 +5,9 @@ export const star: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "star",
   description:
-    "Gives the mentioned user a gold star! Use the format 'star <user> <reason>'",
+    "Gives the **user** a gold star! Optionally provides the **reason** for giving the star.",
+  parameters:
+    "`<user>`: @name of the user to give the star to | `<?reason>`: reason for giving the star",
   command: function star(message) {
     const target = message.mentions.members?.first();
     if (!target) {

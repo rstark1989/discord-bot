@@ -4,8 +4,8 @@ import { MessageEmbed } from "discord.js";
 export const user: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "user",
-  description:
-    "Returns information on the tagged user. Use the format 'user <username>'",
+  description: "Returns information on the **user**.",
+  parameters: "`<user>`: @name of the user to get information about",
   command: function (message) {
     const tUser = message.mentions.users.first();
     const mUser = message.mentions.members?.first();

@@ -5,7 +5,8 @@ import { commandLog, commandLogInt } from "../interfaces/usageInt";
 export const usage: commandInt = {
   prefix: "usage",
   description:
-    "Gets the number of times a particular command has been used. Use the format 'usage <command>'.",
+    "Gets the number of times a particular **command** has been used.",
+  parameters: "`<command>`: name of the command to check",
   command: function (message) {
     const array = message.content.split(" ");
     const command = array[1];

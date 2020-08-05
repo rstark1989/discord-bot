@@ -5,6 +5,7 @@ export const status: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "status",
   description: "Gives the current status of this server.",
+  parameters: "*none*",
   command: function (message) {
     const joined = new Date(
       message.member?.joinedTimestamp || Date.now()

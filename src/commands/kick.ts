@@ -6,7 +6,9 @@ export const kick: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "kick",
   description:
-    "Kicks the mentioned user for the mentioned reason. Use the format 'kick <user> <reason>'. Only available to server moderators.",
+    "Kick **user** from the channel. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if the log channel is available.",
+  parameters:
+    "`<user>`: @name of the user to kick | `<?reason>`: reason for kicking the user",
   command: function (message) {
     //check for required permission
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {

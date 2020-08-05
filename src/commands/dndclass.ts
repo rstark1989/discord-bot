@@ -6,7 +6,8 @@ import { dndclassInt } from "../interfaces/dndclassInt";
 export const dndclass: commandInt = {
   prefix: "dndclass",
   description:
-    "Gets information on a Dungeons and Dragons class. Use the format 'dndclass <class name>'",
+    "Gets information on the provided Dungeons and Dragons **class**.",
+  parameters: "`<class>`: the name of the class to search",
   command: async (message) => {
     const query = message.content.split(" ").slice(1).join("-");
     if (!query) {

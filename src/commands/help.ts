@@ -8,7 +8,9 @@ export const help: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "help",
   description:
-    "Provides a list of current commands to the user. Hey, that's THIS command! 🙃 Optionally include a command name as a parameter to get details on that command.",
+    "Provides a list of current commands to the user. Optionally provides information on the specific **command**.",
+  parameters:
+    "`<?command>` - name of the command to get more information about",
   command: async function (message) {
     //create message embed
     const user = message.author;
@@ -18,7 +20,22 @@ export const help: commandInt = {
         if (parameters[1] === command.prefix) {
           const matchEmbed = new MessageEmbed()
             .setTitle(command.prefix)
-            .setDescription(command.description);
+            .setDescription(
+              `BEEP BOOP: Providing information on my ${command.prefix} feature.`
+            )
+            .addFields(
+              { name: "Description", value: command.description },
+              { name: "Parameters", value: command.parameters },
+              {
+                name: "Syntax",
+                value:
+                  command.parameters === "*none*"
+                    ? `${config.prefix}${command.prefix}`
+                    : `${config.prefix}${
+                        command.prefix
+                      } ${command.parameters?.match(/<[a-z?]*>/g)?.join(" ")}`,
+              }
+            );
           message.channel.send(matchEmbed);
           return;
         }

@@ -6,7 +6,9 @@ export const warn: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "warn",
   description:
-    "Send a warning to a user. Use the format 'warn <user> <reason>'. Only available to server moderators.",
+    "Send a warning to the **user**. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if log channel is available.",
+  parameters:
+    "`<user>`: @name of the user to warn | `<?reason>`: reason for warning the user.",
   command: function (message) {
     //check for appropriate permission
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {

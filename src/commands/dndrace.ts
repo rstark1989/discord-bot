@@ -5,8 +5,8 @@ import { dndraceInt } from "../interfaces/dndraceInt";
 
 export const dndrace: commandInt = {
   prefix: "dndrace",
-  description:
-    "Gets information on a Dungeons and Dragons race. Use the format 'dndrace <race name>'",
+  description: "Gets information the provided Dungeons and Dragons **race**.",
+  parameters: "`<race>`: the name of the race to search",
   command: async (message) => {
     const query = message.content.split(" ").slice(1).join("-");
     if (!query) {

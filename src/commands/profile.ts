@@ -5,7 +5,9 @@ export const profile: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "profile",
   description:
-    "Returns a profile for the selected website. Use the format 'profile <website name> <id>'. I am able to access the following websites: Steam, Facebook, GitHub, Twitter, LinkedIn, Tumblr, and Instagram.",
+    "Returns a profile for the selected **user** on the **website**. Supported websites: Steam, Facebook, GitHub, Twitter, LinkedIn, Tumblr, and Instagram.",
+  parameters:
+    "`<website>` - name of the website to search | `<user>` - Username or ID of the user to find",
   command: function (message) {
     const cmdarguments = message.content.split(" ");
     if (cmdarguments.length < 2) {

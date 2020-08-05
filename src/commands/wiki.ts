@@ -3,8 +3,8 @@ import { commandInt } from "../interfaces/commandInt";
 export const wiki: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "wiki",
-  description:
-    "Returns a URL to a wikipedia article. Use the format 'wiki <query>'.",
+  description: "Returns a URL to a wikipedia article based on the **query**.",
+  parameters: "`<query>`: terms to search for",
   command: function (message) {
     //removes "|wiki " - if your prefix is more than one character, you'll need to change 6.
     const argument = message.content.substring(6, message.content.length);

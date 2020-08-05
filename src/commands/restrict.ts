@@ -6,7 +6,9 @@ export const restrict: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "restrict",
   description:
-    "Restrict a user's permissions. Use the format 'restrict <user> <reason>'. Only available to server moderators.",
+    "Restrict **user**'s access to the channel. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if log channel is available.",
+  parameters:
+    "`<user>`: @name of the user to restrict | `<?reason>`: reason for restricting the user.",
   command: async function suspend(message) {
     //check for appropriate permissions
     if (!message.member?.hasPermission("KICK_MEMBERS")) {

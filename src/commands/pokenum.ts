@@ -6,8 +6,8 @@ import { pokemonInt } from "../interfaces/pokemonInt";
 export const pokenum: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "pokenum",
-  description:
-    "Look up a Pokemon! Use the format 'pokenum <number>', or use 'pokenum random' to get a random Pokemon!",
+  description: "Searches for the Pokemon by the **number** provided.",
+  parameters: `<number> - the number to search for; optionally use the string 'random' instead`,
   command: async function (message) {
     const cmdarguments = message.content.split(" ");
     if (cmdarguments.length < 2) {

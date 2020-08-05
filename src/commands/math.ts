@@ -5,7 +5,9 @@ import { solveEquation } from "mathsteps";
 export const maths: commandInt = {
   prefix: "math",
   description:
-    "Evaluates a mathematic expression and returns the value. Use the format `math [calculate/solve] [expression]",
+    "Performs the **function** on the **problem** - will either calculate an expression, or solve an equation.",
+  parameters:
+    "`<function>` - calculate, to evaluate an expression; solve, to solve an equation | `<problem>` - expression or equation to process",
   command: function (message) {
     try {
       const args = message.content.split(" ");

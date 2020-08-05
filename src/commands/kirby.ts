@@ -4,6 +4,7 @@ export const kirby: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "kirby",
   description: "Do a little dance... make a little noise... GET DOWN TONIGHT!",
+  parameters: "*none*",
   command: function (message) {
     message.channel.send("BEEP BOOP: Dance mode initiated.");
     setTimeout(() => message.channel.send("<('.')>"), 1000);
