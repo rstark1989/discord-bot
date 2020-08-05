@@ -2,6 +2,8 @@ import { listenerInt } from "../interfaces/listenerInt";
 import { commandLog, commandLogInt } from "../interfaces/usageInt";
 
 export const usageListen: listenerInt = {
+  name: "Command Uses",
+  description: "Tracks the number of times each command has been used.",
   listener: function (message) {
     const array = message.content.split(" ");
     const command = array[0].substring(1);
