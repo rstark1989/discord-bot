@@ -6,7 +6,8 @@ import { dndschoolInt } from "../interfaces/dndschoolInt";
 export const dndschool: commandInt = {
   prefix: "dndschool",
   description:
-    "Gets information on a Dungeons and Dragons school of magic. Use the format 'dndschool <school name>'",
+    "Gets information on the provided Dungeons and Dragons **school** of magic.",
+  parameters: "`<school>`: name of the school of magic to search",
   command: async (message) => {
     const query = message.content.split(" ").slice(1).join("-");
     if (!query) {

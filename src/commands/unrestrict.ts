@@ -5,7 +5,9 @@ export const unrestrict: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "unrestrict",
   description:
-    "Restore a user's permissions. Use the format 'unrestrict <user> <reason>'. Only available to server moderators.",
+    "Restore **user**'s access to the channel. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if log channel is available.",
+  parameters:
+    "`<user>`: @name of the user to restore | `<?reason>`: reason for restoring the user.",
   command: function (message) {
     //check for appropriate permissions
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {

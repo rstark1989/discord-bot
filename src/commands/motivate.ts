@@ -6,6 +6,7 @@ export const motivate: commandInt = {
   prefix: "motivate",
   description:
     "Provides a little bit of motivation, courtesy of [freeCodeCamp](https://freecodecamp.org).",
+  parameters: "*none*",
   command: (message) => {
     const motivations = quotes.motivationalQuotes;
     const random = Math.floor(Math.random() * motivations.length);

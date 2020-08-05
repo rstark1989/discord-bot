@@ -6,8 +6,8 @@ import fetch from "node-fetch";
 export const magic: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "magic",
-  description:
-    "Returns a Magic: The Gathering card by name. Use the format 'magic <cardname>'.",
+  description: "Returns a Magic: The Gathering card that matches the **name**.",
+  parameters: "`<card>` - name of the card to search for",
   command: async function (message) {
     const query = message.content.substring(7, message.content.length);
     if (!query) {

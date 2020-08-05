@@ -11,7 +11,9 @@ export const ban: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "ban",
   description:
-    "Ban a user from the channel. Use the format 'ban <user> <reason>'. Only available to server moderators.",
+    "Ban **user** from the channel. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if log channel is available.",
+  parameters:
+    "`<user>`: @name of the user to ban | `<?reason>`: reason for banning the user",
   command: function (message) {
     //check for appropriate permission.
     if (message.member?.hasPermission("BAN_MEMBERS") == false) {

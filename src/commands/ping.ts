@@ -5,6 +5,7 @@ export const ping: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record
   prefix: "ping",
   description: "Pings the bot to verify online status.",
+  parameters: "*none*",
   command: async function ping(message) {
     // Creates original message
     const msg = new MessageEmbed()

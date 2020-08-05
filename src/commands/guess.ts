@@ -5,6 +5,7 @@ export const guess: commandInt = {
   prefix: "guess",
   description:
     "Play a Guess the Number game! Bot will choose a number between 1 and 1000. Players have 10 seconds to guess. Closest guess wins!",
+  parameters: "*none*",
   command: (message) => {
     const random = Math.floor(Math.random() * 1000) + 1;
     const guesses: Array<any> = [];

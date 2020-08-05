@@ -6,9 +6,7 @@ export const level: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "level",
   description: "Gets the user's current level.",
-  //this part listens to all messages
-
-  //command can be called to get your current status
+  parameters: "*none*",
   command: function (message) {
     user.findOne({ userid: message.author.toString() }, function (
       err: Error,

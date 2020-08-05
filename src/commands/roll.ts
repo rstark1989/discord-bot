@@ -3,7 +3,9 @@ import { commandInt } from "../interfaces/commandInt";
 export const roll: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "roll",
-  description: "Rolls a random die for you. Use the format 'roll d<number>'.",
+  description: "Rolls a random die for you of **number** sides.",
+  parameters:
+    "`<d number`>: number of sides to use on die; **must** be prefaced with the letter d, like d20",
   command: function (message) {
     const cmdarguments = message.content.split(" ");
     if (cmdarguments.length < 2 || cmdarguments[1].length < 2) {

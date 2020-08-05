@@ -3,8 +3,8 @@ import { commandInt } from "../interfaces/commandInt";
 export const search: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "search",
-  description:
-    "Returns a Google search link for the provided query. Use the format 'search <query>'.",
+  description: "Returns a Google search link for the provided **query**.",
+  parameters: "`<query>`: the string to search for",
   command: function (message) {
     const query = message.content
       .substring(8, message.content.length)

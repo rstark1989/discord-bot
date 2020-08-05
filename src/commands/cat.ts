@@ -3,6 +3,7 @@ import { commandInt } from "../interfaces/commandInt";
 export const cat: commandInt = {
   prefix: "cat",
   description: "A cat walked across the keyboard!",
+  parameters: "*none*",
   command: function (message) {
     const len = Math.floor(Math.random() * 100);
     let str = "";

@@ -105,12 +105,12 @@ client.on("guildMemberRemove", function (member) {
 
 //messages listener
 client.on("message", function (message) {
-  if (message.channel.type === "dm" && message.author.id !== client.user?.id) {
+  /*if (message.channel.type === "dm" && message.author.id !== client.user?.id) {
     message.channel.send(
       "BEEP BOOP: Please talk to me in a server, not a private message. If you need a server to join, check out my home! https://discord.gg/PHqDbkg"
     );
     return;
-  }
+  }*/
   levelListen.listener(message);
   hearts.listener(message);
   if (message.attachments.array().length > 0) {

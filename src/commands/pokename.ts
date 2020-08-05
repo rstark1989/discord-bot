@@ -6,7 +6,8 @@ import fetch from "node-fetch";
 export const pokename: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record
   prefix: "pokename",
-  description: "Look up a Pokemon! Use the format 'pokename <name>'.",
+  description: "Provides information on the Pokemon named **name**.",
+  parameters: "`<name>` - name of the Pokemon to search for",
   command: async function (message) {
     const cmdarguments = message.content.split(" ");
     if (cmdarguments.length < 2) {

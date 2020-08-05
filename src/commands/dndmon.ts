@@ -6,7 +6,8 @@ import { dndmonInt } from "../interfaces/dndmonInt";
 export const dndmon: commandInt = {
   prefix: "dndmon",
   description:
-    "Gets information on a Dungeons and Dragons monster. Use the format 'dndmon <monster name>'",
+    "Gets information on the provided Dungeons and Dragons **monster**.",
+  parameters: "`<monster>`: the name of the monster to search",
   command: async (message) => {
     const query = message.content.split(" ").slice(1).join("-");
     if (!query) {

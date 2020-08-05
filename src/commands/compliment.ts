@@ -6,6 +6,7 @@ export const compliment: commandInt = {
   prefix: "compliment",
   description:
     "Provides a nice little compliment, courtesy of [freeCodeCamp](https://freecodecamp.org).",
+  parameters: "*none*",
   command: (message) => {
     const compliments = quotes.compliments;
     const random = Math.floor(Math.random() * compliments.length);

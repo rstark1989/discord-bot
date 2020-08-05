@@ -10,6 +10,7 @@ export const fortune: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "fortune",
   description: "Tells you a fortune.",
+  parameters: "*none*",
   command: function (message) {
     //pick random fortune - accounts for new fortunes so does not need to be updated with additions.
     const index = Math.floor(Math.random() * fortunes.length);

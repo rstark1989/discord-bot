@@ -4,6 +4,7 @@ import { MessageEmbed } from "discord.js";
 export const dnd: commandInt = {
   prefix: "dnd",
   description: "Lists the available dnd commands",
+  parameters: "*none*",
   command: (message) => {
     const dndEmbed = new MessageEmbed()
       .setTitle("Dungeons and Dragons!")

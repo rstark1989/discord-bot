@@ -6,7 +6,8 @@ import packageInfo from "../../package.json";
 export const about: commandInt = {
   //prefix and description - prefix is necessary to trigger command, description is just for the record.
   prefix: "about",
-  description: "Provides details about the bot.",
+  description: `Provides details about the bot.`,
+  parameters: "*none*",
   command: async function (message) {
     const files = await fs.promises.readdir("./src/commands");
     const aboutEmbed: MessageEmbed = new MessageEmbed()

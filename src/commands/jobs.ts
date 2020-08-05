@@ -1,10 +1,10 @@
 import { commandInt } from "../interfaces/commandInt";
-import * as config from "../../config.json";
 import { MessageEmbed } from "discord.js";
 
 export const jobs: commandInt = {
   prefix: "jobs",
-  description: `Returns a LinkedIn job search for developers. Use the format \`${config.prefix}jobs [location]\`, where location is an optional parameter.`,
+  description: `Returns a LinkedIn job search for developers. Optionally narrows the search by **location**.`,
+  parameters: "`<location>` - the specific location to search for jobs.",
   command: (message) => {
     const parameter = message.content.substring(6);
     let url = "https://linkedin.com/jobs/search/?keywords=developer";
