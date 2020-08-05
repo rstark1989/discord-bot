@@ -2,6 +2,9 @@ import { listenerInt } from "../interfaces/listenerInt";
 import { user, userInt } from "../interfaces/userInt";
 
 export const levelListen: listenerInt = {
+  name: "Level up!",
+  description:
+    "Grants 1 to 5 experience points for each message you send, and you level up at every 100 experience points.",
   listener: function (message) {
     //find user
     user.findOne({ userid: message.author.toString() }, function (
