@@ -1,4 +1,3 @@
-//command files here:
 import { ping } from "./commands/ping";
 import { kick } from "./commands/kick";
 import { help } from "./commands/help";
@@ -37,7 +36,7 @@ import { motivate } from "./commands/motivate";
 import { compliment } from "./commands/compliment";
 import { jobs } from "./commands/jobs";
 import { listen } from "./commands/listen";
-//command names in this array
+
 export const COMMANDS = [
   kick,
   ping,

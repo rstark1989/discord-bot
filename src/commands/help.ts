@@ -10,7 +10,7 @@ export const help: CommandInt = {
     "Provides a list of current commands to the user. Optionally provides information on the specific **command**.",
   parameters:
     "`<?command>` - name of the command to get more information about",
-  command: async function (message) {
+  command: async (message) => {
     const user = message.author;
     const parameters = message.content.split(" ");
     if (parameters[1]) {

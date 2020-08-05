@@ -20,8 +20,7 @@ export const guess: CommandInt = {
     guessCollector.on("collect", (reply) => {
       guesses.push([reply.author.id, parseInt(reply.content)]);
     });
-    setTimeout(winner, 10000);
-    function winner() {
+    const winner = () => {
       let winVal = 1000,
         winAuth,
         winGuess;
@@ -35,6 +34,7 @@ export const guess: CommandInt = {
       message.channel.send(
         `BEEP BOOP: Calculating winner... <@!${winAuth}>! Correct number was ${random} and the winning guess was ${winGuess}.`
       );
-    }
+    };
+    setTimeout(winner, 10000);
   },
 };

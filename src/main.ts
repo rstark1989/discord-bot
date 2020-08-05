@@ -19,7 +19,7 @@ const hook = new WebhookClient(
   process.env.WH_TOKEN || "none"
 );
 
-client.on("ready", function () {
+client.on("ready", () => {
   console.log("Activate the Omega");
   hook.send(
     `\`${client.user?.username}\` online. Running a ${process.env.PRODDEV} instance of bot version ${packageInfo.version}.`
@@ -97,7 +97,7 @@ client.on("guildMemberRemove", (member) => {
   }
 });
 
-client.on("message", function (message) {
+client.on("message", (message) => {
   if (message.channel.type === "dm" && message.author.id !== client.user?.id) {
     message.channel.send(
       "BEEP BOOP: Please talk to me in a server, not a private message. If you need a server to join, check out my home! https://discord.gg/PHqDbkg"
@@ -121,7 +121,7 @@ client.on("message", function (message) {
   }
 });
 
-client.on("messageDelete", function (message) {
+client.on("messageDelete", (message) => {
   const logChannel = message.guild?.channels.cache.find(
     (channel) => channel.name == config.log_channel
   ) as TextChannel;
