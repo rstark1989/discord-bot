@@ -1,9 +1,9 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import fetch from "node-fetch";
 import { MessageEmbed } from "discord.js";
-import { dndraceInt } from "../interfaces/dndraceInt";
+import { DndRaceInt } from "../interfaces/DndRaceInt";
 
-export const dndrace: commandInt = {
+export const dndRace: CommandInt = {
   prefix: "dndrace",
   description: "Gets information the provided Dungeons and Dragons **race**.",
   parameters: "`<race>`: the name of the race to search",
@@ -14,7 +14,7 @@ export const dndrace: commandInt = {
       return;
     }
     const race = await fetch("https://www.dnd5eapi.co/api/races/" + query);
-    const data: dndraceInt = await race.json();
+    const data: DndRaceInt = await race.json();
     if (!data || data.error) {
       message.channel.send("ERROR 404: Not found.");
       return;

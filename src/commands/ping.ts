@@ -1,33 +1,24 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
 
-export const ping: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record
+export const ping: CommandInt = {
   prefix: "ping",
   description: "Pings the bot to verify online status.",
   parameters: "*none*",
-  command: async function ping(message) {
-    // Creates original message
+  command: async (message) => {
     const msg = new MessageEmbed()
       .setColor("#FFFFFF")
       .setTitle("Ping Initiated")
       .setDescription("BEEP BOOP: Awaiting response.");
-
-    //send Ping! and save messageID.
     const pingMessage = await message.channel.send(msg);
-
-    //edit messageID to add ping time, based on time between ping command and Ping! response.
     const pingTime = Math.round(
       pingMessage.createdTimestamp - message.createdTimestamp
     );
-    // changes color depending on pingTime
     const color = pingTime < 90 ? "#21ed4a" : "#f02222";
-    // edited msg
     const msgEdit = new MessageEmbed()
       .setColor(color)
       .setTitle("Ping Successful")
       .setDescription(`BEEP BOOP: Response time is ${pingTime}ms.`);
-
     pingMessage.edit(msgEdit);
   },
 };

@@ -1,9 +1,9 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import fetch from "node-fetch";
 import { MessageEmbed } from "discord.js";
-import { dndmonInt } from "../interfaces/dndmonInt";
+import { DndMonInt } from "../interfaces/DndMonInt";
 
-export const dndmon: commandInt = {
+export const dndMon: CommandInt = {
   prefix: "dndmon",
   description:
     "Gets information on the provided Dungeons and Dragons **monster**.",
@@ -17,7 +17,7 @@ export const dndmon: commandInt = {
     const monster = await fetch(
       "https://www.dnd5eapi.co/api/monsters/" + query
     );
-    const data: dndmonInt = await monster.json();
+    const data: DndMonInt = await monster.json();
     if (!data || data.error) {
       message.channel.send("ERROR 404: Not found.");
       return;

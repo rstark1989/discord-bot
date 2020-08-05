@@ -1,4 +1,4 @@
-export interface magicInt {
+export interface MagicInt {
   cards: Array<{
     name: string;
     manaCost: string;

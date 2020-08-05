@@ -1,14 +1,12 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 
-export const search: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const search: CommandInt = {
   prefix: "search",
   description: "Returns a Google search link for the provided **query**.",
   parameters: "`<query>`: the string to search for",
-  command: function (message) {
+  command: (message) => {
     const query = message.content
       .substring(8, message.content.length)
-      //strip user mentions
       .replace(/\s/g, "%20")
       .replace(/<@!.*>%20/g, "");
     message.channel.send(

@@ -1,7 +1,7 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
 
-export const jobs: commandInt = {
+export const jobs: CommandInt = {
   prefix: "jobs",
   description: `Returns a LinkedIn job search for developers. Optionally narrows the search by **location**.`,
   parameters: "`<location>` - the specific location to search for jobs.",

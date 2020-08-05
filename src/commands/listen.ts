@@ -1,8 +1,8 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
-import { listeners } from "../listeners";
+import { LISTENERS } from "../LISTENERS";
 
-export const listen: commandInt = {
+export const listen: CommandInt = {
   prefix: "listen",
   description:
     "Provides information on the active listener features for the bot.",
@@ -13,7 +13,7 @@ export const listen: commandInt = {
       .setDescription(
         "For my commands to work, I have to listen to every message in the server. I check each message to see if you have called for my assistance. But did you know I also listen for other events? Here's what they are!"
       );
-    listeners.forEach((el) =>
+    LISTENERS.forEach((el) =>
       listenersEmbed.addFields({ name: el.name, value: el.description })
     );
     message.channel.send(listenersEmbed);

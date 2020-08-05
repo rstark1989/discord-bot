@@ -1,4 +1,4 @@
-export interface pokemonInt {
+export interface PokemonInt {
   abilities: Array<Record<string, unknown>>;
   base_experience: number;
   forms: Array<Record<string, unknown>>;

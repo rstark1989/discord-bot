@@ -1,4 +1,4 @@
-export interface dndspellInt {
+export interface DndSpellInt {
   _id: string;
   index: string;
   name: string;

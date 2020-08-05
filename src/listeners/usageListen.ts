@@ -1,24 +1,24 @@
-import { listenerInt } from "../interfaces/listenerInt";
-import { commandLog, commandLogInt } from "../interfaces/usageInt";
+import { ListenerInt } from "../interfaces/ListenerInt";
+import { CommandLog, CommandLogInt } from "../interfaces/UsageInt";
 
-export const usageListen: listenerInt = {
+export const usageListen: ListenerInt = {
   name: "Command Uses",
   description: "Tracks the number of times each command has been used.",
   listener: function (message) {
     const array = message.content.split(" ");
     const command = array[0].substring(1);
-    commandLog.findOne({ command: command }, function (
+    CommandLog.findOne({ command: command }, function (
       err: Error,
-      data: commandLogInt
+      data: CommandLogInt
     ) {
       if (err || !data) {
-        const newlog = new commandLog({ command: command, uses: 1 });
-        newlog.save((err: Error) => {
+        const newLog = new CommandLog({ command: command, uses: 1 });
+        newLog.save((err: Error) => {
           if (err) console.error(err);
         });
       } else {
-        const olduses = data.uses;
-        data.uses = olduses + 1;
+        const oldUses = data.uses;
+        data.uses = oldUses + 1;
         data.save((err: Error) => {
           if (err) console.error(err);
         });

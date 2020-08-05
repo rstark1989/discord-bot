@@ -1,16 +1,14 @@
 import config from "../../config.json";
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed, TextChannel } from "discord.js";
 
-export const warn: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const warn: CommandInt = {
   prefix: "warn",
   description:
     "Send a warning to the **user**. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if log channel is available.",
   parameters:
     "`<user>`: @name of the user to warn | `<?reason>`: reason for warning the user.",
-  command: function (message) {
-    //check for appropriate permission
+  command: (message) => {
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(
         `ERROR 401: ${message.author}, missing permissions.`
@@ -18,22 +16,18 @@ export const warn: commandInt = {
       return;
     }
     const mod = message.author;
-    const cmdarguments = message.content.split(" ");
+    const cmdArguments = message.content.split(" ");
     const user = message.mentions.users.first();
-
-    //check for valid user tag.
     if (user == undefined) {
       message.channel.send(`ERROR 400: ${mod}, invalid user tag.`);
       return;
     }
-    //cannot target self
     if (user == mod) {
       message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
       return;
     }
-    const reasonArg = cmdarguments.slice(2, cmdarguments.length);
+    const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
-    //check for reason provided, if none then create one.
     if (reason == "") {
       reason = "ERROR 404: No reason provided.";
     }

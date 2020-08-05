@@ -1,4 +1,4 @@
-export interface dndschoolInt {
+export interface DndSchoolInt {
   _id: string;
   index: string;
   name: string;

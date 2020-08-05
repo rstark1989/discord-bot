@@ -1,4 +1,4 @@
-export interface dndmonInt {
+export interface DndMonInt {
   _id: string;
   index: string;
   name: string;

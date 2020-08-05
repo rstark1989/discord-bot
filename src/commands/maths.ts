@@ -1,14 +1,14 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { evaluate } from "mathjs";
 import { MessageEmbed } from "discord.js";
 import { solveEquation } from "mathsteps";
-export const maths: commandInt = {
-  prefix: "math",
+export const maths: CommandInt = {
+  prefix: "maths",
   description:
     "Performs the **function** on the **problem** - will either calculate an expression, or solve an equation.",
   parameters:
     "`<function>` - calculate, to evaluate an expression; solve, to solve an equation | `<problem>` - expression or equation to process",
-  command: function (message) {
+  command: (message) => {
     try {
       const args = message.content.split(" ");
       const type = args[1];

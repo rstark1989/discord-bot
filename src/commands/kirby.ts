@@ -1,11 +1,10 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 
-export const kirby: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const kirby: CommandInt = {
   prefix: "kirby",
   description: "Do a little dance... make a little noise... GET DOWN TONIGHT!",
   parameters: "*none*",
-  command: function (message) {
+  command: (message) => {
     message.channel.send("BEEP BOOP: Dance mode initiated.");
     setTimeout(() => message.channel.send("<('.')>"), 1000);
     setTimeout(() => message.channel.send("<('.'<)"), 2000);

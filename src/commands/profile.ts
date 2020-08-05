@@ -1,29 +1,26 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
 
-export const profile: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const profile: CommandInt = {
   prefix: "profile",
   description:
     "Returns a profile for the selected **user** on the **website**. Supported websites: Steam, Facebook, GitHub, Twitter, LinkedIn, Tumblr, and Instagram.",
   parameters:
     "`<website>` - name of the website to search | `<user>` - Username or ID of the user to find",
-  command: function (message) {
-    const cmdarguments = message.content.split(" ");
-    if (cmdarguments.length < 2) {
+  command: (message) => {
+    const cmdArguments = message.content.split(" ");
+    if (cmdArguments.length < 2) {
       message.channel.send("ERROR 400: Missing query parameters.");
       return;
     }
-    const website = cmdarguments[1].toLowerCase();
-    const name = cmdarguments[2];
-    let id = cmdarguments[2];
+    const website = cmdArguments[1].toLowerCase();
+    const name = cmdArguments[2];
+    let id = cmdArguments[2];
     let prefix;
-    //if no id is provided, throw error.
     if (!id) {
       message.channel.send(`ERROR 400: Missing profile ID.`);
       return;
     }
-    //set url for website
     if (website == "steam") {
       prefix = "https://steamcommunity.com/id/";
     }
@@ -46,7 +43,6 @@ export const profile: commandInt = {
     if (website == "instagram") {
       prefix = "https://instagram.com/";
     }
-    //if website isn't available for this command, notify user.
     if (!prefix) {
       message.channel.send(`ERROR 404: Website not supported`);
       return;

@@ -1,12 +1,12 @@
 import config from "../../config.json";
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { TextChannel, MessageEmbed } from "discord.js";
-export const close: commandInt = {
+export const close: CommandInt = {
   prefix: "close",
   description:
     "Closes the channel - only available for automatically generated appeal channels. Only available to moderators.",
   parameters: "*none*",
-  command: async function (message) {
+  command: async (message) => {
     const target = message.channel as TextChannel;
     //check for log channel
     const log = message.guild?.channels.cache.find(

@@ -1,14 +1,13 @@
 import { MessageEmbed } from "discord.js";
 import fs from "fs";
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import packageInfo from "../../package.json";
 
-export const about: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is just for the record.
+export const about: CommandInt = {
   prefix: "about",
   description: `Provides details about the bot.`,
   parameters: "*none*",
-  command: async function (message) {
+  command: async (message) => {
     const files = await fs.promises.readdir("./src/commands");
     const aboutEmbed: MessageEmbed = new MessageEmbed()
       .setColor("#ab47e6")

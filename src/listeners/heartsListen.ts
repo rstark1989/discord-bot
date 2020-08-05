@@ -1,11 +1,11 @@
 import config from "../../config.json";
-import { listenerInt } from "../interfaces/listenerInt";
+import { ListenerInt } from "../interfaces/ListenerInt";
 const authors = config.love;
 const heartList = ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍"];
-export const hearts: listenerInt = {
+export const hearts: ListenerInt = {
   name: "Love",
   description: "Gives love to specific users.",
-  listener: function (message) {
+  listener: (message) => {
     for (const author in authors) {
       if (message.author.id === authors[author]) {
         const random = Math.floor(Math.random() * heartList.length);

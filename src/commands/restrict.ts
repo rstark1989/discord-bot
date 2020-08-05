@@ -1,21 +1,18 @@
 import config from "../../config.json";
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { TextChannel, MessageEmbed } from "discord.js";
 
-export const restrict: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const restrict: CommandInt = {
   prefix: "restrict",
   description:
     "Restrict **user**'s access to the channel. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if log channel is available.",
   parameters:
     "`<user>`: @name of the user to restrict | `<?reason>`: reason for restricting the user.",
-  command: async function suspend(message) {
-    //check for appropriate permissions
+  command: async (message) => {
     if (!message.member?.hasPermission("KICK_MEMBERS")) {
       message.channel.send(`ERROR 401: Missing permissions.`);
       return;
     }
-    //check for log channel setting
     const modChannel = message.guild?.channels.cache.find(
       (channel) => channel.name === config.log_channel
     ) as TextChannel;
@@ -23,7 +20,6 @@ export const restrict: commandInt = {
       message.channel.send(`ERROR 404: Log channel not found.`);
       return;
     }
-    //check for suspend category setting
     const suspendCategory = config.silence_category;
     const category = message.guild?.channels.cache.find(
       (c) => c.name === suspendCategory && c.type === "category"
@@ -32,7 +28,6 @@ export const restrict: commandInt = {
       message.channel.send(`ERROR 404: Missing suspend category.`);
       return;
     }
-    //check for suspend role setting
     const suspend = message.guild?.roles.cache.find(
       (role) => role.name == config.silence_role
     );
@@ -42,31 +37,27 @@ export const restrict: commandInt = {
     }
     const mod = message.author;
     const msgArguments = message.content.split(" ");
-    const user = message.mentions.members?.first();
-    //check for valid user tag
-    if (!user) {
+    const member = message.mentions.members?.first();
+    if (!member) {
       message.channel.send(`ERROR 404: Invalid user tag.`);
       return;
     }
-    //cannot target self
     if (message.mentions.users.first() === mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
       return;
     }
     const reasonArg = msgArguments.slice(2, msgArguments.length);
-    //check for reason provided, if none then create one.
     let reason = reasonArg.join(" ");
     if (reason == "") {
       reason = "ERROR 404: No reason provided.";
     }
-    //logging embed
     const restrictEmbed = new MessageEmbed()
       .setColor("#FF0000")
       .setTitle(`Access Restricted!`)
       .addFields(
         {
           name: "Event:",
-          value: `<@!${mod}> has suspended <@!${user}>.`,
+          value: `<@!${mod}> has suspended <@!${member}>.`,
         },
         {
           name: "Reason:",
@@ -75,15 +66,13 @@ export const restrict: commandInt = {
       )
       .setFooter("BEEP BOOP: Please remember to follow our rules!");
     modChannel.send(restrictEmbed);
-    //assign roles
-    user.roles.set([suspend]);
-    //create suspend channel
-    const channelName = `suspended-${user.user.username}`;
+    member.roles.set([suspend]);
+    const channelName = `suspended-${member.user.username}`;
     message.guild?.channels.create(channelName, {
       type: "text",
       permissionOverwrites: [
         {
-          id: user.id,
+          id: member.id,
           allow: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "SEND_MESSAGES"],
         },
         {
@@ -93,7 +82,7 @@ export const restrict: commandInt = {
       ],
       parent: category,
     });
-    user.send(
+    member.send(
       `BEEP BOOP: Suspension protocol initiated for: ${reason} - Appeal channel creation complete.`
     );
   },

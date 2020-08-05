@@ -1,38 +1,32 @@
 import config from "../../config.json";
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { TextChannel, MessageEmbed } from "discord.js";
 
-export const kick: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const kick: CommandInt = {
   prefix: "kick",
   description:
     "Kick **user** from the channel. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if the log channel is available.",
   parameters:
     "`<user>`: @name of the user to kick | `<?reason>`: reason for kicking the user",
-  command: function (message) {
-    //check for required permission
+  command: (message) => {
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(`ERROR 401: Missing permissions.`);
       return;
     }
     const mod = message.author;
-    const cmdarguments = message.content.split(" ");
-    const user = message.mentions.members?.first();
-    const usernotmember = message.mentions.users.first();
-
-    //check for valid user mention
-    if (user == undefined) {
+    const cmdArguments = message.content.split(" ");
+    const member = message.mentions.members?.first();
+    const user = message.mentions.users.first();
+    if (member == undefined) {
       message.channel.send(`ERROR 404: Invalid user tag.`);
       return;
     }
-    //cannot target self
-    if (usernotmember == mod) {
+    if (user == mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
       return;
     }
-    const reasonArg = cmdarguments.slice(2, cmdarguments.length);
+    const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
-    //check for reason provided, if none then create reason.
     if (reason == "") {
       reason = "ERROR 404: No reason provided";
     }
@@ -42,7 +36,7 @@ export const kick: commandInt = {
       .addFields(
         {
           name: "Event:",
-          value: `<@!${mod}> has kicked <@!${usernotmember}> from the server.`,
+          value: `<@!${mod}> has kicked <@!${user}> from the server.`,
         },
         {
           name: "Reason:",
@@ -59,6 +53,6 @@ export const kick: commandInt = {
     if (!modChannel) {
       message.channel.send("ERROR 404: log channel not found.");
     }
-    user.kick().catch((err: Error) => console.log(err));
+    member.kick().catch((err: Error) => console.log(err));
   },
 };

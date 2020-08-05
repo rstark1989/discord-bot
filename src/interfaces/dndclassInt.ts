@@ -1,10 +1,10 @@
-export interface dndclassInt {
+export interface DndClassInt {
   _id: string;
   index: string;
   name: string;
   hit_die: number;
-  proficiency_choices: Array<proficientChoices>;
-  proficiencies: Array<proficient>;
+  proficiency_choices: Array<ProficientChoices>;
+  proficiencies: Array<Proficient>;
   saving_throws: Array<Record<string, unknown>>;
   starting_equipment: Record<string, unknown>;
   class_levels: Record<string, unknown>;
@@ -14,18 +14,18 @@ export interface dndclassInt {
   error?: string;
 }
 
-interface proficient {
+interface Proficient {
   name: string;
   url: string;
 }
 
-interface proficientChoices {
+interface ProficientChoices {
   choose: number;
   type: string;
-  from: Array<proficientFrom>;
+  from: Array<ProficientFrom>;
 }
 
-interface proficientFrom {
+interface ProficientFrom {
   url: string;
   name: string;
 }

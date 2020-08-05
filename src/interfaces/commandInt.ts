@@ -1,6 +1,6 @@
 import { Message, Client } from "discord.js";
 
-export interface commandInt {
+export interface CommandInt {
   prefix: string;
   description: string;
   parameters?: string;

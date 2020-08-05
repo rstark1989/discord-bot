@@ -1,7 +1,7 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed } from "discord.js";
 
-export const dnd: commandInt = {
+export const dnd: CommandInt = {
   prefix: "dnd",
   description: "Lists the available dnd commands",
   parameters: "*none*",

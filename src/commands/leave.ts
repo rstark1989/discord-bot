@@ -1,12 +1,12 @@
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { Guild } from "discord.js";
 
-export const leave: commandInt = {
+export const leave: CommandInt = {
   prefix: "leave",
   description:
     "Can tell the bot to leave a specific server. Use `leave <guildID>` to leave a server, and `leave` to get a list of servers. This command is specific to the bot owner <@!465650873650118659>.",
   parameters: "*none*",
-  command: async function (message, bot) {
+  command: async (message, bot) => {
     if (message.author.id !== "465650873650118659") {
       message.channel.send(
         `ERROR 401: Only <@!465650873650118659> is allowed to use this command.`
@@ -19,7 +19,7 @@ export const leave: commandInt = {
         message.channel.send(`${item.id} - ${item.name}`)
       );
     }
-    const leaveChannel = await bot?.guilds.cache.get(target);
+    const leaveChannel = bot?.guilds.cache.get(target);
     leaveChannel?.leave();
   },
 };

@@ -1,43 +1,37 @@
 import config from "../../config.json";
-import { commandInt } from "../interfaces/commandInt";
+import { CommandInt } from "../interfaces/CommandInt";
 import { MessageEmbed, TextChannel } from "discord.js";
-export const unrestrict: commandInt = {
-  //prefix and description - prefix is necessary to trigger command, description is for the record.
+export const unrestrict: CommandInt = {
   prefix: "unrestrict",
   description:
     "Restore **user**'s access to the channel. Optionally provide a **reason**. Only available to server moderators. Bot will log this action if log channel is available.",
   parameters:
     "`<user>`: @name of the user to restore | `<?reason>`: reason for restoring the user.",
-  command: function (message) {
-    //check for appropriate permissions
+  command: (message) => {
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {
       message.channel.send(`ERROR 401: Missing permissions.`);
       return;
     }
     const mod = message.author;
-    const cmdarguments = message.content.split(" ");
-    const user = message.mentions.members?.first();
-    const usernotmember = message.mentions.users.first();
-    //check for valid user tag
-    if (user == undefined) {
+    const cmdArguments = message.content.split(" ");
+    const member = message.mentions.members?.first();
+    const user = message.mentions.users.first();
+    if (member == undefined) {
       message.channel.send(`ERROR 400: Invalid user tag.`);
       return;
     }
-    //cannot target self
-    if (usernotmember == mod) {
+    if (user == mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
       return;
     }
-    const reasonArg = cmdarguments.slice(2, cmdarguments.length);
+    const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
-    //check for reason provided, if none then create one.
     if (reason == "") {
       reason = "ERROR 404: No reason provided.";
     }
     const suspend = message.guild?.roles.cache.find(
       (role) => role.name == config.silence_role
     );
-    // check for valid role. Change role.name to match your server.
     if (!suspend) {
       message.channel.send(`ERROR 304: Missing "Restricted" role.`);
       return;
@@ -65,6 +59,6 @@ export const unrestrict: commandInt = {
     if (!modChannel) {
       message.channel.send("ERROR 404: missing log channel");
     }
-    user.roles.remove(suspend).catch((e) => console.log(e));
+    member.roles.remove(suspend).catch((err) => console.log(err));
   },
 };
