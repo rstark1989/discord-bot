@@ -23,6 +23,10 @@ export const help: commandInt = {
           return;
         }
       }
+      message.channel.send(
+        `\`${parameters[1]}\` command not found. Try \`${prefix}help\` for a list of available commands.`
+      );
+      return;
     }
     const helpEmbed = new MessageEmbed()
       .setColor("#ab47e6")
