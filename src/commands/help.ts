@@ -12,10 +12,10 @@ export const help: CommandInt = {
     "`<?command>` - name of the command to get more information about",
   command: async (message) => {
     const user = message.author;
-    const parameters = message.content.split(" ");
-    if (parameters[1]) {
+    const cmdArguments = message.content.split(" ");
+    if (cmdArguments[1]) {
       for (const command of COMMANDS) {
-        if (parameters[1] === command.prefix) {
+        if (cmdArguments[1] === command.prefix) {
           const matchEmbed = new MessageEmbed()
             .setTitle(command.prefix)
             .setDescription(
@@ -39,7 +39,7 @@ export const help: CommandInt = {
         }
       }
       message.channel.send(
-        `\`${parameters[1]}\` command not found. Try \`${prefix}help\` for a list of available commands.`
+        `\`${cmdArguments[1]}\` command not found. Try \`${prefix}help\` for a list of available commands.`
       );
       return;
     }
