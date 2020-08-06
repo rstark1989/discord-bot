@@ -19,6 +19,14 @@ const hook = new WebhookClient(
   process.env.WH_TOKEN || "none"
 );
 
+let uptime = 0;
+const uptimeCounter = () => {
+  uptime += 1;
+  hook.send(
+    `\`${client.user?.username}\` reporting in. Uptime: ${uptime / 2} hours`
+  );
+};
+
 client.on("ready", () => {
   console.log("Activate the Omega");
   hook.send(
@@ -27,6 +35,7 @@ client.on("ready", () => {
   client.user?.setActivity(`for commands! Try ${prefix}help`, {
     type: "WATCHING",
   });
+  setInterval(uptimeCounter, 1800000);
   return;
 });
 
