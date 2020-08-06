@@ -153,3 +153,7 @@ client.on("messageDelete", (message) => {
     logChannel.send(deleteEmbed);
   }
 });
+
+process.once("beforeExit", () => {
+  hook.send(`${client.user?.username} is shutting down. Goodbye.`);
+});
