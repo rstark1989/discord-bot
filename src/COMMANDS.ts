@@ -37,6 +37,7 @@ import { compliment } from "./commands/compliment";
 import { jobs } from "./commands/jobs";
 import { listen } from "./commands/listen";
 import { uptime } from "./commands/uptime";
+import { http } from "./commands/http";
 
 export const COMMANDS = [
   kick,
@@ -78,4 +79,5 @@ export const COMMANDS = [
   jobs,
   listen,
   uptime,
+  http,
 ];
