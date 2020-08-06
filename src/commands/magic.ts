@@ -10,7 +10,8 @@ export const magic: CommandInt = {
   command: async (message) => {
     const query = message.content.substring(7, message.content.length);
     if (!query) {
-      message.channel.send(`ERROR 400: ${message.author}, missing card name.`);
+      message.channel.send("ERROR 400: Missing card name.");
+      return;
     }
     message.channel.send("STATUS 202: Searching...");
     const data = await fetch(
