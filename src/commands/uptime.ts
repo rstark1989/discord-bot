@@ -10,19 +10,20 @@ export const uptime: CommandInt = {
     const currentTime = Date.now();
     let uptimeNow = currentTime - uptimeTimestamp;
     const uptimeArray = [0, 0, 0];
-    while (uptimeNow > 43200000) {
-      uptimeArray[0] += 1;
-      uptimeNow -= 43200000;
-    }
     while (uptimeNow > 1800000) {
-      uptimeArray[1] += 1;
+      uptimeArray[0] += 1;
       uptimeNow -= 1800000;
     }
-    uptimeArray[2] = uptimeNow / 1000;
+    while (uptimeNow > 60000) {
+      uptimeArray[1] += 1;
+      uptimeNow -= 60000;
+    }
+    uptimeArray[2] = Math.floor(uptimeNow / 1000);
     const uptimeEmbed = new MessageEmbed()
       .setTitle("Bot Uptime")
       .setDescription(
         `${uptimeArray[0]} hours, ${uptimeArray[1]} minutes, and ${uptimeArray[2]} seconds.`
       );
+    message.channel.send(uptimeEmbed);
   },
 };

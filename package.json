@@ -21,6 +21,7 @@
   "scripts": {
     "start": "node ./prod/src/main.js",
     "build": "tsc",
+    "develop": "npm run build && npm run start",
     "lint": "npx eslint src"
   },
   "devDependencies": {
