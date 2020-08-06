@@ -8,4 +8,5 @@ export const fortunes = [
   "You are a ray of sunshine on a cloudy day.",
   "You walk not the easy path - but it is just a path. Where your boots fall does not define you.",
   "Thoughtless steps like thoughtless actions can be life changing. Pay attention to both.",
+  "A new adventure is in your future. Keep an open heart.",
 ];
