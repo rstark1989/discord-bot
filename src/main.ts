@@ -19,6 +19,8 @@ const hook = new WebhookClient(
   process.env.WH_TOKEN || "none"
 );
 
+export const uptimeTimestamp = Date.now();
+
 client.on("ready", () => {
   console.log("Activate the Omega");
   hook.send(
