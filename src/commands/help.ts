@@ -11,7 +11,6 @@ export const help: CommandInt = {
   parameters:
     "`<?command>` - name of the command to get more information about",
   command: async (message) => {
-    const user = message.author;
     const cmdArguments = message.content.split(" ");
     if (cmdArguments[1]) {
       for (const command of COMMANDS) {
@@ -56,9 +55,6 @@ export const help: CommandInt = {
     }
     const commandString = commandArray.sort().join(" | ");
     helpEmbed.addFields({ name: "Available Commands", value: commandString });
-    user.send(helpEmbed);
-    message.channel.send(
-      `BEEP BOOP: <@!${message.author}>, help message sent.`
-    );
+    message.channel.send(helpEmbed);
   },
 };
