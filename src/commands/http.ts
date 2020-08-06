@@ -1,5 +1,4 @@
 import { CommandInt } from "../interfaces/CommandInt";
-import fetch from "node-fetch";
 import { MessageEmbed } from "discord.js";
 import { httpStatusList } from "../resources/httpStatusList";
 
