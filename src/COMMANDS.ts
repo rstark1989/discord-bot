@@ -38,6 +38,7 @@ import { jobs } from "./commands/jobs";
 import { listen } from "./commands/listen";
 import { uptime } from "./commands/uptime";
 import { http } from "./commands/http";
+import { space } from "./commands/space";
 
 export const COMMANDS = [
   kick,
@@ -80,4 +81,5 @@ export const COMMANDS = [
   listen,
   uptime,
   http,
+  space,
 ];
