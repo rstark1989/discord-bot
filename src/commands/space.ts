@@ -14,11 +14,13 @@ export const space: CommandInt = {
       `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API}`
     );
     const data: SpaceInt = await spaceData.json();
+    const copyright = data.copyright || "No Copyright Provided";
     const spaceEmbed = new MessageEmbed()
       .setTitle(`Today's Space Image: ${data.title}`)
-      .setDescription(data.explanation)
+      .setURL("https://apod.nasa.gov/apod/astropix.html")
+      .setDescription(data.explanation.substring(0, 2047))
       .setImage(data.hdurl)
-      .setFooter(`© ${data.copyright}`);
+      .setFooter(`© ${copyright}`);
     message.channel.send(spaceEmbed);
   },
 };
