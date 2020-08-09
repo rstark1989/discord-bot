@@ -40,6 +40,7 @@ import { uptime } from "./commands/uptime";
 import { http } from "./commands/http";
 import { space } from "./commands/space";
 import { hpchar } from "./commands/hpchar";
+import { hpsort } from "./commands/hpsort";
 
 export const COMMANDS = [
   kick,
@@ -84,4 +85,5 @@ export const COMMANDS = [
   http,
   space,
   hpchar,
+  hpsort,
 ];
