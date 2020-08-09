@@ -41,6 +41,7 @@ import { http } from "./commands/http";
 import { space } from "./commands/space";
 import { hpchar } from "./commands/hpchar";
 import { hpsort } from "./commands/hpsort";
+import { hpspell } from "./commands/hpspell";
 
 export const COMMANDS = [
   kick,
@@ -86,4 +87,5 @@ export const COMMANDS = [
   space,
   hpchar,
   hpsort,
+  hpspell,
 ];
