@@ -39,6 +39,7 @@ import { listen } from "./commands/listen";
 import { uptime } from "./commands/uptime";
 import { http } from "./commands/http";
 import { space } from "./commands/space";
+import { hpchar } from "./commands/hpchar";
 
 export const COMMANDS = [
   kick,
@@ -82,4 +83,5 @@ export const COMMANDS = [
   uptime,
   http,
   space,
+  hpchar,
 ];
