@@ -43,6 +43,7 @@ import { hpchar } from "./commands/hpchar";
 import { hpsort } from "./commands/hpsort";
 import { hpspell } from "./commands/hpspell";
 import { joke } from "./commands/joke";
+import { xkcd } from "./commands/xkcd";
 
 export const COMMANDS = [
   kick,
@@ -90,4 +91,5 @@ export const COMMANDS = [
   hpsort,
   hpspell,
   joke,
+  xkcd,
 ];
