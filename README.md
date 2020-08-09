@@ -35,7 +35,7 @@ To set up your own instance of the bot, please review the [Developer Documentati
 
 ### Need Some Help?
 
-Do you need more information on how to contribute? Submit a [new issue](https://github.com/nhcarrigan/discord-bot/issues/new/choose) using the "Contributor Request" template and describe the level of instruction you need, and we will help you get started.
+Do you need more information on how to contribute? Join either of the Discord servers linked above and ask @nhcarrigan for some help!
 
 ## Contributors
 
@@ -44,4 +44,5 @@ Do you need more information on how to contribute? Submit a [new issue](https://
 [Joshua Pelealu](https://github.com/JoshuaPelealu) - Revised `ping` command
 
 ## License
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnhcarrigan%2Fdiscord-bot.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnhcarrigan%2Fdiscord-bot?ref=badge_large)
