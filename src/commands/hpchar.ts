@@ -23,13 +23,13 @@ export const hpchar: CommandInt = {
     const hpEmbed = new MessageEmbed()
       .setTitle(hpData[0].name)
       .addFields(
-        { name: "Role", value: hpData[0].role },
-        { name: "School", value: hpData[0].school },
-        { name: "House", value: hpData[0].house },
-        { name: "Wand", value: hpData[0].wand },
+        { name: "Role", value: hpData[0].role || "No record found." },
+        { name: "School", value: hpData[0].school || "Not a student." },
+        { name: "House", value: hpData[0].house || "Not a Hogwarts student." },
+        { name: "Wand", value: hpData[0].wand || "Not a wand-wielder." },
         { name: "Blood?", value: hpData[0].bloodStatus },
         { name: "Species", value: hpData[0].species },
-        { name: "Patronus", value: hpData[0].patronus }
+        { name: "Patronus", value: hpData[0].patronus || "Not a wizard." }
       );
     message.channel.send(hpEmbed);
   },
