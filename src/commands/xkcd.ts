@@ -22,7 +22,9 @@ export const xkcd: CommandInt = {
     const comicEmbed = new MessageEmbed()
       .setTitle(comicData.title)
       .setDescription(comicData.alt)
-      .setImage(comicData.img);
+      .setImage(comicData.img)
+      .setFooter(`XKCD Comic #${comicData.num}`)
+      .setURL(comicData.link || "https://xkcd.com");
     message.channel.send(comicEmbed);
   },
 };
