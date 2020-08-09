@@ -2,7 +2,7 @@ import { CommandInt } from "../interfaces/CommandInt";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 import { SpaceInt } from "../interfaces/SpaceInt";
-import { MessageEmbed, Message } from "discord.js";
+import { MessageEmbed } from "discord.js";
 
 dotenv.config();
 export const space: CommandInt = {
