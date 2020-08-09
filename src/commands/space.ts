@@ -2,7 +2,7 @@ import { CommandInt } from "../interfaces/CommandInt";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 import { SpaceInt } from "../interfaces/SpaceInt";
-import { MessageEmbed } from "discord.js";
+import { MessageEmbed, Message } from "discord.js";
 
 dotenv.config();
 export const space: CommandInt = {
@@ -20,6 +20,16 @@ export const space: CommandInt = {
       url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API}&date=${date}`;
     const spaceData = await fetch(url);
     const data: SpaceInt = await spaceData.json();
+    if (data.code === 404) {
+      const fourOhfour = new MessageEmbed()
+        .setTitle("SPAAAAACE")
+        .setDescription("ERROR: Bot got lost in space. Please try again later.")
+        .setImage(
+          "https://github.com/nhcarrigan/Weather-App/blob/master/space.png?raw=true"
+        );
+      message.channel.send(fourOhfour);
+      return;
+    }
     const copyright = data.copyright || "No Copyright Provided";
     const spaceEmbed = new MessageEmbed()
       .setTitle(`${data.date} Space Image: ${data.title}`)
