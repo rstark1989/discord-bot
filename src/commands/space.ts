@@ -15,13 +15,10 @@ export const space: CommandInt = {
     let date: string | undefined;
     if (cmdArguments[1] && /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(cmdArguments[1]))
       date = cmdArguments[1];
-    const spaceData = date
-      ? await fetch(
-          `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API}&date=${date}`
-        )
-      : await fetch(
-          `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API}`
-        );
+    let url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API}`;
+    if (date)
+      url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API}&date=${date}`;
+    const spaceData = await fetch(url);
     const data: SpaceInt = await spaceData.json();
     const copyright = data.copyright || "No Copyright Provided";
     const spaceEmbed = new MessageEmbed()
