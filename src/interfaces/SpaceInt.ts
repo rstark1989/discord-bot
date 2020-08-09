@@ -7,4 +7,5 @@ export interface SpaceInt {
   service_version: string;
   title: string;
   url: string;
+  code?: number;
 }
