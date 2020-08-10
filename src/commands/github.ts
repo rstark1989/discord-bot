@@ -30,6 +30,7 @@ export const github: CommandInt = {
       .setDescription(ghUser.bio || "No description provided")
       .setURL(ghUser.html_url)
       .addFields(
+        { name: "Name", value: ghUser.name },
         {
           name: "Followers",
           value: ghUser.followers,
