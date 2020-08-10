@@ -17,8 +17,29 @@ export const github: CommandInt = {
       `https://api.github.com/users/${cmdArguments}/repos?sort=updated`
     );
     const ghRepoParsed: GithubRepoInt[] = await ghRepoData.json();
-    if (ghUser.message === "Not Found" || !ghRepoParsed[0]) {
+    if (ghUser.message === "Not Found") {
       message.channel.send("ERROR 404: Data not found.");
+      return;
+    }
+    if (!ghRepoParsed[0]) {
+      const ghEmbed = new MessageEmbed()
+        .setTitle(`Github User: ${ghUser.login}`)
+        .setDescription(ghUser.bio || "No description provided")
+        .setURL(ghUser.html_url)
+        .addFields(
+          { name: "Name", value: ghUser.name },
+          {
+            name: "Followers",
+            value: ghUser.followers,
+          },
+          { name: "Join Date", value: ghUser.created_at },
+          {
+            name: "Repository Counts",
+            value: `${ghUser.public_repos} public repositories`,
+          }
+        );
+      if (ghUser.avatar_url) ghEmbed.setImage(ghUser.avatar_url);
+      message.channel.send(ghEmbed);
       return;
     }
     const ghRepo = ghRepoParsed.slice(0, 5);
