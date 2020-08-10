@@ -31,6 +31,7 @@ export interface GithubInt {
   following: number;
   created_at: string;
   updated_at: string;
+  message?: string;
 }
 
 export interface GithubRepoInt {
@@ -107,4 +108,5 @@ export interface GithubRepoInt {
   open_issues: number;
   watchers: number;
   default_branch: string;
+  message?: string;
 }
