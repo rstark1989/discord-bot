@@ -45,6 +45,7 @@ import { hpspell } from "./commands/hpspell";
 import { joke } from "./commands/joke";
 import { xkcd } from "./commands/xkcd";
 import { github } from "./commands/github";
+import { habitica } from "./commands/habitica";
 
 export const COMMANDS = [
   kick,
@@ -94,4 +95,5 @@ export const COMMANDS = [
   joke,
   xkcd,
   github,
+  habitica,
 ];

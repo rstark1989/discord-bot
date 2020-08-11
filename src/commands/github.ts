@@ -32,7 +32,10 @@ export const github: CommandInt = {
             name: "Followers",
             value: ghUser.followers,
           },
-          { name: "Join Date", value: ghUser.created_at },
+          {
+            name: "Join Date",
+            value: new Date(ghUser.created_at).toLocaleDateString(),
+          },
           {
             name: "Repository Counts",
             value: `${ghUser.public_repos} public repositories`,
@@ -56,7 +59,10 @@ export const github: CommandInt = {
           name: "Followers",
           value: ghUser.followers,
         },
-        { name: "Join Date", value: ghUser.created_at },
+        {
+          name: "Join Date",
+          value: new Date(ghUser.created_at).toLocaleDateString(),
+        },
         {
           name: "Repository Counts",
           value: `${ghUser.public_repos} public repositories`,
