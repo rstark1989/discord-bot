@@ -31,6 +31,7 @@ export const habitica: CommandInt = {
     const habiticaEmbed = new MessageEmbed()
       .setTitle(habiticaData.data.profile.name)
       .setDescription(`@${habiticaData.data.auth.local.username}`)
+      .setURL(`https://habitica.com/profile/${cmdArguments}`)
       .addFields(
         { name: "Class", value: habiticaData.data.stats.class },
         {
@@ -50,6 +51,18 @@ export const habitica: CommandInt = {
         {
           name: "Experience",
           value: `${habiticaData.data.stats.exp} - (${habiticaData.data.stats.toNextLevel} to reach the next level.)`,
+        },
+        {
+          name: "Join Date",
+          value: new Date(
+            habiticaData.data.auth.timestamps.created
+          ).toLocaleDateString(),
+        },
+        {
+          name: "Last Seen",
+          value: new Date(
+            habiticaData.data.auth.timestamps.loggedin
+          ).toLocaleDateString(),
         }
       );
     message.channel.send(habiticaEmbed);
