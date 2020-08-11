@@ -10,9 +10,7 @@ export const warn: CommandInt = {
     "`<user>`: @name of the user to warn | `<?reason>`: reason for warning the user.",
   command: (message) => {
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {
-      message.channel.send(
-        `ERROR 401: Missing permissions.`
-      );
+      message.channel.send(`ERROR 401: Missing permissions.`);
       return;
     }
     const mod = message.author;
