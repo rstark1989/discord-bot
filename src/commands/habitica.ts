@@ -53,6 +53,12 @@ export const habitica: CommandInt = {
           value: `${habiticaData.data.stats.exp} - (${habiticaData.data.stats.toNextLevel} to reach the next level.)`,
         },
         {
+          name: "Completed Quests",
+          value: Object.keys(habiticaData.data.achievements.quests)
+            .sort()
+            .join(", "),
+        },
+        {
           name: "Join Date",
           value: new Date(
             habiticaData.data.auth.timestamps.created

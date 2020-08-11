@@ -17,6 +17,7 @@ interface HabiticaDataInt {
   achievements: {
     streak: number;
     perfect: number;
+    quests: Record<string, unknown>;
   };
   profile: {
     name: string;
