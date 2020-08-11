@@ -10,20 +10,18 @@ export const warn: CommandInt = {
     "`<user>`: @name of the user to warn | `<?reason>`: reason for warning the user.",
   command: (message) => {
     if (message.member?.hasPermission("KICK_MEMBERS") == false) {
-      message.channel.send(
-        `ERROR 401: ${message.author}, missing permissions.`
-      );
+      message.channel.send(`ERROR 401: Missing permissions.`);
       return;
     }
     const mod = message.author;
     const cmdArguments = message.content.split(" ");
     const user = message.mentions.users.first();
     if (user == undefined) {
-      message.channel.send(`ERROR 400: ${mod}, invalid user tag.`);
+      message.channel.send(`ERROR 400: Invalid user tag.`);
       return;
     }
     if (user == mod) {
-      message.channel.send(`ERROR 400: ${mod}, cannot target self.`);
+      message.channel.send(`ERROR 400: Cannot target self.`);
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);

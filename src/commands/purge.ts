@@ -7,15 +7,13 @@ export const purge: CommandInt = {
   parameters: "`<number>` - number of messages to delete; no more than 100",
   command: async (message) => {
     if (message.member?.hasPermission("MANAGE_MESSAGES") == false) {
-      message.channel.send(
-        `ERROR 401: ${message.author}, missing permissions.`
-      );
+      message.channel.send(`ERROR 401: Missing permissions.`);
       return;
     }
     const cmdArguments = message.content.split(" ");
     const howMany = parseInt(cmdArguments[1]);
     if (isNaN(howMany)) {
-      message.channel.send(`ERROR 400: ${message.author}, invalid number.`);
+      message.channel.send(`ERROR 400: Invalid number.`);
       return;
     }
     if (howMany > 100) {
