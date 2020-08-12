@@ -1,9 +1,9 @@
-export interface HabiticaInt {
+export interface HabiticaUserInt {
   success: boolean;
-  data: HabiticaDataInt;
+  data: HabiticaUserDataInt;
 }
 
-interface HabiticaDataInt {
+interface HabiticaUserDataInt {
   auth: {
     local: {
       username: string;
@@ -17,7 +17,9 @@ interface HabiticaDataInt {
   achievements: {
     streak: number;
     perfect: number;
-    quests: Record<string, unknown>;
+    quests: {
+      [key: string]: number;
+    };
   };
   profile: {
     name: string;
@@ -38,4 +40,46 @@ interface HabiticaDataInt {
     maxHealth: number;
     maxMP: number;
   };
+}
+
+export interface HabiticaAchievementInt {
+  success: boolean;
+  data: HabiticaAchievementDataInt;
+}
+
+interface HabiticaAchievementDataInt {
+  basic: {
+    label: string;
+    achievements: {
+      [key: string]: AchievementInt;
+    };
+  };
+  onboarding: {
+    label: string;
+    achievements: {
+      [key: string]: AchievementInt;
+    };
+  };
+  seasonal: {
+    label: string;
+    achievements: {
+      [key: string]: AchievementInt;
+    };
+  };
+  special: {
+    label: string;
+    achievements: {
+      [key: string]: AchievementInt;
+    };
+  };
+}
+
+interface AchievementInt {
+  title: string;
+  text: string;
+  icon: string;
+  earned: boolean;
+  value?: number | boolean;
+  index: number;
+  optionalCount?: number;
 }
