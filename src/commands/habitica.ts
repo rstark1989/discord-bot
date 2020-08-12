@@ -155,6 +155,8 @@ export const habitica: CommandInt = {
       );
     message.channel.send(habiticaEmbed);
     message.channel.send(achievementEmbed);
-    message.channel.send(questEmbed);
+    message.channel
+      .send(questEmbed)
+      .catch(() => message.channel.send("ERROR 507: Too many quests."));
   },
 };
