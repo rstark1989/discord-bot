@@ -85,9 +85,16 @@ export const habitica: CommandInt = {
       )
       .map((el) => habiticaAchievementData.data.special.achievements[el].title)
       .join(", ");
+    const quests = Object.keys(habiticaData.data.achievements.quests)
+      .sort()
+      .map((el) => `${el} (${habiticaData.data.achievements.quests[el]})`);
+    const questsFirst = quests
+      .slice(0, Math.floor(quests.length / 2))
+      .join(", ");
+    const questsSecond = quests.slice(Math.floor(quests.length / 2)).join(", ");
     const habiticaEmbed = new MessageEmbed()
       .setTitle(habiticaData.data.profile.name)
-      .setDescription(`@${habiticaData.data.auth.local.username}`)
+      .setDescription(`@${habiticaData.data.auth.local.username}: Stats`)
       .setURL(`https://habitica.com/profile/${cmdArguments}`)
       .addFields(
         { name: "Class", value: habiticaData.data.stats.class },
@@ -110,22 +117,6 @@ export const habitica: CommandInt = {
           value: `${habiticaData.data.stats.exp} - (${habiticaData.data.stats.toNextLevel} to reach the next level.)`,
         },
         {
-          name: "Completed Quests",
-          value: Object.keys(habiticaData.data.achievements.quests)
-            .sort()
-            .join(", "),
-        },
-        { name: "Basic Achievements", value: basicAchievements || "None" },
-        {
-          name: "Onboarding Achievements",
-          value: onboardingAchievements || "None",
-        },
-        {
-          name: "Seasonal Achievements",
-          value: seasonalAchievements || "None",
-        },
-        { name: "Special Achievements", value: specialAchievements || "None" },
-        {
           name: "Join Date",
           value: new Date(
             habiticaData.data.auth.timestamps.created
@@ -138,6 +129,32 @@ export const habitica: CommandInt = {
           ).toLocaleDateString(),
         }
       );
+    const achievementEmbed = new MessageEmbed()
+      .setTitle(habiticaData.data.profile.name)
+      .setDescription(`@${habiticaData.data.auth.local.username}: Achievements`)
+      .setURL(`https://habitica.com/profile/${cmdArguments}`)
+      .addFields(
+        { name: "Basic Achievements", value: basicAchievements || "None" },
+        {
+          name: "Onboarding Achievements",
+          value: onboardingAchievements || "None",
+        },
+        {
+          name: "Seasonal Achievements",
+          value: seasonalAchievements || "None",
+        },
+        { name: "Special Achievements", value: specialAchievements || "None" }
+      );
+    const questEmbed = new MessageEmbed()
+      .setTitle(habiticaData.data.profile.name)
+      .setDescription(`@${habiticaData.data.auth.local.username}: Quests`)
+      .setURL(`https://habitica.com/profile/${cmdArguments}`)
+      .addFields(
+        { name: "Quests", value: questsFirst },
+        { name: "More Quests", value: questsSecond }
+      );
     message.channel.send(habiticaEmbed);
+    message.channel.send(achievementEmbed);
+    message.channel.send(questEmbed);
   },
 };
