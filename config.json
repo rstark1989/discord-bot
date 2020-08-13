@@ -5,5 +5,7 @@
   "silence_role": "Restricted",
   "silence_category": "Appeals",
   "love": ["465650873650118659", "454008198106447882"],
-  "bot_role": "BOT"
+  "bot_role": "BOT",
+  "bot_id": "716707753090875473",
+  "mod_role": "Patroller"
 }

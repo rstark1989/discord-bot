@@ -16,12 +16,17 @@ export const warn: CommandInt = {
     const mod = message.author;
     const cmdArguments = message.content.split(" ");
     const user = message.mentions.users.first();
+    const bot = config.bot_id;
     if (user == undefined) {
       message.channel.send(`ERROR 400: Invalid user tag.`);
       return;
     }
     if (user == mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
+      return;
+    }
+    if (user?.id == bot) {
+      message.channel.send("ERROR 400: Cannot target me.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);

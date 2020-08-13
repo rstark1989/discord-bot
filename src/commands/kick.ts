@@ -17,12 +17,17 @@ export const kick: CommandInt = {
     const cmdArguments = message.content.split(" ");
     const member = message.mentions.members?.first();
     const user = message.mentions.users.first();
+    const bot = config.bot_id;
     if (member == undefined) {
       message.channel.send("ERROR 404: Invalid user tag.");
       return;
     }
     if (user == mod) {
       message.channel.send("ERROR 400: Cannot target self.");
+      return;
+    }
+    if (user?.id == bot || member.id == bot) {
+      message.channel.send("ERROR 400: Cannot target me.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);

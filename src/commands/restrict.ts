@@ -35,9 +35,28 @@ export const restrict: CommandInt = {
       message.channel.send("ERROR 404: Missing suspend role.");
       return;
     }
+    const botRole = message.guild?.roles.cache.find(
+      (role) => role.name == config.bot_role
+    );
+    if (!botRole) {
+      message.channel.send("ERROR 404: Missing Bot role.");
+      return;
+    }
+    const modRole = message.guild?.roles.cache.find(
+      (role) => role.name == config.mod_role
+    );
+    if (!modRole) {
+      message.channel.send("ERROR 404: Missing moderator role.");
+      return;
+    }
     const mod = message.author;
     const msgArguments = message.content.split(" ");
     const member = message.mentions.members?.first();
+    const bot = config.bot_id;
+    if (member?.id == bot) {
+      message.channel.send("ERROR 400: Cannot target me.");
+      return;
+    }
     if (!member) {
       message.channel.send("ERROR 404: Invalid user tag.");
       return;
@@ -78,6 +97,14 @@ export const restrict: CommandInt = {
         {
           id: message.guild?.id,
           deny: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "SEND_MESSAGES"],
+        },
+        {
+          id: modRole,
+          allow: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "SEND_MESSAGES"],
+        },
+        {
+          id: botRole,
+          allow: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "SEND_MESSAGES"],
         },
       ],
       parent: category,
