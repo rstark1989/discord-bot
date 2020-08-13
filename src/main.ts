@@ -50,8 +50,8 @@ client.on("guildDelete", (guild) => {
 client.on("guildMemberAdd", (member) => {
   const welcomeEmbed = new MessageEmbed()
     .setColor("#00ff00")
-    .setTitle("Welcome!")
-    .setDescription("BEEP BOOP: Gratitude for joining my server.")
+    .setTitle(`Welcome to ${member.guild.name}`)
+    .setDescription("BEEP BOOP: Gratitude for joining our server.")
     .addFields(
       {
         name: "Rules:",
