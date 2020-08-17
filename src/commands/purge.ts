@@ -21,14 +21,17 @@ export const purge: CommandInt = {
       return;
     }
     message.channel.messages.fetch({ limit: howMany }).then((messages) => {
-      message.channel.bulkDelete(messages);
-      message.channel
-        .send(
-          `BEEP BOOP: Initiating deletion protocol for ${howMany} messages.`
-        )
-        .then((message) => {
-          message.delete({ timeout: 5000 });
-        });
+      if (message.channel.type === "text") {
+        message.channel.bulkDelete(messages);
+        message.channel
+          .send(
+            `BEEP BOOP: Initiating deletion protocol for ${howMany} messages.`
+          )
+          .then((message) => {
+            message.delete({ timeout: 5000 });
+          });
+      } else
+        message.channel.send("ERROR 400: Can only delete from text channel.");
     });
   },
 };
