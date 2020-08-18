@@ -32,7 +32,7 @@ export const star: CommandInt = {
       name: "Reason",
       value: reasonMessage,
     });
-    if (message.mentions.users.first() == message.author) {
+    if (message.mentions.users.first() === message.author) {
       message.channel.send("ERROR 400: Cannot target self.");
       return;
     }

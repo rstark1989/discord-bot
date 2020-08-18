@@ -29,21 +29,21 @@ export const restrict: CommandInt = {
       return;
     }
     const suspend = message.guild?.roles.cache.find(
-      (role) => role.name == config.silence_role
+      (role) => role.name === config.silence_role
     );
     if (!suspend) {
       message.channel.send("ERROR 404: Missing suspend role.");
       return;
     }
     const botRole = message.guild?.roles.cache.find(
-      (role) => role.name == config.bot_role
+      (role) => role.name === config.bot_role
     );
     if (!botRole) {
       message.channel.send("ERROR 404: Missing Bot role.");
       return;
     }
     const modRole = message.guild?.roles.cache.find(
-      (role) => role.name == config.mod_role
+      (role) => role.name === config.mod_role
     );
     if (!modRole) {
       message.channel.send("ERROR 404: Missing moderator role.");
@@ -53,7 +53,7 @@ export const restrict: CommandInt = {
     const msgArguments = message.content.split(" ");
     const member = message.mentions.members?.first();
     const bot = config.bot_id;
-    if (member?.id == bot) {
+    if (member?.id === bot) {
       message.channel.send("ERROR 400: Cannot target me.");
       return;
     }
@@ -67,7 +67,7 @@ export const restrict: CommandInt = {
     }
     const reasonArg = msgArguments.slice(2, msgArguments.length);
     let reason = reasonArg.join(" ");
-    if (reason == "") {
+    if (!reason) {
       reason = "ERROR 404: No reason provided.";
     }
     const restrictEmbed = new MessageEmbed()

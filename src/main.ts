@@ -71,7 +71,7 @@ client.on("guildMemberAdd", (member) => {
       `BEEP BOOP: New member detected. Initiate welcome protocol for <@!${member.user}>!`
     );
   const welcomeChannel = member.guild.channels.cache.find(
-    (channel) => channel.name == config.join_leave_channel
+    (channel) => channel.name === config.join_leave_channel
   ) as TextChannel;
   if (!welcomeChannel) {
     console.error("welcome channel not found.");
@@ -82,7 +82,7 @@ client.on("guildMemberAdd", (member) => {
 
 client.on("guildMemberRemove", (member) => {
   const goodbyeChannel = member.guild.channels.cache.find(
-    (channel) => channel.name == config.join_leave_channel
+    (channel) => channel.name === config.join_leave_channel
   ) as TextChannel;
   const departEmbed = new MessageEmbed()
     .setColor("#ab47e6")
@@ -125,7 +125,7 @@ client.on("message", (message) => {
 
 client.on("messageDelete", (message) => {
   const logChannel = message.guild?.channels.cache.find(
-    (channel) => channel.name == config.log_channel
+    (channel) => channel.name === config.log_channel
   ) as TextChannel;
   const deleteEmbed = new MessageEmbed()
     .setTitle("A message was deleted.")

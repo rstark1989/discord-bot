@@ -15,7 +15,7 @@ export const pokeNum: CommandInt = {
       return;
     }
     let number = parseInt(cmdArguments[1]);
-    if (cmdArguments[1].toLowerCase() == "random") {
+    if (cmdArguments[1].toLowerCase() === "random") {
       number = Math.floor(Math.random() * 802);
     }
     if (number < 0 || number > 802) {

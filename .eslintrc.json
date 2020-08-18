@@ -18,6 +18,7 @@
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double", { "allowTemplateLiterals": true }],
     "semi": ["error", "always"],
-    "prefer-const": "error"
+    "prefer-const": "error",
+    "eqeqeq": ["error", "always"]
   }
 }

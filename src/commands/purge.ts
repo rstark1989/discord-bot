@@ -6,7 +6,7 @@ export const purge: CommandInt = {
     "Purges **number** of messages from the current channel. Restricted to server moderators.",
   parameters: "`<number>` - number of messages to delete; no more than 100",
   command: async (message) => {
-    if (message.member?.hasPermission("MANAGE_MESSAGES") == false) {
+    if (!message.member?.hasPermission("MANAGE_MESSAGES")) {
       message.channel.send(`ERROR 401: Missing permissions.`);
       return;
     }
