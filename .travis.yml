@@ -7,3 +7,6 @@ jobs:
     - stage: Lint JS
       script:
         - npm run lint
+    - stage: Build TS
+      script:
+        - npm run build
