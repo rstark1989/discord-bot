@@ -8,7 +8,7 @@ export const unrestrict: CommandInt = {
   parameters:
     "`<user>`: @name of the user to restore | `<?reason>`: reason for restoring the user.",
   command: (message) => {
-    if (message.member?.hasPermission("KICK_MEMBERS") == false) {
+    if (!message.member?.hasPermission("KICK_MEMBERS")) {
       message.channel.send("ERROR 401: Missing permissions.");
       return;
     }
@@ -16,21 +16,21 @@ export const unrestrict: CommandInt = {
     const cmdArguments = message.content.split(" ");
     const member = message.mentions.members?.first();
     const user = message.mentions.users.first();
-    if (member == undefined) {
+    if (!member) {
       message.channel.send("ERROR 400: Invalid user tag.");
       return;
     }
-    if (user == mod) {
+    if (user === mod) {
       message.channel.send("ERROR 400: Cannot target self.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
-    if (reason == "") {
+    if (!reason) {
       reason = "ERROR 404: No reason provided.";
     }
     const suspend = message.guild?.roles.cache.find(
-      (role) => role.name == config.silence_role
+      (role) => role.name === config.silence_role
     );
     if (!suspend) {
       message.channel.send("ERROR 304: Missing 'Restricted' role.");

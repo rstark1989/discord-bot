@@ -9,7 +9,7 @@ export const kick: CommandInt = {
   parameters:
     "`<user>`: @name of the user to kick | `<?reason>`: reason for kicking the user",
   command: (message) => {
-    if (message.member?.hasPermission("KICK_MEMBERS") == false) {
+    if (!message.member?.hasPermission("KICK_MEMBERS")) {
       message.channel.send("ERROR 401: Missing permissions.");
       return;
     }
@@ -18,21 +18,21 @@ export const kick: CommandInt = {
     const member = message.mentions.members?.first();
     const user = message.mentions.users.first();
     const bot = config.bot_id;
-    if (member == undefined) {
+    if (!member) {
       message.channel.send("ERROR 404: Invalid user tag.");
       return;
     }
-    if (user == mod) {
+    if (user === mod) {
       message.channel.send("ERROR 400: Cannot target self.");
       return;
     }
-    if (user?.id == bot || member.id == bot) {
+    if (user?.id === bot || member.id === bot) {
       message.channel.send("ERROR 400: Cannot target me.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
-    if (reason == "") {
+    if (!reason) {
       reason = "ERROR 404: No reason provided";
     }
     const kickEmbed = new MessageEmbed()

@@ -21,26 +21,26 @@ export const profile: CommandInt = {
       message.channel.send("ERROR 400: Missing profile ID.");
       return;
     }
-    if (website == "steam") {
+    if (website === "steam") {
       prefix = "https://steamcommunity.com/id/";
     }
-    if (website == "facebook") {
+    if (website === "facebook") {
       prefix = "https://facebook.com/";
     }
-    if (website == "github") {
+    if (website === "github") {
       prefix = "https://github.com/";
     }
-    if (website == "twitter") {
+    if (website === "twitter") {
       prefix = "https://twitter.com/";
     }
-    if (website == "linkedin") {
+    if (website === "linkedin") {
       prefix = "https://linkedin.com/in/";
     }
-    if (website == "tumblr") {
+    if (website === "tumblr") {
       prefix = "https://";
       id = id + ".tumblr.com";
     }
-    if (website == "instagram") {
+    if (website === "instagram") {
       prefix = "https://instagram.com/";
     }
     if (!prefix) {

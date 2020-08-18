@@ -14,7 +14,7 @@ export const ban: CommandInt = {
   parameters:
     "`<user>`: @name of the user to ban | `<?reason>`: reason for banning the user",
   command: (message) => {
-    if (message.member?.hasPermission("BAN_MEMBERS") == false) {
+    if (!message.member?.hasPermission("BAN_MEMBERS")) {
       message.channel.send("ERROR 401: Missing permissions.");
       return;
     }
@@ -23,21 +23,21 @@ export const ban: CommandInt = {
     const member = message.mentions.members?.first();
     const user = message.mentions.users.first();
     const bot = config.bot_id;
-    if (member == undefined) {
+    if (!member) {
       message.channel.send("ERROR 404: Invalid usertag.");
       return;
     }
-    if (user == mod) {
+    if (user === mod) {
       message.channel.send("ERROR 400: Cannot target self.");
       return;
     }
-    if (user?.id == bot || member.id == bot) {
+    if (user?.id === bot || member.id === bot) {
       message.channel.send("ERROR 400: Cannot target me.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
-    if (reason == "") {
+    if (!reason) {
       reason = "ERROR 404: No reason provided";
     }
     const banEmbed = new MessageEmbed()
@@ -59,11 +59,11 @@ export const ban: CommandInt = {
     );
     const collector: MessageCollector = new MessageCollector(
       message.channel as TextChannel,
-      (m: Message) => m.author == message.author,
+      (m: Message) => m.author === message.author,
       { time: 10000 }
     );
     collector.on("collect", (reply) => {
-      if (reply.content == "Yes") {
+      if (reply.content === "Yes") {
         const modChannel = message.guild?.channels.cache.find(
           (channel) => channel.name === config.log_channel
         ) as TextChannel;
@@ -74,10 +74,9 @@ export const ban: CommandInt = {
           message.channel.send("ERROR 404: Log channel not found.");
         }
         member.ban({ reason: reason }).catch((err) => console.log(err));
-        return "success";
-      } else {
-        message.channel.send("STATUS 304: Request cancelled.");
+        return;
       }
+      message.channel.send("STATUS 304: Request cancelled.");
     });
   },
 };

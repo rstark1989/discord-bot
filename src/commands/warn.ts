@@ -9,7 +9,7 @@ export const warn: CommandInt = {
   parameters:
     "`<user>`: @name of the user to warn | `<?reason>`: reason for warning the user.",
   command: (message) => {
-    if (message.member?.hasPermission("KICK_MEMBERS") == false) {
+    if (!message.member?.hasPermission("KICK_MEMBERS")) {
       message.channel.send(`ERROR 401: Missing permissions.`);
       return;
     }
@@ -17,21 +17,21 @@ export const warn: CommandInt = {
     const cmdArguments = message.content.split(" ");
     const user = message.mentions.users.first();
     const bot = config.bot_id;
-    if (user == undefined) {
+    if (!user) {
       message.channel.send(`ERROR 400: Invalid user tag.`);
       return;
     }
-    if (user == mod) {
+    if (user === mod) {
       message.channel.send(`ERROR 400: Cannot target self.`);
       return;
     }
-    if (user?.id == bot) {
+    if (user?.id === bot) {
       message.channel.send("ERROR 400: Cannot target me.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
-    if (reason == "") {
+    if (!reason) {
       reason = "ERROR 404: No reason provided.";
     }
     const warnEmbed = new MessageEmbed()

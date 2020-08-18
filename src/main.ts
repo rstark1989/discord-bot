@@ -71,32 +71,32 @@ client.on("guildMemberAdd", (member) => {
       `BEEP BOOP: New member detected. Initiate welcome protocol for <@!${member.user}>!`
     );
   const welcomeChannel = member.guild.channels.cache.find(
-    (channel) => channel.name == config.join_leave_channel
+    (channel) => channel.name === config.join_leave_channel
   ) as TextChannel;
   if (!welcomeChannel) {
     console.error("welcome channel not found.");
     return;
-  } else {
-    welcomeChannel.send(welcomeLogEmbed).catch((err) => console.error(err));
   }
+  welcomeChannel.send(welcomeLogEmbed).catch((err) => console.error(err));
 });
 
 client.on("guildMemberRemove", (member) => {
   const goodbyeChannel = member.guild.channels.cache.find(
-    (channel) => channel.name == config.join_leave_channel
+    (channel) => channel.name === config.join_leave_channel
   ) as TextChannel;
   const departEmbed = new MessageEmbed()
     .setColor("#ab47e6")
     .setTitle("A user has left us! 😦")
     .setDescription(
-      `BEEP BOOP: User departure detected. Initiate goodbye protocol for <@!${member.user}>! You will be missed!`
+      `BEEP BOOP: User departure detected. Initiate goodbye protocol for ${
+        member.nickname || member.user?.username
+      }! You will be missed!`
     );
   if (!goodbyeChannel) {
     console.error("depart channel not found.");
     return;
-  } else {
-    goodbyeChannel.send(departEmbed).catch((err) => console.error(err));
   }
+  goodbyeChannel.send(departEmbed).catch((err) => console.error(err));
 });
 
 client.on("message", (message) => {
@@ -125,7 +125,7 @@ client.on("message", (message) => {
 
 client.on("messageDelete", (message) => {
   const logChannel = message.guild?.channels.cache.find(
-    (channel) => channel.name == config.log_channel
+    (channel) => channel.name === config.log_channel
   ) as TextChannel;
   const deleteEmbed = new MessageEmbed()
     .setTitle("A message was deleted.")
@@ -149,9 +149,8 @@ client.on("messageDelete", (message) => {
     console.error("logging channel not found");
     message.channel.send(deleteEmbed);
     return;
-  } else {
-    logChannel.send(deleteEmbed);
   }
+  logChannel.send(deleteEmbed);
 });
 
 process.once("beforeExit", () => {
