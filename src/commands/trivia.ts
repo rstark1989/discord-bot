@@ -20,14 +20,17 @@ export const trivia: CommandInt = {
     );
     const parsedData: TriviaInt = await data.json();
     const question = parsedData.results[0];
-    const answers = question.incorrect_answers.map((el) => el);
-    answers.push(question.correct_answer);
+    const answers = question.incorrect_answers.map((el) =>
+      el.replace(/&quot;/g, `"`)
+    );
+    answers.push(question.correct_answer.replace(/&quot;/g, `"`));
     answers.sort();
     const correct: string[] = [];
-    const correctAnswer = letters[answers.indexOf(question.correct_answer)];
+    const correctAnswer =
+      letters[answers.indexOf(question.correct_answer.replace(/&quot;/g, `"`))];
     const triviaEmbed = new MessageEmbed()
       .setTitle(question.category)
-      .setDescription(question.question)
+      .setDescription(question.question.replace(/&quot;/g, `"`))
       .addFields(
         { name: "A", value: answers[0] },
         { name: "B", value: answers[1] },
@@ -50,7 +53,10 @@ export const trivia: CommandInt = {
     });
     setTimeout(() => {
       message.channel.send(
-        `The correct answer is... ${correctAnswer}: ${question.correct_answer}!`
+        `The correct answer is... ${correctAnswer}: ${question.correct_answer.replace(
+          /&quot;/g,
+          `"`
+        )}!`
       );
       message.channel.send(
         correct.length
