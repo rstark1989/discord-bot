@@ -88,7 +88,9 @@ client.on("guildMemberRemove", (member) => {
     .setColor("#ab47e6")
     .setTitle("A user has left us! 😦")
     .setDescription(
-      `BEEP BOOP: User departure detected. Initiate goodbye protocol for <@!${member.user}>! You will be missed!`
+      `BEEP BOOP: User departure detected. Initiate goodbye protocol for ${
+        member.nickname || member.user?.username
+      }! You will be missed!`
     );
   if (!goodbyeChannel) {
     console.error("depart channel not found.");
