@@ -40,7 +40,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx eslint src --fix"
+      "pre-commit": "npm run lint"
     }
   }
 }
