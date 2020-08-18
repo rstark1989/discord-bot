@@ -15,13 +15,13 @@ export const usageListen: ListenerInt = {
           newLog.save((err: Error) => {
             if (err) console.error(err);
           });
-        } else {
-          const oldUses = data.uses;
-          data.uses = oldUses + 1;
-          data.save((err: Error) => {
-            if (err) console.error(err);
-          });
+          return;
         }
+        const oldUses = data.uses;
+        data.uses = oldUses + 1;
+        data.save((err: Error) => {
+          if (err) console.error(err);
+        });
       }
     );
   },

@@ -74,10 +74,9 @@ export const ban: CommandInt = {
           message.channel.send("ERROR 404: Log channel not found.");
         }
         member.ban({ reason: reason }).catch((err) => console.log(err));
-        return "success";
-      } else {
-        message.channel.send("STATUS 304: Request cancelled.");
+        return;
       }
+      message.channel.send("STATUS 304: Request cancelled.");
     });
   },
 };

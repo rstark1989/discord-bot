@@ -18,20 +18,20 @@ export const levelListen: ListenerInt = {
           newUser.save((err: Error) => {
             if (err) console.log(err);
           });
-        } else {
-          const oldPoints = data.points % 100;
-          data.points = data.points + Math.floor(Math.random() * 5) + 1;
-          const currentPoints = data.points % 100;
-          const currentExp = data.points;
-          data.save((err: Error) => {
-            if (err) console.log(err);
-          });
-          if (currentPoints < oldPoints) {
-            const currentLevel = Math.floor(currentExp / 100);
-            message.channel.send(
-              `BEEP BOOP: Congratulations <@!${message.author}>! You have reached level ${currentLevel}!`
-            );
-          }
+          return;
+        }
+        const oldPoints = data.points % 100;
+        data.points = data.points + Math.floor(Math.random() * 5) + 1;
+        const currentPoints = data.points % 100;
+        const currentExp = data.points;
+        data.save((err: Error) => {
+          if (err) console.log(err);
+        });
+        if (currentPoints < oldPoints) {
+          const currentLevel = Math.floor(currentExp / 100);
+          message.channel.send(
+            `BEEP BOOP: Congratulations <@!${message.author}>! You have reached level ${currentLevel}!`
+          );
         }
       }
     );

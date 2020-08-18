@@ -15,14 +15,14 @@ export const usage: CommandInt = {
       (err: Error, data: CommandLogInt) => {
         if (err || !data) {
           message.channel.send("ERROR 404: Command history not found.");
-        } else {
-          const commandEmbed = new MessageEmbed()
-            .setTitle(command)
-            .setDescription(
-              `BEEP BOOP: This command has been used ${data.uses} times!`
-            );
-          message.channel.send(commandEmbed);
+          return;
         }
+        const commandEmbed = new MessageEmbed()
+          .setTitle(command)
+          .setDescription(
+            `BEEP BOOP: This command has been used ${data.uses} times!`
+          );
+        message.channel.send(commandEmbed);
       }
     );
   },

@@ -30,8 +30,9 @@ export const purge: CommandInt = {
           .then((message) => {
             message.delete({ timeout: 5000 });
           });
-      } else
-        message.channel.send("ERROR 400: Can only delete from text channel.");
+        return;
+      }
+      message.channel.send("ERROR 400: Can only delete from text channel.");
     });
   },
 };

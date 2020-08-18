@@ -76,9 +76,8 @@ client.on("guildMemberAdd", (member) => {
   if (!welcomeChannel) {
     console.error("welcome channel not found.");
     return;
-  } else {
-    welcomeChannel.send(welcomeLogEmbed).catch((err) => console.error(err));
   }
+  welcomeChannel.send(welcomeLogEmbed).catch((err) => console.error(err));
 });
 
 client.on("guildMemberRemove", (member) => {
@@ -94,9 +93,8 @@ client.on("guildMemberRemove", (member) => {
   if (!goodbyeChannel) {
     console.error("depart channel not found.");
     return;
-  } else {
-    goodbyeChannel.send(departEmbed).catch((err) => console.error(err));
   }
+  goodbyeChannel.send(departEmbed).catch((err) => console.error(err));
 });
 
 client.on("message", (message) => {
@@ -149,9 +147,8 @@ client.on("messageDelete", (message) => {
     console.error("logging channel not found");
     message.channel.send(deleteEmbed);
     return;
-  } else {
-    logChannel.send(deleteEmbed);
   }
+  logChannel.send(deleteEmbed);
 });
 
 process.once("beforeExit", () => {
