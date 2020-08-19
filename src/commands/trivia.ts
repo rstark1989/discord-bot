@@ -83,6 +83,6 @@ export const trivia: CommandInt = {
           ? `Congratulations to ${correct.join(", ")}!`
           : `No one got this question correct. :(`
       );
-    }, 10000);
+    }, 30000);
   },
 };
