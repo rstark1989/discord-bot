@@ -21,16 +21,36 @@ export const trivia: CommandInt = {
     const parsedData: TriviaInt = await data.json();
     const question = parsedData.results[0];
     const answers = question.incorrect_answers.map((el) =>
-      el.replace(/&quot;/g, `"`)
+      el
+        .replace(/&quot;/g, `"`)
+        .replace(/&#039;/g, `'`)
+        .replace(/ &amp;/g, `&`)
     );
-    answers.push(question.correct_answer.replace(/&quot;/g, `"`));
+    answers.push(
+      question.correct_answer
+        .replace(/&quot;/g, `"`)
+        .replace(/&#039;/g, `'`)
+        .replace(/ &amp;/g, `&`)
+    );
     answers.sort();
     const correct: string[] = [];
     const correctAnswer =
-      letters[answers.indexOf(question.correct_answer.replace(/&quot;/g, `"`))];
+      letters[
+        answers.indexOf(
+          question.correct_answer
+            .replace(/&quot;/g, `"`)
+            .replace(/&#039;/g, `'`)
+            .replace(/ &amp;/g, `&`)
+        )
+      ];
     const triviaEmbed = new MessageEmbed()
       .setTitle(question.category)
-      .setDescription(question.question.replace(/&quot;/g, `"`))
+      .setDescription(
+        question.question
+          .replace(/&quot;/g, `"`)
+          .replace(/&#039;/g, `'`)
+          .replace(/ &amp;/g, `&`)
+      )
       .addFields(
         { name: "A", value: answers[0] },
         { name: "B", value: answers[1] },
@@ -41,7 +61,7 @@ export const trivia: CommandInt = {
     const collector = new MessageCollector(
       message.channel as TextChannel,
       (m: Message) => !!m,
-      { time: 10000 }
+      { time: 30000 }
     );
     collector.on("collect", (reply: Message) => {
       if (
@@ -53,16 +73,16 @@ export const trivia: CommandInt = {
     });
     setTimeout(() => {
       message.channel.send(
-        `The correct answer is... ${correctAnswer}: ${question.correct_answer.replace(
-          /&quot;/g,
-          `"`
-        )}!`
+        `The correct answer is... ${correctAnswer}: ${question.correct_answer
+          .replace(/&quot;/g, `"`)
+          .replace(/&#039;/g, `'`)
+          .replace(/ &amp;/g, `&`)}!`
       );
       message.channel.send(
         correct.length
           ? `Congratulations to ${correct.join(", ")}!`
           : `No one got this question correct. :(`
       );
-    }, 10000);
+    }, 30000);
   },
 };
