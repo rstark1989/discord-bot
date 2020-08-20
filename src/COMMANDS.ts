@@ -47,6 +47,7 @@ import { xkcd } from "./commands/xkcd";
 import { github } from "./commands/github";
 import { habitica } from "./commands/habitica";
 import { trivia } from "./commands/trivia";
+import { fact } from "./commands/fact";
 
 export const COMMANDS = [
   kick,
@@ -98,4 +99,5 @@ export const COMMANDS = [
   github,
   habitica,
   trivia,
+  fact,
 ];
