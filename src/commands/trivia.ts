@@ -34,6 +34,7 @@ export const trivia: CommandInt = {
     );
     answers.sort();
     const correct: string[] = [];
+    const answered: string[] = [];
     const correctAnswer =
       letters[
         answers.indexOf(
@@ -66,9 +67,17 @@ export const trivia: CommandInt = {
     collector.on("collect", (reply: Message) => {
       if (
         reply.content === correctAnswer &&
-        correct.indexOf(`<@!${reply.author.id}>`) === -1
+        correct.indexOf(`<@!${reply.author.id}>`) === -1 &&
+        answered.indexOf(`<@!${reply.author.id}>`) === -1
       ) {
         correct.push(`<@!${reply.author.id}>`);
+        answered.push(`<@!${reply.author.id}>`);
+      }
+      if (
+        letters.indexOf(reply.content) !== -1 &&
+        answered.indexOf(`<@!${reply.author.id}>`) === -1
+      ) {
+        answered.push(`<@!${reply.author.id}>`);
       }
     });
     setTimeout(() => {
