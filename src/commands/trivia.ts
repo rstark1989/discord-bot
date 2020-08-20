@@ -7,7 +7,6 @@ import {
   Message,
 } from "discord.js";
 import { TriviaInt } from "../interfaces/TriviaInt";
-import { realpathSync } from "fs";
 
 export const trivia: CommandInt = {
   prefix: "trivia",
