@@ -21,6 +21,9 @@ export const usage: CommandInt = {
           .setTitle(command)
           .setDescription(
             `BEEP BOOP: This command has been used ${data.uses} times!`
+          )
+          .setFooter(
+            `The command was last called by ${data.lastCaller} on ${data.lastCalled}`
           );
         message.channel.send(commandEmbed);
       }

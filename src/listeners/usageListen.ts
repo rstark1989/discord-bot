@@ -15,6 +15,7 @@ export const usageListen: ListenerInt = {
             command: command,
             uses: 1,
             lastCalled: new Date(Date.now()).toLocaleDateString(),
+            lastCaller: message.author.username,
           });
           newLog.save((err: Error) => {
             if (err) console.error(err);
@@ -24,9 +25,10 @@ export const usageListen: ListenerInt = {
         const oldUses = data.uses;
         data.uses = oldUses + 1;
         data.lastCalled = new Date(Date.now()).toLocaleDateString();
-        data.save((err: Error) => {
-          if (err) console.error(err);
-        });
+        (data.lastCaller = message.author.username),
+          data.save((err: Error) => {
+            if (err) console.error(err);
+          });
       }
     );
   },
