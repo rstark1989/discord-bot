@@ -13,11 +13,13 @@ export const space: CommandInt = {
   command: async (message) => {
     const cmdArguments = message.content.split(" ");
     let date: string | undefined;
-    if (cmdArguments[1] && /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(cmdArguments[1]))
+    if (cmdArguments[1] && /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(cmdArguments[1])) {
       date = cmdArguments[1];
+    }
     let url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API}`;
-    if (date)
+    if (date) {
       url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API}&date=${date}`;
+    }
     const spaceData = await fetch(url);
     const data: SpaceInt = await spaceData.json();
     if (data.code === 404) {

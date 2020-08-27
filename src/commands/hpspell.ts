@@ -22,8 +22,9 @@ export const hpspell: CommandInt = {
     let targetSpell = spellData.filter(
       (el) => el.spell.toLowerCase().trim() === cmdArguments
     )[0];
-    if (cmdArguments === "random")
+    if (cmdArguments === "random") {
       targetSpell = spellData[Math.floor(Math.random() * spellData.length)];
+    }
     if (!targetSpell) {
       message.channel.send(
         "ERROR 404: Spell not found. It's leviOsa, not leviosA."

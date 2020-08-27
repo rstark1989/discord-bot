@@ -41,7 +41,9 @@ export const github: CommandInt = {
             value: `${ghUser.public_repos} public repositories`,
           }
         );
-      if (ghUser.avatar_url) ghEmbed.setImage(ghUser.avatar_url);
+      if (ghUser.avatar_url) {
+        ghEmbed.setImage(ghUser.avatar_url);
+      }
       message.channel.send(ghEmbed);
       return;
     }
@@ -69,7 +71,9 @@ export const github: CommandInt = {
         },
         { name: "Recently updated", value: repositories }
       );
-    if (ghUser.avatar_url) ghEmbed.setImage(ghUser.avatar_url);
+    if (ghUser.avatar_url) {
+      ghEmbed.setImage(ghUser.avatar_url);
+    }
     message.channel.send(ghEmbed);
   },
 };
