@@ -6,7 +6,9 @@ export const levelListen: ListenerInt = {
   description:
     "Grants 1 to 5 experience points for each message you send, and you level up at every 100 experience points.",
   listener: (message) => {
-    if (message.author.bot) return;
+    if (message.author.bot) {
+      return;
+    }
     User.findOne(
       { userid: message.author.toString() },
       (err: Error, data: UserInt) => {
@@ -18,7 +20,9 @@ export const levelListen: ListenerInt = {
             lastSeen: new Date(Date.now()).toLocaleDateString(),
           });
           newUser.save((err: Error) => {
-            if (err) console.log(err);
+            if (err) {
+              console.log(err);
+            }
           });
           return;
         }
@@ -28,7 +32,9 @@ export const levelListen: ListenerInt = {
         const currentExp = data.points;
         data.lastSeen = new Date(Date.now()).toLocaleDateString();
         data.save((err: Error) => {
-          if (err) console.log(err);
+          if (err) {
+            console.log(err);
+          }
         });
         if (currentPoints < oldPoints) {
           const currentLevel = Math.floor(currentExp / 100);

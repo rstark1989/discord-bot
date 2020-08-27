@@ -18,7 +18,9 @@ export const usageListen: ListenerInt = {
             lastCaller: message.author.username,
           });
           newLog.save((err: Error) => {
-            if (err) console.error(err);
+            if (err) {
+              console.error(err);
+            }
           });
           return;
         }
@@ -27,7 +29,9 @@ export const usageListen: ListenerInt = {
         data.lastCalled = new Date(Date.now()).toLocaleDateString();
         (data.lastCaller = message.author.username),
           data.save((err: Error) => {
-            if (err) console.error(err);
+            if (err) {
+              console.error(err);
+            }
           });
       }
     );

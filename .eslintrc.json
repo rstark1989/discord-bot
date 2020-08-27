@@ -19,6 +19,7 @@
     "quotes": ["error", "double", { "allowTemplateLiterals": true }],
     "semi": ["error", "always"],
     "prefer-const": "error",
-    "eqeqeq": ["error", "always"]
+    "eqeqeq": ["error", "always"],
+    "curly": ["error"]
   }
 }
