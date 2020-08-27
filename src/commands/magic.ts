@@ -17,6 +17,10 @@ export const magic: CommandInt = {
     const data = await fetch(
       `https://api.magicthegathering.io/v1/cards?name=${query}&pageSize=1`
     );
+    if (!data) {
+      message.channel.send("ERROR 404: Database Connection Failed");
+      return;
+    }
     const card: MagicInt = await data.json();
     let flavour = card.cards[0].flavor;
     if (!flavour) {
