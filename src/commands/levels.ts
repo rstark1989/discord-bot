@@ -5,11 +5,16 @@ import { User, UserInt } from "../interfaces/UserInt";
 export const level: CommandInt = {
   //prefix and description - prefix is necessary to trigger command, description is for the record.
   prefix: "level",
-  description: "Gets the user's current level.",
-  parameters: "*none*",
-  command: (message) => {
-    User.findOne(
-      { userid: message.author.toString() },
+  description:
+    "Gets the user's current level. Optionally pass a **user** mention to get the record for another user.",
+  parameters: "`<?user>`: The user to fetch the data for.",
+  command: async (message) => {
+    await User.findOne(
+      {
+        userid:
+          message.mentions.users.first()?.toString() ||
+          message.author.toString(),
+      },
       (err: Error, data: UserInt) => {
         if (err || !data) {
           message.channel.send("ERROR 404: Record not found.");
@@ -17,7 +22,12 @@ export const level: CommandInt = {
         }
         const rankEmbed = new MessageEmbed()
           .setColor("#ab47e6")
-          .setTitle(`${message.author.username}'s Ranking`)
+          .setTitle(
+            `${
+              message.mentions.users.first()?.username ||
+              message.author.username
+            }'s Ranking`
+          )
           .setDescription(
             "Database search successful. Displaying available data:"
           )
