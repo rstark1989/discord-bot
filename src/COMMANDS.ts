@@ -6,7 +6,7 @@ import { warn } from "./commands/warn";
 import { restrict } from "./commands/restrict";
 import { unrestrict } from "./commands/unrestrict";
 import { pokeNum } from "./commands/pokenum";
-import { status } from "./commands/status";
+import { server } from "./commands/server";
 import { ban } from "./commands/ban";
 import { roll } from "./commands/roll";
 import { purge } from "./commands/purge";
@@ -58,7 +58,7 @@ export const COMMANDS = [
   restrict,
   unrestrict,
   pokeNum,
-  status,
+  server,
   ban,
   roll,
   purge,
