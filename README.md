@@ -46,3 +46,7 @@ Do you need more information on how to contribute? Join either of the Discord se
 ## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnhcarrigan%2Fdiscord-bot.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnhcarrigan%2Fdiscord-bot?ref=badge_large)
+
+## Hacktoberfest 2020
+
+If you are participating in [Hacktoberfest](https://hacktoberfest.digitalocean.com/) this year, this repository is welcoming contributions! 
