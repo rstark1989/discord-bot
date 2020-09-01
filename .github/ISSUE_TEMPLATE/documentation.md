@@ -2,7 +2,7 @@
 name: Documentation
 about: Request an update to invalid/outdated documentation.
 title: "[DOC]"
-labels: type: documentation, status: triage
+labels: "type: documentation", "status: triage"
 assignees: nhcarrigan
 ---
 
