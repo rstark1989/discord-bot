@@ -2,7 +2,7 @@
 name: Chore
 about: For requesting chores, such as cleaning up code.
 title: "[CHORE]"
-labels: type: chore, status: triage
+labels: "type: chore", "status: triage"
 assignees: nhcarrigan
 ---
 
