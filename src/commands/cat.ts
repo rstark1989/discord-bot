@@ -13,7 +13,7 @@ export const cat: CommandInt = {
     }
     message.channel.send(str);
     setTimeout(
-      () => message.channel.send("BEEP BOOP: Feline Input Detected"),
+      () => message.channel.send("Oops! A cat walked across my keyboard!"),
       1000
     );
   },

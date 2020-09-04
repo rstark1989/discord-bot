@@ -9,7 +9,7 @@ export const leave: CommandInt = {
   command: async (message, bot) => {
     if (message.author.id !== "465650873650118659") {
       message.channel.send(
-        "ERROR 401: Only <@!465650873650118659> is allowed to use this command."
+        "Sorry, but only <@!465650873650118659> is allowed to use this command."
       );
       return;
     }

@@ -9,7 +9,7 @@ export const listen: CommandInt = {
   parameters: "*none*",
   command: (message) => {
     const listenersEmbed = new MessageEmbed()
-      .setTitle("BEEP BOOP: Listening Protocol Active")
+      .setTitle("I am always listening...")
       .setDescription(
         "For my commands to work, I have to listen to every message in the server. I check each message to see if you have called for my assistance. But did you know I also listen for other events? Here's what they are!"
       );

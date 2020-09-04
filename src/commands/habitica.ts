@@ -28,7 +28,7 @@ export const habitica: CommandInt = {
     );
     const habiticaData: HabiticaUserInt = await data.json();
     if (!habiticaData.success) {
-      message.channel.send("ERROR 404: User not found.");
+      message.channel.send("Sorry, but I could not find that user...");
       return;
     }
     const achievementData = await fetch(
@@ -44,7 +44,9 @@ export const habitica: CommandInt = {
     );
     const habiticaAchievementData: HabiticaAchievementInt = await achievementData.json();
     if (!habiticaAchievementData.success) {
-      message.channel.send("ERROR 404: Achievements not found.");
+      message.channel.send(
+        "Sorry, but I could not find that user's achievements..."
+      );
       return;
     }
     const basicAchievements = Object.keys(
@@ -157,6 +159,10 @@ export const habitica: CommandInt = {
     message.channel.send(achievementEmbed);
     message.channel
       .send(questEmbed)
-      .catch(() => message.channel.send("ERROR 507: Too many quests."));
+      .catch(() =>
+        message.channel.send(
+          "Sorry, but I found too much data. I cannot handle this!"
+        )
+      );
   },
 };

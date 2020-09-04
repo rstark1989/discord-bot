@@ -10,7 +10,7 @@ export const profile: CommandInt = {
   command: (message) => {
     const cmdArguments = message.content.split(" ");
     if (cmdArguments.length < 2) {
-      message.channel.send("ERROR 400: Missing query parameters.");
+      message.channel.send("Sorry, but what did you want me to search for?");
       return;
     }
     const website = cmdArguments[1].toLowerCase();
@@ -18,7 +18,7 @@ export const profile: CommandInt = {
     let id = cmdArguments[2];
     let prefix;
     if (!id) {
-      message.channel.send("ERROR 400: Missing profile ID.");
+      message.channel.send("Sorry, but who did you want me to search for?");
       return;
     }
     if (website === "steam") {
@@ -44,7 +44,7 @@ export const profile: CommandInt = {
       prefix = "https://instagram.com/";
     }
     if (!prefix) {
-      message.channel.send("ERROR 404: Website not supported");
+      message.channel.send("Sorry, but I cannot access that website...");
       return;
     }
     const embed = new MessageEmbed()

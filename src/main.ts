@@ -24,7 +24,7 @@ export const uptimeTimestamp = Date.now();
 client.on("ready", () => {
   console.log("Activate the Omega");
   hook.send(
-    `\`${client.user?.username}\` online. Running a ${process.env.PRODDEV} instance of bot version ${packageInfo.version}.`
+    `I, \`${client.user?.username}\`, am awake! I am in ${process.env.PRODDEV} mode, and version ${packageInfo.version}.`
   );
   client.user?.setActivity(`for commands! Try ${prefix}help`, {
     type: "WATCHING",
@@ -39,19 +39,21 @@ Mongoose.connect(URI, {
 
 client.on("guildCreate", (guild) => {
   hook.send(
-    `\`${client.user?.username}\` has joined the ${guild.name} server!`
+    `I, \`${client.user?.username}\`, have joined the ${guild.name} server!`
   );
 });
 
 client.on("guildDelete", (guild) => {
-  hook.send(`\`${client.user?.username}\` has left the ${guild.name} server`);
+  hook.send(
+    `I, \`${client.user?.username}\`, have left the ${guild.name} server...`
+  );
 });
 
 client.on("guildMemberAdd", (member) => {
   const welcomeEmbed = new MessageEmbed()
     .setColor("#00ff00")
     .setTitle(`Welcome to ${member.guild.name}`)
-    .setDescription("BEEP BOOP: Gratitude for joining our server.")
+    .setDescription("Thank you for joining us!")
     .addFields(
       {
         name: "Rules:",
@@ -62,13 +64,13 @@ client.on("guildMemberAdd", (member) => {
         value: `Use the ${prefix} prefix to get my attention! Try '${prefix}help' to see what I can do!`,
       }
     )
-    .setFooter("BEEP BOOP: Have fun!");
+    .setFooter("Have fun!");
   member.send(welcomeEmbed).catch((err) => console.error(err));
   const welcomeLogEmbed = new MessageEmbed()
     .setColor("#ab47e6")
     .setTitle("A new user has joined! 🙃")
     .setDescription(
-      `BEEP BOOP: New member detected. Initiate welcome protocol for <@!${member.user}>!`
+      `Hello everyone! Let us give a warm welcome to <@!${member.user}>!`
     );
   const welcomeChannel = member.guild.channels.cache.find(
     (channel) => channel.name === config.join_leave_channel
@@ -88,9 +90,9 @@ client.on("guildMemberRemove", (member) => {
     .setColor("#ab47e6")
     .setTitle("A user has left us! 😦")
     .setDescription(
-      `BEEP BOOP: User departure detected. Initiate goodbye protocol for ${
+      `Sad day... ${
         member.nickname || member.user?.username
-      }! You will be missed!`
+      } has left us. You will be missed!`
     );
   if (!goodbyeChannel) {
     console.error("depart channel not found.");
@@ -102,7 +104,7 @@ client.on("guildMemberRemove", (member) => {
 client.on("message", (message) => {
   if (message.channel.type === "dm" && message.author.id !== client.user?.id) {
     message.channel.send(
-      "BEEP BOOP: Please talk to me in a server, not a private message. If you need a server to join, check out my home! https://discord.gg/PHqDbkg"
+      "Sorry, but would you please talk to me in a server, not a private message? If you need a server to join, check out my home! https://discord.gg/PHqDbkg"
     );
     return;
   }
@@ -111,7 +113,9 @@ client.on("message", (message) => {
   if (message.attachments.array().length > 0) {
     if (!message.attachments.array()[0].height) {
       message.delete();
-      message.channel.send("ERROR 415: Only images and videos supported.");
+      message.channel.send(
+        "Sorry, but please do not upload files. Only images and videos are allowed."
+      );
     }
   }
   for (const command of COMMANDS) {
@@ -130,7 +134,7 @@ client.on("messageDelete", (message) => {
   const deleteEmbed = new MessageEmbed()
     .setTitle("A message was deleted.")
     .setColor("#ff0000")
-    .setDescription("BEEP BOOP: Loading message details.")
+    .setDescription("Here is the record of that message.")
     .addFields(
       {
         name: "Message author:",
@@ -142,17 +146,18 @@ client.on("messageDelete", (message) => {
       },
       {
         name: "Content:",
-        value: message.content || "ERROR 404: Content not found.",
+        value:
+          message.content ||
+          "Sorry, but I could not tell what the message said.",
       }
     );
   if (!logChannel) {
     console.error("logging channel not found");
-    message.channel.send(deleteEmbed);
     return;
   }
   logChannel.send(deleteEmbed);
 });
 
 process.once("beforeExit", () => {
-  hook.send(`${client.user?.username} is shutting down. Goodbye.`);
+  hook.send(`I, ${client.user?.username}, am off to sleep. Goodbye.`);
 });

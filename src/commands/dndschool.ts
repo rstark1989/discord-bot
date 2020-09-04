@@ -11,7 +11,7 @@ export const dndSchool: CommandInt = {
   command: async (message) => {
     const query = message.content.split(" ").slice(1).join("-");
     if (!query) {
-      message.channel.send("ERROR 400: No query provided.");
+      message.channel.send("Sorry, but what did you want me to search for?");
       return;
     }
     const school = await fetch(
@@ -19,7 +19,7 @@ export const dndSchool: CommandInt = {
     );
     const data: DndSchoolInt = await school.json();
     if (!data || data.error) {
-      message.channel.send("ERROR 404: Not found.");
+      message.channel.send("Sorry, but I was not able to find anything...");
       return;
     }
     const embed = new MessageEmbed()

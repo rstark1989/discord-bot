@@ -1,7 +1,7 @@
 # My Discord Bot
 
 [![License: GPL-3.0](https://img.shields.io/github/license/nhcarrigan/discord-bot?color=purple)](https://opensource.org/licenses/MIT)
-![Version Status](https://img.shields.io/github/package-json/v/nhcarrigan/discord-bot)
+![Version Status](https://img.shields.io/github/package-json/v/nhcarrigan/discord-bot/main)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=nhcarrigan/discord-bot)](https://dependabot.com)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/nhcarrigan/discord-bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nhcarrigan/discord-bot/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/nhcarrigan/discord-bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nhcarrigan/discord-bot/context:javascript)

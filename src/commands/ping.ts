@@ -9,7 +9,7 @@ export const ping: CommandInt = {
     const msg = new MessageEmbed()
       .setColor("#FFFFFF")
       .setTitle("Ping Initiated")
-      .setDescription("BEEP BOOP: Awaiting response.");
+      .setDescription("One moment please.");
     const pingMessage = await message.channel.send(msg);
     const pingTime = Math.round(
       pingMessage.createdTimestamp - message.createdTimestamp
@@ -18,7 +18,7 @@ export const ping: CommandInt = {
     const msgEdit = new MessageEmbed()
       .setColor(color)
       .setTitle("Ping Successful")
-      .setDescription(`BEEP BOOP: Response time is ${pingTime}ms.`);
+      .setDescription(`My response time is ${pingTime}ms.`);
     pingMessage.edit(msgEdit);
   },
 };

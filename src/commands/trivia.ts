@@ -11,7 +11,7 @@ import { TriviaInt } from "../interfaces/TriviaInt";
 export const trivia: CommandInt = {
   prefix: "trivia",
   description:
-    "Provides a trivia question. 10 seconds later, will provide the answer.",
+    "Provides a trivia question. 30 seconds later, will provide the answer.",
   parameters: "*none*",
   command: async (message) => {
     const letters = ["A", "B", "C", "D"];

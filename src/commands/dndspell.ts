@@ -12,13 +12,13 @@ export const dndSpell: CommandInt = {
     const query = message.content.split(" ").slice(1).join("-");
     console.log(query);
     if (!query) {
-      message.channel.send("ERROR 400: No query provided.");
+      message.channel.send("Sorry, but what did you want me to search for?");
       return;
     }
     const spell = await fetch("https://www.dnd5eapi.co/api/spells/" + query);
     const data: DndSpellInt = await spell.json();
     if (!data || data.error) {
-      message.channel.send("ERROR 404: Not found.");
+      message.channel.send("Sorry, but I was not able to find anything...");
       return;
     }
     const embed = new MessageEmbed()

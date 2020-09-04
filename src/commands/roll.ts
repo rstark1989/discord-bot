@@ -8,24 +8,24 @@ export const roll: CommandInt = {
   command: (message) => {
     const cmdArguments = message.content.split(" ");
     if (cmdArguments.length < 2 || cmdArguments[1].length < 2) {
-      message.channel.send("ERROR 404: Missing dice argument.");
+      message.channel.send("Sorry, but what die did you want me to roll?");
       return;
     }
     const dice: Array<string> = cmdArguments[1].split("");
     if (dice[0] !== "d") {
-      message.channel.send("ERROR 404: Invalid argument syntax.");
+      message.channel.send("Sorry, but that is not a valid die.");
       return;
     }
     dice.splice(0, 1);
     const dieValue: string = dice.join("");
     const random = parseInt(dieValue);
     if (isNaN(random)) {
-      message.channel.send(`ERROR 400: "${dieValue}" is not a valid number.`);
+      message.channel.send(`Sorry, but "${dieValue}" is not a valid number.`);
       return;
     }
     const result = Math.floor(Math.random() * random + 1);
     message.channel.send(
-      `BEEP BOOP: You rolled a ${dieValue}-sided die and got: ${result}!`
+      `You rolled a ${dieValue}-sided die and got: ${result}!`
     );
   },
 };

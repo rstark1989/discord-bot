@@ -15,6 +15,10 @@ export const hpsort: CommandInt = {
     const houseData = await fetch(
       `https://www.potterapi.com/v1/houses?key=${process.env.HP_KEY}`
     );
+    if (!houseData) {
+      message.channel.send("Sorry, but I could not find anything...");
+      return;
+    }
     const houses: Array<HpHouseInt> = await houseData.json();
     const targetHouse = houses.filter((el) => el.name === sort)[0];
     const sortEmbed = new MessageEmbed()

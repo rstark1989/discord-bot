@@ -17,7 +17,7 @@ export const hpchar: CommandInt = {
     );
     const hpData: Array<HpCharInt> = await data.json();
     if (!hpData[0]) {
-      message.channel.send("ERROR 400: No data found.");
+      message.channel.send("Sorry, but I could not find anything...");
       return;
     }
     const hpEmbed = new MessageEmbed()

@@ -10,13 +10,13 @@ export const dndRace: CommandInt = {
   command: async (message) => {
     const query = message.content.split(" ").slice(1).join("-");
     if (!query) {
-      message.channel.send("ERROR 400: No query provided.");
+      message.channel.send("Sorry, but what did you want me to search for?");
       return;
     }
     const race = await fetch("https://www.dnd5eapi.co/api/races/" + query);
     const data: DndRaceInt = await race.json();
     if (!data || data.error) {
-      message.channel.send("ERROR 404: Not found.");
+      message.channel.send("Sorry, but I was not able to find anything...");
       return;
     }
     const embed = new MessageEmbed()

@@ -18,11 +18,13 @@ export const joke: CommandInt = {
     });
     const jokeData: JokeInt = await data.json();
     if (jokeData.status !== 200) {
-      message.channel.send("ERROR 404: Humour interface disabled.");
+      message.channel.send(
+        "Sorry, but I am not really in the mood for a joke right now..."
+      );
       return;
     }
     const jokeEmbed = new MessageEmbed()
-      .setTitle("BEEP BOOP: Generating Joke")
+      .setTitle("Haha!")
       .setDescription(jokeData.joke);
     message.channel.send(jokeEmbed);
   },

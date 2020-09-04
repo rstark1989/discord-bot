@@ -9,7 +9,9 @@ export const unrestrict: CommandInt = {
     "`<user>`: @name of the user to restore | `<?reason>`: reason for restoring the user.",
   command: (message) => {
     if (!message.member?.hasPermission("KICK_MEMBERS")) {
-      message.channel.send("ERROR 401: Missing permissions.");
+      message.channel.send(
+        "Sorry, but this command is restricted to moderators."
+      );
       return;
     }
     const mod = message.author;
@@ -17,23 +19,25 @@ export const unrestrict: CommandInt = {
     const member = message.mentions.members?.first();
     const user = message.mentions.users.first();
     if (!member) {
-      message.channel.send("ERROR 400: Invalid user tag.");
+      message.channel.send(
+        "Sorry, but that appears to be an invalid user mention."
+      );
       return;
     }
     if (user === mod) {
-      message.channel.send("ERROR 400: Cannot target self.");
+      message.channel.send("Sorry, but you cannot unrestrict yourself!");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
     if (!reason) {
-      reason = "ERROR 404: No reason provided.";
+      reason = "Sorry, but the moderator did not provide a reason.";
     }
     const suspend = message.guild?.roles.cache.find(
       (role) => role.name === config.silence_role
     );
     if (!suspend) {
-      message.channel.send("ERROR 304: Missing 'Restricted' role.");
+      message.channel.send("Sorry, but I could not find your restricted role.");
       return;
     }
     const unrestrictEmbed = new MessageEmbed()
@@ -49,7 +53,7 @@ export const unrestrict: CommandInt = {
           value: `${reason}`,
         }
       )
-      .setFooter("BEEP BOOP: Please remember to follow our rules!");
+      .setFooter("Please remember to follow our rules!");
     const modChannel = message.guild?.channels.cache.find(
       (channel) => channel.name === config.log_channel
     ) as TextChannel;
@@ -57,7 +61,9 @@ export const unrestrict: CommandInt = {
       modChannel.send(unrestrictEmbed);
     }
     if (!modChannel) {
-      message.channel.send("ERROR 404: missing log channel");
+      message.channel.send(
+        "Sorry, but I could not find where you wanted the logs."
+      );
     }
     member.roles.remove(suspend).catch((err) => console.log(err));
   },

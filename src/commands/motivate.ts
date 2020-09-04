@@ -11,7 +11,7 @@ export const motivate: CommandInt = {
     const motivations = quotes.motivationalQuotes;
     const random = Math.floor(Math.random() * motivations.length);
     const motivationEmbed = new MessageEmbed()
-      .setTitle("BEEP BOOP: Dispensing motivation.")
+      .setTitle("Time to get motivated!")
       .setDescription(motivations[random].quote)
       .setFooter(motivations[random].author);
     message.channel.send(motivationEmbed);

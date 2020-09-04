@@ -18,7 +18,7 @@ export const help: CommandInt = {
           const matchEmbed = new MessageEmbed()
             .setTitle(command.prefix)
             .setDescription(
-              `BEEP BOOP: Providing information on my ${command.prefix} feature.`
+              `Here is the information on my ${command.prefix} feature.`
             )
             .addFields(
               { name: "Description", value: command.description },
@@ -38,7 +38,7 @@ export const help: CommandInt = {
         }
       }
       message.channel.send(
-        `\`${cmdArguments[1]}\` command not found. Try \`${prefix}help\` for a list of available commands.`
+        `Sorry, but I could not find the \`${cmdArguments[1]}\` command. Try \`${prefix}help\` for a list of available commands.`
       );
       return;
     }
@@ -46,9 +46,9 @@ export const help: CommandInt = {
       .setColor("#ab47e6")
       .setTitle("Bot Commands")
       .setDescription(
-        `BEEP BOOP: Available commands include the following. Command name must be prefixed with '${prefix}', just like the '${prefix}help' command used to get this message. For information on a specific command, use '${prefix}help <command>.`
+        `My available commands include the following. The command name must be prefixed with '${prefix}', just like the '${prefix}help' command used to get this message. For information on a specific command, use '${prefix}help <command>.`
       )
-      .setFooter("BEEP BOOP: End of message.");
+      .setFooter("I hope I could help!");
     const commandArray = [];
     for (const command of COMMANDS) {
       commandArray.push(`\`${command.prefix}\``);

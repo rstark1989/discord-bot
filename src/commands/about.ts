@@ -11,9 +11,9 @@ export const about: CommandInt = {
     const files = await fs.promises.readdir("./src/commands");
     const aboutEmbed: MessageEmbed = new MessageEmbed()
       .setColor("#ab47e6")
-      .setTitle("My name is nhbot!")
+      .setTitle("Greetings! My name is nhbot!")
       .setDescription(
-        "BEEP BOOP: I am a discord bot created by [nhcarrigan](https://www.nhcarrigan.com), with help from a few contributors.  You can view my [source code and contributor list](https://github.com/nhcarrigan/discord-bot) online."
+        "I am a discord bot created by [nhcarrigan](https://www.nhcarrigan.com), with help from a few contributors.  You can view my [source code and contributor list](https://github.com/nhcarrigan/discord-bot) online."
       )
       .addFields(
         {
@@ -33,7 +33,7 @@ export const about: CommandInt = {
           value: "PURPLE! 💜",
         }
       )
-      .setFooter("BEEP BOOP: Message terminated.");
+      .setFooter("It is nice to meet you!");
     message.channel.send(aboutEmbed);
   },
 };

@@ -10,7 +10,9 @@ export const warn: CommandInt = {
     "`<user>`: @name of the user to warn | `<?reason>`: reason for warning the user.",
   command: (message) => {
     if (!message.member?.hasPermission("KICK_MEMBERS")) {
-      message.channel.send(`ERROR 401: Missing permissions.`);
+      message.channel.send(
+        `Sorry, but this command is restricted to moderators.`
+      );
       return;
     }
     const mod = message.author;
@@ -18,21 +20,23 @@ export const warn: CommandInt = {
     const user = message.mentions.users.first();
     const bot = config.bot_id;
     if (!user) {
-      message.channel.send(`ERROR 400: Invalid user tag.`);
+      message.channel.send(
+        `Sorry, but that appears to be an invalid user mention.`
+      );
       return;
     }
     if (user === mod) {
-      message.channel.send(`ERROR 400: Cannot target self.`);
+      message.channel.send(`Sorry, but you cannot warn yourself!`);
       return;
     }
     if (user?.id === bot) {
-      message.channel.send("ERROR 400: Cannot target me.");
+      message.channel.send("Why do you want to warn me? I am sad now.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
     if (!reason) {
-      reason = "ERROR 404: No reason provided.";
+      reason = "Sorry, but the moderator did not provide a reason.";
     }
     const warnEmbed = new MessageEmbed()
       .setColor("#ffff00")
@@ -47,7 +51,7 @@ export const warn: CommandInt = {
           value: `${reason}`,
         }
       )
-      .setFooter("BEEP BOOP: You can read the rules in the Welcome channel!");
+      .setFooter("Please remember to follow the rules.");
     user.send(warnEmbed).catch((err) => console.log(err));
     const modChannel = message.guild?.channels.cache.find(
       (channel) => channel.name === config.log_channel
@@ -63,7 +67,9 @@ export const warn: CommandInt = {
       modChannel.send(warnLogEmbed);
     }
     if (!modChannel) {
-      message.channel.send("ERROR 400: missing log channel.");
+      message.channel.send(
+        "Sorry, but I could not find where you wanted the logs."
+      );
     }
   },
 };
