@@ -27,7 +27,7 @@ export const hpspell: CommandInt = {
     }
     if (!targetSpell) {
       message.channel.send(
-        "ERROR 404: Spell not found. It's leviOsa, not leviosA."
+        "Sorry, but I could not find anything... It's leviOsa, not leviosA."
       );
       return;
     }

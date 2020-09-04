@@ -9,7 +9,9 @@ export const user: CommandInt = {
     const user = message.mentions.users.first();
     const member = message.mentions.members?.first();
     if (!user || !member) {
-      message.channel.send("ERROR 404: record not found or invalid user tag.");
+      message.channel.send(
+        "Sorry, but that appears to be an invalid user mention."
+      );
       return;
     }
     const joined = new Date(
@@ -18,7 +20,7 @@ export const user: CommandInt = {
     const created = new Date(user.createdTimestamp).toDateString();
     const userEmbed = new MessageEmbed()
       .setTitle(member.displayName)
-      .setDescription(`BEEP BOOP: Initiating record search for <@!${user}>!`)
+      .setDescription(`This is the information I could find on <@!${user}>!`)
       .addFields(
         {
           name: "Creation Date:",
@@ -43,8 +45,7 @@ export const user: CommandInt = {
             .join(", ")}`,
         }
       )
-      .setImage(`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`)
-      .setFooter("BEEP BOOP: Search complete.");
+      .setImage(`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`);
     message.channel.send(userEmbed);
   },
 };

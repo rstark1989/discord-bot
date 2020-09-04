@@ -14,15 +14,21 @@ export const close: CommandInt = {
     ) as TextChannel;
     //check for user permissions
     if (!message.member?.hasPermission("MANAGE_CHANNELS")) {
-      message.channel.send("ERROR 401: Missing permissions.");
+      message.channel.send(
+        "Sorry, but this command is restricted to administrators."
+      );
       return;
     }
     if (!log) {
-      message.channel.send("ERROR 404: Log channel not found.");
+      message.channel.send(
+        "Sorry, but I could not find where you wanted the logs."
+      );
       return;
     }
     if (!target.name.includes("suspended")) {
-      message.channel.send("ERROR 401: Channel cannot be deleted.");
+      message.channel.send(
+        "Sorry, but I am only allowed to close the `suspended-user` channels."
+      );
       return;
     }
     target.delete().catch((e) => console.error(e));
@@ -30,7 +36,8 @@ export const close: CommandInt = {
       .setTitle("Channel Deleted")
       .setDescription(
         `<@!${message.author}> has closed and deleted the \`${target.name}\` channel`
-      );
+      )
+      .setFooter(`The channel ID was ${target.id}`);
     log.send(deleteEmbed);
   },
 };

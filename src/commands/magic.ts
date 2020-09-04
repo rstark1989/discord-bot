@@ -10,7 +10,7 @@ export const magic: CommandInt = {
   command: async (message) => {
     const query = message.content.substring(7, message.content.length);
     if (!query) {
-      message.channel.send("ERROR 400: Missing card name.");
+      message.channel.send("Sorry, but what did you want me to search for?");
       return;
     }
     message.channel.send("STATUS 202: Searching...");
@@ -18,17 +18,17 @@ export const magic: CommandInt = {
       `https://api.magicthegathering.io/v1/cards?name=${query}&pageSize=1`
     );
     if (!data) {
-      message.channel.send("ERROR 404: Database Connection Failed");
+      message.channel.send("Sorry, but I could not find anything...");
       return;
     }
     const card: MagicInt = await data.json();
     let flavour = card.cards[0].flavor;
     if (!flavour) {
-      flavour = "ERROR 404: No flavour text found.";
+      flavour = "Sorry, but this card has no flavour text...";
     }
     let ability = card.cards[0].text;
     if (!ability) {
-      ability = "ERROR 404: No abilities found.";
+      ability = "Sorry, but this card has no ability text...";
     }
     let image = card.cards[0].imageUrl;
     if (!image) {

@@ -17,13 +17,15 @@ export const maths: CommandInt = {
       if (type === "calculate") {
         const answer = evaluate(expression);
         if (!answer || !expression) {
-          message.channel.send("ERROR 400: Invalid expression.");
+          message.channel.send(
+            "Sorry, but that does not appear to be a valid math expression."
+          );
           return;
         }
         const mathEmbed = new MessageEmbed()
-          .setTitle("Calculation Protocol")
+          .setTitle("Calculating...")
           .setColor("#ab47e6")
-          .setDescription("BEEP BOOP: Calculation complete.")
+          .setDescription("All done!")
           .addFields(
             { name: "Input", value: expression },
             { name: "Result", value: answer }
@@ -34,7 +36,9 @@ export const maths: CommandInt = {
       if (type === "solve") {
         const solved = solveEquation(expression);
         if (!solved.length) {
-          message.channel.send("ERROR 400: Invalid equation.");
+          message.channel.send(
+            "Sorry, but that does not appear to be a valid math equation."
+          );
           return;
         }
         solved.forEach((step: StepInt, index: number) => {
@@ -49,9 +53,11 @@ export const maths: CommandInt = {
         });
         return;
       }
-      message.channel.send("ERROR 400: Invalid syntax.");
+      message.channel.send(
+        "Sorry, but did you want me to `calculate` or `solve` that?"
+      );
     } catch (error) {
-      message.channel.send("ERROR 400: Invalid request.");
+      message.channel.send("Sorry, but my calculator is broken!");
     }
   },
 };

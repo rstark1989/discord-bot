@@ -22,7 +22,7 @@ export const uptime: CommandInt = {
     const uptimeEmbed = new MessageEmbed()
       .setTitle("Bot Uptime")
       .setDescription(
-        `${uptimeArray[0]} hours, ${uptimeArray[1]} minutes, and ${uptimeArray[2]} seconds.`
+        `I have been awake for... ${uptimeArray[0]} hours, ${uptimeArray[1]} minutes, and ${uptimeArray[2]} seconds.`
       );
     message.channel.send(uptimeEmbed);
   },

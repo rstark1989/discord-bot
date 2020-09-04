@@ -10,7 +10,9 @@ export const star: CommandInt = {
   command: (message) => {
     const target = message.mentions.members?.first();
     if (!target) {
-      message.channel.send("ERROR 400: User not provided.");
+      message.channel.send(
+        "Sorry, but that appears to be an invalid user mention."
+      );
       return;
     }
     const auth = message.author;
@@ -21,22 +23,24 @@ export const star: CommandInt = {
       .setImage(
         "https://github.com/nhcarrigan/discord-bot/blob/master/img/star.png?raw=true"
       )
-      .setFooter("BEEP BOOP: Feelings of pride detected. 🙃");
+      .setFooter("I am so proud of you! 🙃");
     const cmdArguments = message.content.split(" ");
     const reason = cmdArguments.slice(2, cmdArguments.length);
     let reasonMessage = reason.join(" ");
     if (!reasonMessage) {
-      reasonMessage = "ERROR 404: Reason not found.";
+      reasonMessage = "Sorry, but the user did not provide a reason.";
     }
     starEmbed.addFields({
       name: "Reason",
       value: reasonMessage,
     });
     if (message.mentions.users.first() === message.author) {
-      message.channel.send("ERROR 400: Cannot target self.");
+      message.channel.send(
+        "Sorry, but you cannot give yourself a star! I still love you though."
+      );
       return;
     }
     target.send(starEmbed);
-    message.channel.send(`BEEP BOOP: Sent <@!${target}> a gold star!`);
+    message.channel.send(`Okay, I sent <@!${target}> a gold star!`);
   },
 };

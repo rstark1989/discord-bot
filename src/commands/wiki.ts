@@ -8,7 +8,7 @@ export const wiki: CommandInt = {
     const argument = message.content.substring(6, message.content.length);
     const query = argument.replace(/\s/g, "_");
     message.channel.send(
-      `BEEP BOOP: Query complete. https://en.wikipedia.org/wiki/${query}`
+      `Here is what I found: https://en.wikipedia.org/wiki/${query}`
     );
   },
 };

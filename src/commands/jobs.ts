@@ -16,9 +16,7 @@ export const jobs: CommandInt = {
     }
     const jobsEmbed = new MessageEmbed()
       .setTitle("Job search!")
-      .setDescription(
-        `Query complete: [Here are some potential jobs for you.](${url})`
-      );
+      .setDescription(`[Here are some potential jobs for you.](${url})`);
     message.channel.send(jobsEmbed);
     return;
   },

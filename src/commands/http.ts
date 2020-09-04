@@ -10,11 +10,15 @@ export const http: CommandInt = {
   command: async (message) => {
     const cmdArgument = message.content.split(" ")[1];
     if (!cmdArgument) {
-      message.channel.send("ERROR 400: No status provided.");
+      message.channel.send(
+        "Sorry, but what status code did you want me to look for?"
+      );
       return;
     }
     if (httpStatusList.indexOf(cmdArgument) === -1) {
-      message.channel.send("ERROR 400: Invalid status code");
+      message.channel.send(
+        "Sorry, but that appears to be an invalid status code."
+      );
       return;
     }
     const httpEmbed = new MessageEmbed()

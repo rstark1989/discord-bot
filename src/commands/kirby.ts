@@ -5,7 +5,7 @@ export const kirby: CommandInt = {
   description: "Do a little dance... make a little noise... GET DOWN TONIGHT!",
   parameters: "*none*",
   command: (message) => {
-    message.channel.send("BEEP BOOP: Dance mode initiated.");
+    message.channel.send("Dance with me!");
     setTimeout(() => message.channel.send("<('.')>"), 1000);
     setTimeout(() => message.channel.send("<('.'<)"), 2000);
     setTimeout(() => message.channel.send("(>'.')>"), 3000);

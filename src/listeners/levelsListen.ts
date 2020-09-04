@@ -39,7 +39,7 @@ export const levelListen: ListenerInt = {
         if (currentPoints < oldPoints) {
           const currentLevel = Math.floor(currentExp / 100);
           message.channel.send(
-            `BEEP BOOP: Congratulations <@!${message.author}>! You have reached level ${currentLevel}!`
+            `Congratulations <@!${message.author}>! You have reached level ${currentLevel}!`
           );
         }
       }

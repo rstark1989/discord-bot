@@ -18,7 +18,7 @@ export const github: CommandInt = {
     );
     const ghRepoParsed: GithubRepoInt[] = await ghRepoData.json();
     if (ghUser.message === "Not Found") {
-      message.channel.send("ERROR 404: Data not found.");
+      message.channel.send("Sorry, but I was not able to find anything...");
       return;
     }
     if (!ghRepoParsed[0]) {

@@ -10,7 +10,7 @@ export const guess: CommandInt = {
     const random = Math.floor(Math.random() * 1000) + 1;
     const guesses: Array<Array<string>> = [];
     message.channel.send(
-      "BEEP BOOP: Game initiated. Number between 1 and 1000 chosen. Submit guesses."
+      "Can we play a game? I have chosen a number between 1 and 1000. You have 10 seconds to guess the number. The closest guess will win!"
     );
     const guessCollector: MessageCollector = new MessageCollector(
       message.channel as TextChannel,
@@ -32,7 +32,7 @@ export const guess: CommandInt = {
         }
       });
       message.channel.send(
-        `BEEP BOOP: Calculating winner... <@!${winAuth}>! Correct number was ${random} and the winning guess was ${winGuess}.`
+        `And the winner is... <@!${winAuth}>! My number number was ${random} and the winning guess was ${winGuess}.`
       );
     };
     setTimeout(winner, 10000);

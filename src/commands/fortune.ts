@@ -7,6 +7,6 @@ export const fortune: CommandInt = {
   parameters: "*none*",
   command: (message) => {
     const index = Math.floor(Math.random() * fortunes.length);
-    message.channel.send(`BEEP BOOP: ${fortunes[index]}`);
+    message.channel.send(`${fortunes[index]}`);
   },
 };

@@ -10,13 +10,13 @@ export const pokeName: CommandInt = {
   command: async (message) => {
     const cmdArguments = message.content.split(" ");
     if (cmdArguments.length < 2) {
-      message.channel.send("ERROR 400: No query submitted.");
+      message.channel.send("Sorry, but what did you want me to search for?");
       return;
     }
     const name = cmdArguments[1].toLowerCase();
     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     if (data.status === 404) {
-      message.channel.send("ERROR 404: Pokemon not found.");
+      message.channel.send("Sorry, but I could not find anything...");
       return;
     }
     const pokemon: PokemonInt = await data.json();
@@ -24,8 +24,7 @@ export const pokeName: CommandInt = {
       .setColor("#0099FF")
       .setTitle(`${pokemon.name}`)
       .setDescription(`#${pokemon.id}`)
-      .setImage(`${pokemon.sprites.front_default}`)
-      .setFooter("BEEP BOOP: Brought to you by the Pokemon API.");
+      .setImage(`${pokemon.sprites.front_default}`);
     message.channel.send(pokemonEmbed);
   },
 };

@@ -32,7 +32,7 @@ export const server: CommandInt = {
     const statusEmbed = new MessageEmbed()
       .setColor("#0099FF")
       .setTitle(`${message.guild?.name}`)
-      .setDescription("BEEP BOOP: Initiating server record search.")
+      .setDescription("Here is the information on that server!")
       .setImage(
         `https://cdn.discordapp.com/icons/${message.guild?.id}/${message.guild?.icon}.png`
       )
@@ -107,8 +107,7 @@ export const server: CommandInt = {
           }`,
           inline: true,
         }
-      )
-      .setFooter("BEEP BOOP: Search complete.");
+      );
     message.channel.send(statusEmbed);
   },
 };

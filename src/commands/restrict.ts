@@ -10,14 +10,16 @@ export const restrict: CommandInt = {
     "`<user>`: @name of the user to restrict | `<?reason>`: reason for restricting the user.",
   command: async (message) => {
     if (!message.member?.hasPermission("KICK_MEMBERS")) {
-      message.channel.send("ERROR 401: Missing permissions.");
+      message.channel.send(
+        "Sorry, but this command is restricted to moderators."
+      );
       return;
     }
     const modChannel = message.guild?.channels.cache.find(
       (channel) => channel.name === config.log_channel
     ) as TextChannel;
     if (!modChannel) {
-      message.channel.send("ERROR 404: Log channel not found.");
+      message.channel.send("Sorry, but I could not where you wanted the logs.");
       return;
     }
     const suspendCategory = config.silence_category;
@@ -25,28 +27,30 @@ export const restrict: CommandInt = {
       (c) => c.name === suspendCategory && c.type === "category"
     );
     if (!category) {
-      message.channel.send("ERROR 404: Missing suspend category.");
+      message.channel.send(
+        "Sorry, but I could not find the restricted category."
+      );
       return;
     }
     const suspend = message.guild?.roles.cache.find(
       (role) => role.name === config.silence_role
     );
     if (!suspend) {
-      message.channel.send("ERROR 404: Missing suspend role.");
+      message.channel.send("Sorry, but I could not find the restricted role.");
       return;
     }
     const botRole = message.guild?.roles.cache.find(
       (role) => role.name === config.bot_role
     );
     if (!botRole) {
-      message.channel.send("ERROR 404: Missing Bot role.");
+      message.channel.send("Sorry, but I could not find my bot role.");
       return;
     }
     const modRole = message.guild?.roles.cache.find(
       (role) => role.name === config.mod_role
     );
     if (!modRole) {
-      message.channel.send("ERROR 404: Missing moderator role.");
+      message.channel.send("Sorry, but I could not find the moderator role.");
       return;
     }
     const mod = message.author;
@@ -54,21 +58,23 @@ export const restrict: CommandInt = {
     const member = message.mentions.members?.first();
     const bot = config.bot_id;
     if (member?.id === bot) {
-      message.channel.send("ERROR 400: Cannot target me.");
+      message.channel.send("Why do you want to restrict me? I am sad now.");
       return;
     }
     if (!member) {
-      message.channel.send("ERROR 404: Invalid user tag.");
+      message.channel.send(
+        "Sorry, but that appears to be an invalid user mention."
+      );
       return;
     }
     if (message.mentions.users.first() === mod) {
-      message.channel.send("ERROR 400: Cannot target self.");
+      message.channel.send("Sorry, but you cannot restrict yourself!");
       return;
     }
     const reasonArg = msgArguments.slice(2, msgArguments.length);
     let reason = reasonArg.join(" ");
     if (!reason) {
-      reason = "ERROR 404: No reason provided.";
+      reason = "Sorry, but the moderator did not provide a reason.";
     }
     const restrictEmbed = new MessageEmbed()
       .setColor("#FF0000")
@@ -76,14 +82,14 @@ export const restrict: CommandInt = {
       .addFields(
         {
           name: "Event:",
-          value: `<@!${mod}> has suspended <@!${member}>.`,
+          value: `<@!${mod}> has restricted <@!${member}>.`,
         },
         {
           name: "Reason:",
           value: `${reason}`,
         }
       )
-      .setFooter("BEEP BOOP: Please remember to follow our rules!");
+      .setFooter("Please remember to follow our rules!");
     modChannel.send(restrictEmbed);
     member.roles.set([suspend]);
     const channelName = `suspended-${member.user.username}`;
@@ -110,7 +116,7 @@ export const restrict: CommandInt = {
       parent: category,
     });
     member.send(
-      `BEEP BOOP: Suspension protocol initiated for: ${reason} - Appeal channel creation complete.`
+      `Hello! Sorry to bother you. It appears you have been suspended from ${message.guild?.name} for: ${reason} - I have created a channel there for you to appeal this decision.`
     );
   },
 };

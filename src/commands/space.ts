@@ -25,7 +25,7 @@ export const space: CommandInt = {
     if (data.code === 404) {
       const fourOhfour = new MessageEmbed()
         .setTitle("SPAAAAACE")
-        .setDescription("ERROR: Bot got lost in space. Please try again later.")
+        .setDescription("Bot got lost in space. Please try again later.")
         .setImage(
           "https://github.com/nhcarrigan/Weather-App/blob/master/space.png?raw=true"
         );

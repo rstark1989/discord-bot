@@ -10,7 +10,9 @@ export const kick: CommandInt = {
     "`<user>`: @name of the user to kick | `<?reason>`: reason for kicking the user",
   command: (message) => {
     if (!message.member?.hasPermission("KICK_MEMBERS")) {
-      message.channel.send("ERROR 401: Missing permissions.");
+      message.channel.send(
+        "Sorry, but this command is restricted to moderators."
+      );
       return;
     }
     const mod = message.author;
@@ -19,21 +21,23 @@ export const kick: CommandInt = {
     const user = message.mentions.users.first();
     const bot = config.bot_id;
     if (!member) {
-      message.channel.send("ERROR 404: Invalid user tag.");
+      message.channel.send(
+        "Sorry, but that appears to be an invalid user mention."
+      );
       return;
     }
     if (user === mod) {
-      message.channel.send("ERROR 400: Cannot target self.");
+      message.channel.send("Sorry, but you cannot kick yourself!");
       return;
     }
     if (user?.id === bot || member.id === bot) {
-      message.channel.send("ERROR 400: Cannot target me.");
+      message.channel.send("Why are you trying to kick me? I am sad now.");
       return;
     }
     const reasonArg = cmdArguments.slice(2, cmdArguments.length);
     let reason = reasonArg.join(" ");
     if (!reason) {
-      reason = "ERROR 404: No reason provided";
+      reason = "Sorry, but the moderator did not provide a reason.";
     }
     const kickEmbed = new MessageEmbed()
       .setColor("#ff8400")
@@ -48,7 +52,7 @@ export const kick: CommandInt = {
           value: `${reason}`,
         }
       )
-      .setFooter("BEEP BOOP: Please remember to follow our rules!");
+      .setFooter("Please remember to follow our rules!");
     const modChannel = message.guild?.channels.cache.find(
       (channel) => channel.name === config.log_channel
     ) as TextChannel;
@@ -56,7 +60,9 @@ export const kick: CommandInt = {
       modChannel.send(kickEmbed);
     }
     if (!modChannel) {
-      message.channel.send("ERROR 404: log channel not found.");
+      message.channel.send(
+        "Sorry, but I could not find where you wanted the logs."
+      );
     }
     member.kick().catch((err: Error) => console.log(err));
   },

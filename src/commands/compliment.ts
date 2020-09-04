@@ -11,7 +11,7 @@ export const compliment: CommandInt = {
     const compliments = quotes.compliments;
     const random = Math.floor(Math.random() * compliments.length);
     const complimentEmbed = new MessageEmbed()
-      .setTitle("BEEP BOOP: Dispensing motivation.")
+      .setTitle("Hello! I hope you are having a good day!")
       .setDescription(compliments[random])
       .setFooter("We love you. 💜");
     message.channel.send(complimentEmbed);

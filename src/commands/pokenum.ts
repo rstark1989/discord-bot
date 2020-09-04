@@ -11,7 +11,7 @@ export const pokeNum: CommandInt = {
   command: async (message) => {
     const cmdArguments = message.content.split(" ");
     if (cmdArguments.length < 2) {
-      message.channel.send("ERROR 400: No query provided.");
+      message.channel.send("Sorry, but what did you want me to search for?");
       return;
     }
     let number = parseInt(cmdArguments[1]);
@@ -20,12 +20,12 @@ export const pokeNum: CommandInt = {
     }
     if (number < 0 || number > 802) {
       message.channel.send(
-        "ERROR 400: Number must be between 0 and 802 (inclusive)."
+        "Sorry, but that number is not right. Choose a number between 0 and 802 (inclusive)"
       );
       return;
     }
     if (isNaN(number)) {
-      message.channel.send("ERROR 400: Invalid number.");
+      message.channel.send("Sorry, but that is not a number.");
       return;
     }
     if (number === 0) {
@@ -43,8 +43,7 @@ export const pokeNum: CommandInt = {
       .setColor("#ab47e6")
       .setTitle(`${pokemon.name}`)
       .setDescription(`#${pokemon.id}`)
-      .setImage(`${pokemon.sprites.front_default}`)
-      .setFooter("BEEP BOOP: Brought to you by the Pokemon API.");
+      .setImage(`${pokemon.sprites.front_default}`);
     message.channel.send(pokemonEmbed);
   },
 };

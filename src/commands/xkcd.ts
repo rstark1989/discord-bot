@@ -15,7 +15,7 @@ export const xkcd: CommandInt = {
       data = await fetch(`https://xkcd.com/${cmdArguments}/info.0.json`);
     }
     if (data.status === 404) {
-      message.channel.send("ERROR 404: Comic not found.");
+      message.channel.send("Sorry, but I could not find anytthing...");
       return;
     }
     const comicData: XkcdInt = await data.json();

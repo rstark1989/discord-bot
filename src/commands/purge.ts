@@ -7,32 +7,34 @@ export const purge: CommandInt = {
   parameters: "`<number>` - number of messages to delete; no more than 100",
   command: async (message) => {
     if (!message.member?.hasPermission("MANAGE_MESSAGES")) {
-      message.channel.send(`ERROR 401: Missing permissions.`);
+      message.channel.send(
+        `Sorry, but this command is restricted to administrators.`
+      );
       return;
     }
     const cmdArguments = message.content.split(" ");
     const howMany = parseInt(cmdArguments[1]);
     if (isNaN(howMany)) {
-      message.channel.send(`ERROR 400: Invalid number.`);
+      message.channel.send(`Sorry, but that is not a valid number.`);
       return;
     }
     if (howMany > 100) {
-      message.channel.send("ERROR 400: Maximum delete 100.");
+      message.channel.send(
+        "Sorry, but I can only delete up to 100 messages at once."
+      );
       return;
     }
     message.channel.messages.fetch({ limit: howMany }).then((messages) => {
       if (message.channel.type === "text") {
         message.channel.bulkDelete(messages);
         message.channel
-          .send(
-            `BEEP BOOP: Initiating deletion protocol for ${howMany} messages.`
-          )
+          .send(`Okay, I will delete ${howMany} messages.`)
           .then((message) => {
             message.delete({ timeout: 5000 });
           });
         return;
       }
-      message.channel.send("ERROR 400: Can only delete from text channel.");
+      message.channel.send("Sorry, but I can only clean up a text channel.");
     });
   },
 };

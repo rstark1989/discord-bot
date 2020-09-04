@@ -14,7 +14,9 @@ export const usage: CommandInt = {
       { command: command },
       (err: Error, data: CommandLogInt) => {
         if (err || !data) {
-          message.channel.send("ERROR 404: Command history not found.");
+          message.channel.send(
+            "Sorry, but it appears no one has used that command yet..."
+          );
           return;
         }
         const commandEmbed = new MessageEmbed()

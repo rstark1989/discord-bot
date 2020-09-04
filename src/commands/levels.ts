@@ -17,7 +17,7 @@ export const level: CommandInt = {
       },
       (err: Error, data: UserInt) => {
         if (err || !data) {
-          message.channel.send("ERROR 404: Record not found.");
+          message.channel.send("Sorry, but I could not find anything...");
           return;
         }
         const rankEmbed = new MessageEmbed()
@@ -28,9 +28,7 @@ export const level: CommandInt = {
               message.author.username
             }'s Ranking`
           )
-          .setDescription(
-            "Database search successful. Displaying available data:"
-          )
+          .setDescription("Here is where you stand!")
           .addFields(
             {
               name: "Experience Points:",
@@ -41,7 +39,7 @@ export const level: CommandInt = {
               value: `LVL ${Math.floor(data.points / 100)}`,
             }
           )
-          .setFooter("BEEP BOOP: You level up with every 100 points.");
+          .setFooter("You level up with every 100 points.");
         message.channel.send(rankEmbed);
       }
     );
