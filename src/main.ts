@@ -65,7 +65,7 @@ client.on("guildMemberAdd", (member) => {
       },
       {
         name: "Privacy Policy",
-        value: `Use the \`${prefix}privacy\` command or [view my privacy policy](https://github.com/nhcarrigan/discord-bot/PRIVACY.md)`,
+        value: `Use the \`${prefix}privacy\` command or [view my privacy policy](https://github.com/nhcarrigan/discord-bot/blob/main/PRIVACY.md)`,
       }
     );
   member.send(welcomeEmbed).catch((err) => console.error(err));
