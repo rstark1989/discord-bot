@@ -62,9 +62,12 @@ client.on("guildMemberAdd", (member) => {
       {
         name: "My Commands:",
         value: `Use the ${prefix} prefix to get my attention! Try '${prefix}help' to see what I can do!`,
+      },
+      {
+        name: "Privacy Policy",
+        value: `Use the \`${prefix}privacy\` command or [view my privacy policy](https://github.com/nhcarrigan/discord-bot/PRIVACY.md)`,
       }
-    )
-    .setFooter("Have fun!");
+    );
   member.send(welcomeEmbed).catch((err) => console.error(err));
   const welcomeLogEmbed = new MessageEmbed()
     .setColor("#ab47e6")

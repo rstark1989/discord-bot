@@ -48,6 +48,7 @@ import { github } from "./commands/github";
 import { habitica } from "./commands/habitica";
 import { trivia } from "./commands/trivia";
 import { fact } from "./commands/fact";
+import { privacy } from "./commands/privacy";
 
 export const COMMANDS = [
   kick,
@@ -100,4 +101,5 @@ export const COMMANDS = [
   habitica,
   trivia,
   fact,
+  privacy,
 ];

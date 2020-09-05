@@ -1,25 +1,29 @@
 import { CommandInt } from "../interfaces/CommandInt";
-import { MessageEmbed } from "discord.js";
+import {
+  MessageEmbed,
+  MessageCollector,
+  TextChannel,
+  Message,
+} from "discord.js";
 
 export const user: CommandInt = {
   prefix: "user",
-  description: "Returns information on the **user**.",
-  parameters: "`<user>`: @name of the user to get information about",
+  description: "Returns information on your account.",
+  parameters: "*none*",
   command: (message) => {
-    const user = message.mentions.users.first();
-    const member = message.mentions.members?.first();
-    if (!user || !member) {
-      message.channel.send(
-        "Sorry, but that appears to be an invalid user mention."
-      );
-      return;
-    }
+    const user = message.author;
+    const memberGuild = message.author.client.guilds.cache.find(
+      (guild) => guild.id === message.guild?.id
+    );
+    const member = memberGuild?.members.cache.find(
+      (mem) => mem.id === message.author.id
+    );
     const joined = new Date(
-      member.joinedTimestamp || Date.now()
+      member?.joinedTimestamp || Date.now()
     ).toDateString();
     const created = new Date(user.createdTimestamp).toDateString();
     const userEmbed = new MessageEmbed()
-      .setTitle(member.displayName)
+      .setTitle(member?.displayName)
       .setDescription(`This is the information I could find on <@!${user}>!`)
       .addFields(
         {
@@ -40,12 +44,26 @@ export const user: CommandInt = {
         },
         {
           name: "Roles",
-          value: `The user has these roles for the server: ${member.roles.cache
+          value: `The user has these roles for the server: ${member?.roles.cache
             .map((role) => role.name)
             .join(", ")}`,
         }
       )
       .setImage(`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`);
-    message.channel.send(userEmbed);
+    message.channel.send(
+      "Wait! I need to make sure you are okay with this. This command will display some of your user information, like your username and account creation date. If you are okay with this, say 'Yes'."
+    );
+    const collector: MessageCollector = new MessageCollector(
+      message.channel as TextChannel,
+      (m: Message) => m.author === message.author,
+      { time: 10000 }
+    );
+    collector.on("collect", (reply) => {
+      if (reply.content === "Yes") {
+        message.channel.send(userEmbed);
+        return;
+      }
+      message.channel.send("Okay, I will hold off on this action for now.");
+    });
   },
 };
