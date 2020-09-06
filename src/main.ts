@@ -161,6 +161,37 @@ client.on("messageDelete", (message) => {
   logChannel.send(deleteEmbed);
 });
 
+client.on("messageUpdate", (oldMessage, message) => {
+  const logChannel = message.guild?.channels.cache.find(
+    (channel) => channel.name === config.log_channel
+  ) as TextChannel;
+  if (message.author?.bot) {
+    return;
+  }
+  const editEmbed = new MessageEmbed()
+    .setTitle("A message was updated!")
+    .addFields(
+      {
+        name: "Old Content",
+        value:
+          oldMessage.content || "Sorry, but I could not find that message.",
+      },
+      {
+        name: "New Content",
+        value: message.content || "Sorry, but I could not find that message.",
+      },
+      {
+        name: "Author",
+        value: message.author || "Sorry, but I could not find that user.",
+      }
+    );
+  if (!logChannel) {
+    console.error("logging channel not found");
+    return;
+  }
+  logChannel.send(editEmbed);
+});
+
 process.once("beforeExit", () => {
   hook.send(`I, ${client.user?.username}, am off to sleep. Goodbye.`);
 });
