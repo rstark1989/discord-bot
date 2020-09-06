@@ -82,7 +82,11 @@ client.on("guildMemberAdd", (member) => {
     console.error("welcome channel not found.");
     return;
   }
-  welcomeChannel.send(welcomeLogEmbed).catch((err) => console.error(err));
+  welcomeChannel.startTyping();
+  setTimeout(() => {
+    welcomeChannel.stopTyping();
+    welcomeChannel.send(welcomeLogEmbed).catch((err) => console.error(err));
+  }, 3000);
 });
 
 client.on("guildMemberRemove", (member) => {
@@ -101,14 +105,22 @@ client.on("guildMemberRemove", (member) => {
     console.error("depart channel not found.");
     return;
   }
-  goodbyeChannel.send(departEmbed).catch((err) => console.error(err));
+  goodbyeChannel.startTyping();
+  setTimeout(() => {
+    goodbyeChannel.stopTyping();
+    goodbyeChannel.send(departEmbed).catch((err) => console.error(err));
+  }, 3000);
 });
 
 client.on("message", (message) => {
   if (message.channel.type === "dm" && message.author.id !== client.user?.id) {
-    message.channel.send(
-      "Sorry, but would you please talk to me in a server, not a private message? If you need a server to join, check out my home! https://discord.gg/PHqDbkg"
-    );
+    message.channel.startTyping();
+    setTimeout(() => {
+      message.channel.stopTyping();
+      message.channel.send(
+        "Sorry, but would you please talk to me in a server, not a private message? If you need a server to join, check out my home! https://discord.gg/PHqDbkg"
+      );
+    }, 3000);
     return;
   }
   levelListen.listener(message);
@@ -116,9 +128,13 @@ client.on("message", (message) => {
   if (message.attachments.array().length > 0) {
     if (!message.attachments.array()[0].height) {
       message.delete();
-      message.channel.send(
-        "Sorry, but please do not upload files. Only images and videos are allowed."
-      );
+      message.channel.startTyping();
+      setTimeout(() => {
+        message.channel.stopTyping();
+        message.channel.send(
+          "Sorry, but please do not upload files. Only images and videos are allowed."
+        );
+      }, 3000);
     }
   }
   for (const command of COMMANDS) {
@@ -162,7 +178,11 @@ client.on("messageDelete", (message) => {
     console.error("logging channel not found");
     return;
   }
-  logChannel.send(deleteEmbed);
+  logChannel.startTyping();
+  setTimeout(() => {
+    logChannel.stopTyping();
+    logChannel.send(deleteEmbed);
+  }, 3000);
 });
 
 client.on("messageUpdate", (oldMessage, message) => {
@@ -193,7 +213,11 @@ client.on("messageUpdate", (oldMessage, message) => {
     console.error("logging channel not found");
     return;
   }
-  logChannel.send(editEmbed);
+  logChannel.startTyping();
+  setTimeout(() => {
+    logChannel.stopTyping();
+    logChannel.send(editEmbed);
+  }, 3000);
 });
 
 process.once("beforeExit", () => {
