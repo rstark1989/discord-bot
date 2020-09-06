@@ -123,8 +123,12 @@ client.on("message", (message) => {
   }
   for (const command of COMMANDS) {
     if (message.content.split(" ")[0] === prefix + command.prefix) {
+      message.channel.startTyping();
       usageListen.listener(message);
-      command.command(message, client);
+      setTimeout(() => {
+        message.channel.stopTyping();
+        command.command(message, client);
+      }, 3000);
       break;
     }
   }
