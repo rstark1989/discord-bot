@@ -14,7 +14,7 @@
     "mathsteps": "^0.2.0",
     "mongoose": "^5.10.3",
     "mtgsdk": "^0.4.3",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "typescript": "^4.0.2"
   },
   "main": "./prod/main.js",
